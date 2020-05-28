@@ -48,7 +48,7 @@ class conectorBD{
         return $this->ejecutarQuery($sql);
       }
   
-      function consultar($tablas, $campos, $condicion = ""){
+      function consultData($tablas, $campos, $condicion = ""){
         $sql = "SELECT ";
         $result = array_keys($campos);
         $ultima_key = end($result);
@@ -75,6 +75,9 @@ class conectorBD{
         }
         return $this->ejecutarQuery($sql);
       }
+
+
+  
   
 
 }
