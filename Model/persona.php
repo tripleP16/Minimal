@@ -65,5 +65,27 @@ class Persona {
 
 }
 
+class Cliente extends Persona{
+    private $idCliente; 
+
+    function __construct($nombre, $apellido, $email, $contrasena, $fechanac, $direccion, $codigoPostal, $ciudad, $genero)
+    {
+        parent::__construct($nombre, $apellido, $email, $contrasena, $fechanac, $direccion, $codigoPostal, $ciudad, $genero);
+    }
+
+    function getIdCliente(){
+        return $this->idCliente;
+    }
+
+}
+
+class Administrador extends Personal{
+    
+}
+
+class Personal extends Persona{
+    
+}
+
 
 ?>

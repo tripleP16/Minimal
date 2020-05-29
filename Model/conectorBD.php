@@ -1,6 +1,5 @@
 <?php 
     date_default_timezone_set('America/Caracas');
-    require('persona.php');
 class conectorBD{
     private $host;
     private $user;
@@ -26,55 +25,28 @@ class conectorBD{
       }
     }
 
-    function insertData($tabla, $data){
-        $sql = 'INSERT INTO '.$tabla.' (';
-        $i = 1;
-        foreach ($data as $key => $value) {
-          $sql .= $key;
-          if ($i<count($data)) {
-            $sql .= ', ';
-          }else $sql .= ')';
-          $i++;
-        }
-        $sql .= ' VALUES (';
-        $i = 1;
-        foreach ($data as $key => $value) {
-          $sql .= $value;
-          if ($i<count($data)) {
-            $sql .= ', ';
-          }else $sql .= ');';
-          $i++;
-        }
-        return $this->ejecutarQuery($sql);
-      }
-  
-      function consultData($tablas, $campos, $condicion = ""){
-        $sql = "SELECT ";
-        $result = array_keys($campos);
-        $ultima_key = end($result);
-        foreach ($campos as $key => $value) {
-          $sql .= $value;
-          if ($key!=$ultima_key) {
-            $sql.=", ";
-          }else $sql .=" FROM ";
-        }
     
-        $result = array_keys($tablas);
-        $ultima_key = end($result);
-        foreach ($tablas as $key => $value) {
-          $sql .= $value;
-          if ($key!=$ultima_key) {
-            $sql.=", ";
-          }else $sql .= " ";
-        }
-    
-        if ($condicion == "") {
-          $sql .= ";";
-        }else {
-          $sql .= $condicion.";";
-        }
-        return $this->ejecutarQuery($sql);
-      }
+    function devolverIdPersonas($email){
+      $select = $this->conexion->prepare('SELECT id FROM personas  WHERE email = ? '); 
+      $select->bind_param("s", $email);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      
+      return $fila ;
+    }
+
+    function insertCliente($fk_persona){
+      $insert = $this->conexion->prepare('INSERT INTO clientes (fk_persona) VALUES (?)');
+      $insert->bind_param("i", $fk_persona); 
+      $insert->execute();  
+
+    }
+    function insertPersona($persona){
+      $insert = $this->conexion->prepare('INSERT INTO personas (nombre, apellido, email, contrasena) VALUES (?,?,?,?)'); 
+      $insert->bind_param("ssss", $persona->getNombre(),$persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena, PASSWORD_DEFAULT));
+      $insert->execute();
+    }
 
     function actualizarUsuario($persona){
       $update = $this->conexion->prepare('UPDATE personas SET nombre = ? , apellido = ?,  email = ?, contrasena = ?, fechanac = ?, direccion =?, zip_code =? , ciudad = ?, genero = ? WHERE id = ?'); 
