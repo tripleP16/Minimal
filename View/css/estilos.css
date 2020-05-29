@@ -1,0 +1,27 @@
+#contenedor{
+    text-align: center;
+    background-color: lightgray;
+}
+
+#titulo{
+    font-family: 'Lobster Two';
+    font-size: 50px;
+}
+
+#barra{
+    display: none;
+}
+
+.menu li{
+    font-size: 15px;
+    color: black;
+}
+
+a{
+    color: black;
+}
+
+
+.button{
+    color: white;
+}
