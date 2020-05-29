@@ -1,9 +1,14 @@
-#contenedor{
+.contenedor{
     text-align: center;
-    background-color: lightgray;
+    width: 100%;
+    
 }
 
-#titulo{
+.contenedor2{
+    padding: 5%;
+}
+
+#minimal{
     font-family: 'Lobster Two';
     font-size: 50px;
 }
@@ -20,8 +25,48 @@
 a{
     color: black;
 }
-
+.dropdown menu{
+    color: lightgray;
+}
 
 .button{
+    color: white;
+}
+
+.show{
+    color: black;
+}
+
+.titulo{
+    font-family: 'Sen', sans-serif;
+}
+#TituloPrincipal{
+    border-bottom: 0.5px solid black;
+}
+
+#TituloSecundario{
+    border-top: 0.5px solid black;
+}
+
+.recuadro{
+    padding: 5%;
+    border: 0.5px solid black;
+}
+
+
+
+
+
+a:hover{
+    color: lightgray;
+}
+
+#footer{
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+.foot{
     color: white;
 }

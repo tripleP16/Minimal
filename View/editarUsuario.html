@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Editar Usuario</title>
+        <title>Edit User</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script>
             $(document).ready(function(){
                 $('#barra').hide();
+                $('#contrasenaNueva').hide();
+                $('#contrasenaActual').hide();
+
+                $('#contrasena').click(function(){
+                    if ($('#contrasenaActual').is(":visible")){
+                        $('#contrasenaNueva').hide(1000);
+                        $('#contrasenaActual').hide(1000);
+                    }else{
+                        $('#contrasenaNueva').show(1000);
+                        $('#contrasenaActual').show(1000);
+                    }
+                })
+
                 $('#lupa').click(function(){
                     if($('#barra').is(":visible")){
                         $('#barra').hide(1000);
@@ -23,20 +37,20 @@
                     
                 })
             })
+            
         </script>
         
     </head>
-    <body>
-       <div id="contenedor">
-            <h1 id="titulo">Minimal</h1>
-            <hr>
+    <body lang="en">
+       <div class="contenedor" id="TituloPrincipal">
+            <h1 id="minimal">Minimal</h1>
        </div>
        
        <div class="grid-x grid-padding-x">
             <div class="menu large-4 cell align-left">
                 <ul class="dropdown menu " data-dropdown-menu>
                     <li>
-                        <a href="#">Women</a>
+                        <a href="#" class="secondary-color">Women</a>
                         <ul class="menu">
                             <li><a href="#">All</a></li>
                             <li><a href="#">Tops</a></li>
@@ -46,7 +60,7 @@
                             <li><a href="#">Hats</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Men</a>
+                    <li><a href="#" class="show">Men</a>
                         <ul class="menu">
                             <li><a href="#">All</a></li>
                             <li><a href="#">Tops</a></li>
@@ -55,7 +69,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Collections</a>
+                        <a href="#" class="show">Collections</a>
                         <ul class="menu">
                             <li><a href="#">New Arrivals</a></li>
                             <li><a href="#">Favorites</a></li>
@@ -69,9 +83,9 @@
             </div>
             <div class="menu large-8 cell align-right">
                 <ul class="dropdown menu " data-dropdown-menu>
-                    <li><span class="material-icons">shopping_bag</span></li>
+                    <li><span class="material-icons">shopping_bag</span>
                     <li>
-                        <a href="#">Acount</a>
+                        <a href="#" class="show">Account</a>
                         <ul class="menu">
                             <li><a href="#"><span class="material-icons">
                                 edit
@@ -96,8 +110,152 @@
                                    
                 </ul>
             </div>
-            <hr>
+           
         </div>
+        <div class="contenedor " id="TituloSecundario">
+            <h3 class="titulo">Edit Account</h3>
+        </div>
+        <br>
+        <br>
+        <div class="grid-x grid-padding-x ">
+            <div class="large-3 cell"></div>
+            <div class="large-2 cell contenedor2"> 
+                <div class="recuadro contenedor">
+                    <h4 class="titulo">My Account</h4>
+                    <br>
+                    <a class="titulo ">
+                        <div class="grid-x grid-padding-x contenedor">
+                            <div class="large-2 cell"></div>
+                            <div class="large-2 cell">
+                                <span class="material-icons">favorite_border</span>
+                            </div>
+                            <div class="large-1 cell">
+                                <p class="titulo">Wishlist</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="titulo ">
+                        <div class="grid-x grid-padding-x contenedor">
+                            <div class="large-2 cell"></div>
+                            <div class="large-2 cell">
+                                <span class="material-icons">local_shipping</span>
+                            </div>
+                            <div class="large-5 cell">
+                                <p class="titulo">My Orders</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="titulo ">
+                        <div class="grid-x grid-padding-x contenedor">
+                            <div class="large-2 cell"></div>
+                            <div class="large-2 cell">
+                                <span class="material-icons">exit_to_app</span>
+                            </div>
+                            <div class="large-5 cell">
+                                <p class="titulo">Sign Out</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <br>
+                <br>
+                <div class="recuadro contenedor">
+                    <h4 class="titulo">Password</h4>
+                    <p class="titulo"><i>You can change your password by clicking the button below </i></p>
+                    <button class="button secondary" id="contrasena">Change Password</button>
+                    <input type="password" class="input" id="contrasenaActual" placeholder="Current Password">
+                    <input type="password" class="input" id="contrasenaNueva" placeholder="New Password">
+                </div>
+            </div>
+            <div class="large-1 cell"></div>
+            <div class="large-4 cell align-right">
+                <h4 class="titulo"><b>Personal Information:</b></h4>
+                <form>
+                    <label for="nombre" class="titulo">First Name: </label>
+                    <input type="text" placeholder="First Name" id="nombre" for="nombre">
+                    <label for="apellido" class="titulo">Last Name: </label>
+                    <input type="text" placeholder="Last Name" id="apellido" for="apellido">
+                    <label for="Email" class="titulo">Email: </label>
+                    <input type="email" placeholder="Enter your Email" id="email" for="email">
+                    <label for="birthday" class="titulo">Birthday: </label>
+                    <input type="date" id="birthday" for="birthday">
+                    <label for="adress" class="titulo">Adress</label>
+                    <textarea for="adress" id="adrees"></textarea>
+                    <label for="codigo" class="titulo">Zip Code</label>
+                    <input type="number" for="codigo" id="codigo" max="8055" min="1050">
+                    <label for="state" class="titulo">State </label>
+                    <input type="text" for="state" id="estado"> 
+                    <label for="city" class="titulo">City</label>
+                    <input type="text" for="city" id="ciudad">
+                    <fieldset class="large-5 cell">
+                        <legend class="titulo">Gender</legend>
+                            <input type="radio" name="pokemon" value="F" id="mujer" required><label for="mujer">Female</label>
+                            <input type="radio" name="pokemon" value="M" id="hombre"><label for="hombre">Male</label>
+                      </fieldset>
+                      <br>
+                      
+                      <label for="subir" class="button secondary titulo align-middle">UPDATE</label>
+                            <input type="submit" id="subir" class="show-for-sr">
+                </form>
+                    
+            </div>
+        </div>
+        <br>
+        <div class="grid-x grid-padding-x ">
+            <div class="large-12 cell" id="footer">
+                <div class="grid-x grid-padding-x ">
+                    <div class="large-1 cell " ></div>
+                    <div class="large-3 cell contenedor" >
+                        <h2 class="titulo">Follow Us!</h2>
+                        <div class="grid-x grid-padding-x ">
+                            <div class="large-4 cell" ></div>
+                            <div class="large-1 cell" >
+                               <a> <i class="fa fa-facebook-f " style="font-size:28px; color: white;"></i></a>
+                               <br>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-twitter" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-instagram" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">Shop</p>
+                        <a class="foot"><p class="titulo">Women</p></a>
+                        <a class="foot"><p class="titulo">Male</p></a>
+                        <a class="foot"><p class="titulo">Collections</p></a>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">About</p>
+                        <a class="foot"><p class="titulo">Policies and refunds</p></a>
+                        <a class="foot"><p class="titulo">Find My Size</p></a>
+                        <br> 
+                        <br> 
+                        
+                            
+                        
+                    </div>
+                    <div class="large-2 cell">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="grid-x grid-padding-x ">
+                            <div class="large-2 cell" ><span class="material-icons">copyright</span></div>
+                            <div class="large-6 cell" >2020 Minimal, Inc</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
