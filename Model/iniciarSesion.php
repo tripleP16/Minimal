@@ -30,7 +30,7 @@ if ($con->initConexion('minimal')== 'OK'){
                     $_SESSION['tipo_usuario'] = false;
                     
                 }
-                    $_SESSION['user'] = $con->devolverUsuario($id['id']);
+                    $_SESSION['user'] =$id['id'];
             }else{
                 $response['msg'] = 'Ooops, we could not find you, sorry please try again';
             }

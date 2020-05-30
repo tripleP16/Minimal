@@ -89,7 +89,7 @@ class conectorBD{
 
     function actualizarUsuario($persona){
       $update = $this->conexion->prepare('UPDATE personas SET nombre = ? , apellido = ?,  email = ?, contrasena = ?, fechanac = ?, direccion =?, zip_code =? , ciudad = ?, genero = ? WHERE id = ?'); 
-      $update->bind_param("ssssssissi", $persona->getNombre(), $persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena, PASSWORD_DEFAULT), date('Y-m-d',$persona->getFecha_Nac()), $persona->getDireccion(), $persona->getCodigoPostal(), $persona->getCiudad(), $persona->getGenero(), $persona->getID()); 
+      $update->bind_param("ssssssissi", $persona->getNombre(), $persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena(), PASSWORD_DEFAULT), date('Y-m-d',$persona->getFecha_Nac()), $persona->getDireccion(), $persona->getCodigoPostal(), $persona->getCiudad(), $persona->getGenero(), $persona->getID()); 
       $update->execute();
 
     }

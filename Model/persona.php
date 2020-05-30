@@ -60,7 +60,40 @@ class Persona {
     }
 
 
+    function setID($id){
+        $this->id = $id;
+    }
 
+    function setEmail($email){
+         $this->email = $email;
+    }
+    function setDireccion($direccion){
+        $this->direccion = $direccion;
+    }
+    function setGenero($genero){
+        $this->genero= $genero;
+    }
+    function setCiudad($ciudad){
+       $this->ciudad = $ciudad;
+    }
+    function setCodigoPostal($codigo_postal){
+        $this->codigoPostal = $codigo_postal;
+    }
+    function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+
+    function setApellido($apellido){
+        $this->apellido = $apellido;
+    }
+
+    function setContrasena($contrasena){
+        $this->contrasena = $contrasena;
+    }
+
+    function setFecha_Nac($fechanac){
+        $this->fechanac =strtotime($fechanac); 
+    }
 
 
 }
