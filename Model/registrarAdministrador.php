@@ -12,30 +12,21 @@ require('persona.php');
 $nombre_prueba1= 'Pablo';
 $apellido_prueba1= 'Perez';
 $email_prueba1 = 'perez51160900@hotmail.com';
-$contrasena_prueba1= '160900$';
-
-$nombre_prueba2 = 'Stratos'; 
-$apellido_prueba2 = 'Kakalanos';
-$email_prueba2 = 'griego@gmail';
-$contrasena_prueba2='1234567';
-
-$response['msg'] ='You have been successfully registered';
-
-$tipo_usuario = false; 
-
-$cliente = new Cliente($nombre_prueba2,$apellido_prueba2,$email_prueba2,$contrasena_prueba2, null, null, null, null, null); 
+$contrasena_prueba1= '160900';
+$tipo_usuario = true;
 $administardor = new Administrador($nombre_prueba1, $apellido_prueba1, $email_prueba1,$contrasena_prueba1, null , null, null, null, null);
+$response['msg'] ='You have been successfully registered';
 
 $con = new ConectorBD('localhost', 'user_prueba', '123456P');
 
 if($con->initConexion('minimal')== 'OK'){
-    $id= $con->devolverIdPersonas($cliente->getEmail());
+    $id= $con->devolverIdPersonas($administardor->getEmail());
     if ($id['id'] == null){
-        if($tipo_usuario == false){
-            $con->insertPersona($cliente);
-            $id= $con->devolverIdPersonas($cliente->getEmail());
+        if($tipo_usuario == true){
+            $con->insertPersona($administardor);
+            $id= $con->devolverIdPersonas($administardor->getEmail());
             echo $id['id'];
-            $con->insertCliente($id['id']);
+            $con->insertAdministrador($id['id']);
             echo "TODO OK";
         }
 
@@ -48,5 +39,8 @@ if($con->initConexion('minimal')== 'OK'){
 }
 
 echo $response['msg'];
+
+
+
 
 ?>

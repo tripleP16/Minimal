@@ -1,5 +1,0 @@
-<?php
-require('persona.php');
-
-
-?>
