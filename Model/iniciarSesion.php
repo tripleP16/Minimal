@@ -8,7 +8,7 @@ require('persona.php');
 //$contrasena = $_POST['contrasena'];
 
 
-$email_prueba1 = 'pedro@gmail.com';
+$email_prueba1 = 'griego@gmail';
 $contrasena_prueba1= '1234567';
 $con = new ConectorBD('localhost', 'user_prueba', '123456P');
 $response['msg'] ='Welcome';
@@ -26,6 +26,7 @@ if ($con->initConexion('minimal')== 'OK'){
                     $_SESSION['tipo_usuario'] = true;
                     
                 }else { 
+
                     $_SESSION['tipo_usuario'] = false;
                     
                 }

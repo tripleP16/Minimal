@@ -117,6 +117,16 @@ class conectorBD{
       $insert->execute();
     }
 
+    function insertReview ($comentario, $puntuacion){
+     $insert = $this->conexion->prepare('INSERT INTO puntuaciones (fk_cliente, fk_producto, puntuacion, comentario) VALUES (?,?,?,?)');
+      $insert->bind_param("iiis", $comentario->getId(),  $comentario->getIdProducto(), $puntuacion->getPuntuacion(), $comentario->getComentario());
+     if( $insert->execute()){
+       return 'oK';
+     }else {
+       return $insert->error;
+     }
+    }
+
     
 
 
