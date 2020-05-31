@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit User</title>
+        <title>Inicio</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
@@ -14,22 +14,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         <script>
             $(document).ready(function(){
-                $('#barra').hide();
-                $('#pass').hide();                
-
-                $('#contrasena').click(function(){
-                    if ($('#contrasenaActual').is(":visible")){
-                        $('#pass').hide(1000);
-                    }else{
-                        $('#pass').show(1000);
-                        
-                        
-                    }
-                })
-
-                $('#lupa').click(function(){
+                 $('#lupa').click(function(){
                     if($('#barra').is(":visible")){
                         $('#barra').hide(1000);
                     }else{
@@ -108,108 +96,18 @@
                         <div id="barra">
                             <input type="text" placeholder="Buscar">
                         </div>
-                    </li>
-                                   
+                    </li>                 
                 </ul>
             </div>
-           
         </div>
-        <div class="contenedor " id="TituloSecundario">
+        
+         <div class="contenedor " id="TituloSecundario">
             <br>
-            <h3 class="titulo">Edit Account</h3>
         </div>
         <br>
         <br>
-        <div class="grid-x grid-padding-x ">
-            <div class="large-2 cell"></div>
-            <div class="large-2 cell contenedor2"> 
-                <div class="recuadro contenedor">
-                    <br>
-                    <h4 class="titulo">My Account</h4>
-                    <br>
-                    <a class="titulo ">
-                        <div class="grid-x grid-padding-x contenedor">
-                            <div class="large-2 cell"></div>
-                            <div class="large-2 cell">
-                                <span class="material-icons">favorite_border</span>
-                            </div>
-                            <div class="large-1 cell">
-                                <p class="titulo">Wishlist</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="titulo ">
-                        <div class="grid-x grid-padding-x contenedor">
-                            <div class="large-2 cell"></div>
-                            <div class="large-2 cell">
-                                <span class="material-icons">local_shipping</span>
-                            </div>
-                            <div class="large-5 cell">
-                                <p class="titulo">My Orders</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="titulo ">
-                        <div class="grid-x grid-padding-x contenedor">
-                            <div class="large-2 cell"></div>
-                            <div class="large-2 cell">
-                                <span class="material-icons">exit_to_app</span>
-                            </div>
-                            <div class="large-5 cell">
-                                <p class="titulo">Sign Out</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <br>
-                <br>
-                <div class="recuadro contenedor" >
-                    <h4 class="titulo">Password</h4>
-                    <p class="descrip">You can change your password by clicking the button below</p>
-                    <button class="button secondary descrip" id="contrasena">Change Password</button>
-                    <div id="pass">
-                        <label for="contraseña" class="descrip" id="contrasenaA">Current Pasword: </label>
-                        <input type="password" class="input" id="contrasenaActual" placeholder="Current Password">
-                        <label for="contraseña" class="descrip" id="contrasenaN">New Pasword: </label>
-                        <input type="password" class="input" id="contrasenaNueva" placeholder="New Password">
-                    </div>
-                </div>
-            </div>
-            <div class="large-2 cell"></div>
-            <div class="large-4 cell align-right">
-                <h4 class="titulo">Personal Information:</h4>
-                <form>
-                    <label for="nombre" class="descrip">First Name: </label>
-                    <input type="text" placeholder="First Name" id="nombre" for="nombre">
-                    <label for="apellido" class="descrip">Last Name: </label>
-                    <input type="text" placeholder="Last Name" id="apellido" for="apellido">
-                    <label for="Email" class="descrip">Email: </label>
-                    <input type="email" placeholder="Enter your Email" id="email" for="email">
-                    <label for="birthday" class="descrip">Birthday: </label>
-                    <input type="date" id="birthday" for="birthday">
-                    <label for="adress" class="descrip">Adress</label>
-                    <textarea for="adress" id="adrees"></textarea>
-                    <label for="codigo" class="descrip">Zip Code</label>
-                    <input type="number" for="codigo" id="codigo" max="8055" min="1050">
-                    <label for="state" class="descrip">State </label>
-                    <input type="text" for="state" id="estado"> 
-                    <label for="city" class="descrip">City</label>
-                    <input type="text" for="city" id="ciudad">
-                    <fieldset class="large-5 cell">
-                        <legend class="descrip">Gender</legend>
-                            <input type="radio" name="gender" value="F" id="mujer" required><label class="descrip " for="mujer">Female</label>
-                            <input type="radio" name="gender" value="M" id="hombre"><label class="descrip " for="hombre">Male</label>
-                      </fieldset>
-                      <br>
-                      <div class="grid-x grid-padding-x align-center">
-                      <label for="subir" class="button secondary descrip " >Update</label>
-                            <input type="submit" id="subir" class="show-for-sr">
-                    </div>
-                </form>
-                    
-            </div>
-        </div>
-        <br>
+        
+         <br>
         <div class="grid-x grid-padding-x ">
             <div class="large-12 cell" id="footer">
                 <div class="grid-x grid-padding-x ">
@@ -258,7 +156,6 @@
                     </div>
                 </div>
             </div>
-    
  
 
     <script src="js/vendor/jquery.js"></script>
