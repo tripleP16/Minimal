@@ -8,8 +8,8 @@ require('persona.php');
 //$contrasena = $_POST['contrasena'];
 
 
-$email_prueba1 = 'perez51160900@hotmail.com';
-$contrasena_prueba1= '160900';
+$email_prueba1 = 'pedro@gmail.com';
+$contrasena_prueba1= '1234567';
 $con = new ConectorBD('localhost', 'user_prueba', '123456P');
 $response['msg'] ='Welcome';
 
@@ -18,9 +18,8 @@ if ($con->initConexion('minimal')== 'OK'){
     if ($contrasena['contrasena']!= null ){
         if(password_verify($contrasena_prueba1,$contrasena['contrasena'])){
             session_start();
-            $id = $con->devolverIdPersonas($email_prueba1);
+            $id = $con->devolverIdPersonas($email_prueba1);;
             if ($id['id']!=null){
-                
                 $id_administradores = $con->devolverIdAdministradores($id['id']);
                 
                 if ($id_administradores['id']!=null){
@@ -38,6 +37,8 @@ if ($con->initConexion('minimal')== 'OK'){
         }else{
             $response['msg']='Oops wrong password, please try again ';
         }
+    }else {
+        $response['msg']= 'Oops it seems you are not registered yet, please create an account';
     }
 }
 

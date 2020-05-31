@@ -94,6 +94,29 @@ class conectorBD{
 
     }
 
+
+    
+    function devolverIdProducto($descripcion){
+      $select = $this->conexion->prepare('SELECT id FROM productos  WHERE descripcion = ? '); 
+      $select->bind_param("s", $descripcion);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
+
+    function insertProducto($producto){
+      $insert = $this->conexion->prepare('INSERT INTO productos (titulo, descripcion, precio) VALUES (?,?,?)');
+      $insert->bind_param("ssd", $producto->getTitulo(), $producto->getDescripcion(), $producto->getPrecio());
+      $insert->execute();
+    }
+
+    function insertTallas($talla, $id){
+      $insert = $this->conexion->prepare('INSERT INTO tallas (fk_producto, talla) VALUES (?,?)');
+      $insert->bind_param("is", $id, $talla);
+      $insert->execute();
+    }
+
     
 
 

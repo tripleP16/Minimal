@@ -33,6 +33,8 @@ if ($con->initConexion('minimal')== 'OK'){
     $persona->setID($id); 
     $con->actualizarUsuario($persona);
     echo "Your data has been updated ";
+}else {
+    echo "Oops something happened "; 
 }
 
 ?>
