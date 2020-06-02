@@ -1,0 +1,120 @@
+.contenedor{
+    text-align: center;
+    width: 100%;
+    
+}
+
+.contenedor2{
+    padding: 5%;
+}
+
+.contenedor3{
+    text-align: left;
+    width: 100%;
+}
+
+#minimal{
+    font-family: 'Dancing Script';
+    font-size: 80px;
+}
+
+#barra{
+    display: none;
+}
+
+.menu li{
+    font-size: 15px;
+    color: black;
+}
+
+a{
+    color: black;
+}
+.dropdown menu{
+    color: lightgray;
+}
+
+.button{
+    color: white;
+}
+
+.show{
+    color: black;
+}
+
+#title{
+    font-size: 20px;
+}
+
+.titulo{
+    font-family: 'Comic Neue', sans-serif;
+}
+#TituloPrincipal{
+    border-bottom: 2px groove black;
+}
+
+#TituloSecundario{
+    border-top: 2px groove black;
+}
+
+.recuadro{
+    padding: 5%;
+    border: 0.5px solid black;
+}
+
+#recuadroImag{
+    padding: 3%;
+    border: 0.5px solid black;
+    margin-bottom: 20px;
+}
+
+.descrip{
+    font-family: 'Oswald';
+    font-size: 16px;
+}
+
+#icon{
+    position:relative;
+    right:5px;
+    bottom: 2px;
+}
+
+#preview{
+    text-align: center;
+}
+
+#shopButton{
+    font-size: 18px;
+    text-align: center;
+}
+
+#price{
+    font-size: 20px;
+}
+
+
+#line{
+    border-top: 3px groove #E9E9E9;
+}
+
+.comen{
+    font-size: 20px;
+    text-align: center;
+}
+
+#separador{
+    display: block;
+    width:96%;
+    height:80px;
+}
+
+#footer{
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+.foot{
+    color: white;
+}
+
