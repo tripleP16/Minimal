@@ -1,8 +1,9 @@
 <?php
 require('conectorBD.php');
 require('persona.php');
+error_reporting(0);
 
-/*
+
 $nombre = $_POST['nombre'];  
 $apellido = $_POST['apellido'];
 $email = $_POST['email'];
@@ -13,18 +14,6 @@ $estado = $_POST['estado'];
 $ciudad = $_POST['ciudad'];
 $genero = $_POST['genero'];
 $contrasena = $_POST['contrasena'];
-*/
-
-$nombre = 'Pedro';
-$apellido = 'Perez';
-$email = 'pedro@gmail.com';
-$nacimiento = '2000-09-16';
-$direccion = 'Santa Monica';
-$codigo_postal = 1050;
-$estado = 'Nueva Esparta';
-$ciudad = 'La Asuncion';
-$genero = 'M';
-$contrasena = '1234567';
 session_start();
 $id = $_SESSION['user'];
 $con = new ConectorBD('localhost', 'user_prueba', '123456P');
