@@ -4,7 +4,6 @@
 
 $(function(){
     function registrarCliente(){
-        event.preventDefault();
         let nombre = $('#name').val();
         let apellido = $('#last').val();
         let email = $('#emailR').val();
@@ -222,10 +221,6 @@ $(function(){
         if ($('#register')[0].checkValidity()){
             registrarCliente();
         }
-        $('#name').val("");
-        $('#last').val("");
-        $('#emailR').val("");
-        $('#contrasenaR').val("");
         
     });
 
