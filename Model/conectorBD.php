@@ -1,5 +1,4 @@
-<?php 
-    require('user.php');
+<?php
     date_default_timezone_set('America/Caracas');
 class conectorBD{
     private $host;
@@ -47,7 +46,7 @@ class conectorBD{
         }
         return $this->ejecutarQuery($sql);
       }
-  
+
       function consultData($tablas, $campos, $condicion = ""){
         $sql = "SELECT ";
         $result = array_keys($campos);
@@ -58,7 +57,7 @@ class conectorBD{
             $sql.=", ";
           }else $sql .=" FROM ";
         }
-    
+
         $result = array_keys($tablas);
         $ultima_key = end($result);
         foreach ($tablas as $key => $value) {
@@ -67,7 +66,7 @@ class conectorBD{
             $sql.=", ";
           }else $sql .= " ";
         }
-    
+
         if ($condicion == "") {
           $sql .= ";";
         }else {
@@ -75,10 +74,6 @@ class conectorBD{
         }
         return $this->ejecutarQuery($sql);
       }
-
-
-  
-  
 
 }
 ?>
