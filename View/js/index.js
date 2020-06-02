@@ -1,7 +1,3 @@
-
-
-
-
 $(function(){
     function registrarCliente(){
         event.preventDefault();
@@ -12,14 +8,14 @@ $(function(){
         var request = $.ajax({
             url:'../Model/registrarCliente.php',
             data: {nombre:nombre, apellido:apellido, email:email, contrasena:contrasena},
-            type:'POST', 
+            type:'POST',
             dataType: "html"
         })
 
         request.done(function(response){
            if (response == 'OK'){
                alert ("You have been successfully registered");
-               $('#email').val(email); 
+               $('#email').val(email);
                $('#contrasena').val(contrasena);
                iniciarSesion();
 
@@ -32,40 +28,40 @@ $(function(){
             if (jqXHR.status === 0) {
 
                 alert('Not connect: Verify Network.');
-            
+
               } else if (jqXHR.status == 404) {
-            
+
                 alert('Requested page not found [404]');
-            
+
               } else if (jqXHR.status == 500) {
-            
+
                 alert('Internal Server Error [500].');
-            
+
               } else if (textStatus === 'parsererror') {
-            
+
                 alert('Requested JSON parse failed.');
-            
+
               } else if (textStatus === 'timeout') {
-            
+
                 alert('Time out error.');
-            
+
               } else if (textStatus === 'abort') {
-            
+
                 alert('Ajax request aborted.');
-            
+
               } else {
-            
+
                 alert('Uncaught Error: ' + jqXHR.responseText);
-            
+
               }
-            
+
         });
-    
+
     }
 
     function iniciarSesion(){
         event.preventDefault();
-        let email = $('#email').val(); 
+        let email = $('#email').val();
         let contrasena = $('#contrasena').val();
 
         var request = $.ajax({
@@ -83,7 +79,7 @@ $(function(){
                 }else{
                     window.location.href = "Clients.html";
                 }
-                
+
             }else {
                 alert(response.msg);
             }
@@ -92,33 +88,33 @@ $(function(){
             if (jqXHR.status === 0) {
 
                 alert('Not connect: Verify Network.');
-            
+
               } else if (jqXHR.status == 404) {
-            
+
                 alert('Requested page not found [404]');
-            
+
               } else if (jqXHR.status == 500) {
-            
+
                 alert('Internal Server Error [500].');
-            
+
               } else if (textStatus === 'parsererror') {
-            
+
                 alert('Requested JSON parse failed.');
-            
+
               } else if (textStatus === 'timeout') {
-            
+
                 alert('Time out error.');
-            
+
               } else if (textStatus === 'abort') {
-            
+
                 alert('Ajax request aborted.');
-            
+
               } else {
-            
+
                 alert('Uncaught Error: ' + jqXHR.responseText);
-            
+
               }
-            
+
         });
     }
 
@@ -139,52 +135,47 @@ $(function(){
             if (jqXHR.status === 0) {
 
                 alert('Not connect: Verify Network.');
-            
+
               } else if (jqXHR.status == 404) {
-            
+
                 alert('Requested page not found [404]');
-            
+
               } else if (jqXHR.status == 500) {
-            
+
                 alert('Internal Server Error [500].');
-            
+
               } else if (textStatus === 'parsererror') {
-            
+
                 alert('Requested JSON parse failed.');
-            
+
               } else if (textStatus === 'timeout') {
-            
+
                 alert('Time out error.');
-            
+
               } else if (textStatus === 'abort') {
-            
+
                 alert('Ajax request aborted.');
-            
+
               } else {
-            
+
                 alert('Uncaught Error: ' + jqXHR.responseText);
-            
+
               }
-            
+
         });
     }
-    
+
     $('#subir').click(function(){
         if ($('#register')[0].checkValidity()){
             registrarCliente();
         }
-        $('#name').val("");
-        $('#last').val("");
-        $('#emailR').val("");
-        $('#contrasenaR').val("");
-        
     });
 
     $('#iniciar').click(function(){
         if ($('#login2')[0].checkValidity()){
             iniciarSesion();
         }
-       /* $('#email').val(""); 
+       /* $('#email').val("");
         $('#contrasena').val("");**/
 
     })
