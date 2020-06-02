@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 <?php
-=======
-<?php 
->>>>>>> Pablo
     date_default_timezone_set('America/Caracas');
 class conectorBD{
     private $host;
@@ -29,57 +26,6 @@ class conectorBD{
       }
     }
 
-<<<<<<< HEAD
-    function insertData($tabla, $data){
-        $sql = 'INSERT INTO '.$tabla.' (';
-        $i = 1;
-        foreach ($data as $key => $value) {
-          $sql .= $key;
-          if ($i<count($data)) {
-            $sql .= ', ';
-          }else $sql .= ')';
-          $i++;
-        }
-        $sql .= ' VALUES (';
-        $i = 1;
-        foreach ($data as $key => $value) {
-          $sql .= $value;
-          if ($i<count($data)) {
-            $sql .= ', ';
-          }else $sql .= ');';
-          $i++;
-        }
-        return $this->ejecutarQuery($sql);
-      }
-
-      function consultData($tablas, $campos, $condicion = ""){
-        $sql = "SELECT ";
-        $result = array_keys($campos);
-        $ultima_key = end($result);
-        foreach ($campos as $key => $value) {
-          $sql .= $value;
-          if ($key!=$ultima_key) {
-            $sql.=", ";
-          }else $sql .=" FROM ";
-        }
-
-        $result = array_keys($tablas);
-        $ultima_key = end($result);
-        foreach ($tablas as $key => $value) {
-          $sql .= $value;
-          if ($key!=$ultima_key) {
-            $sql.=", ";
-          }else $sql .= " ";
-        }
-
-        if ($condicion == "") {
-          $sql .= ";";
-        }else {
-          $sql .= $condicion.";";
-        }
-        return $this->ejecutarQuery($sql);
-      }
-=======
     function devolverUsuario($id){
       $select = $this->conexion->prepare('SELECT * FROM personas WHERE id = ?');
       $select->bind_param("i", $id);
@@ -89,25 +35,25 @@ class conectorBD{
     }
 
     function devolverContrasena($email){
-      $select = $this->conexion->prepare('SELECT contrasena FROM personas  WHERE email = ? '); 
+      $select = $this->conexion->prepare('SELECT contrasena FROM personas  WHERE email = ? ');
       $select->bind_param("s", $email);
       $select->execute();
       $result = $select->get_result();
       $fila = $result->fetch_assoc();
-      
+
       return $fila ;
     }
     function devolverIdPersonas($email){
-      $select = $this->conexion->prepare('SELECT id FROM personas  WHERE email = ? '); 
+      $select = $this->conexion->prepare('SELECT id FROM personas  WHERE email = ? ');
       $select->bind_param("s", $email);
       $select->execute();
       $result = $select->get_result();
       $fila = $result->fetch_assoc();
-      
+
       return $fila ;
     }
     function devolverIdAdministradores($fk_persona){
-      $select = $this->conexion->prepare('SELECT id FROM administradores  WHERE fk_persona = ? '); 
+      $select = $this->conexion->prepare('SELECT id FROM administradores  WHERE fk_persona = ? ');
       $select->bind_param("i", $fk_persona);
       $select->execute();
       $result = $select->get_result();
@@ -116,7 +62,7 @@ class conectorBD{
     }
 
     function devolverIdClientes($fk_persona){
-      $select = $this->conexion->prepare('SELECT id FROM clientes WHERE fk_persona = ? '); 
+      $select = $this->conexion->prepare('SELECT id FROM clientes WHERE fk_persona = ? ');
       $select->bind_param("i", $fk_persona);
       $select->execute();
       $result = $select->get_result();
@@ -126,37 +72,35 @@ class conectorBD{
 
     function insertCliente($fk_persona){
       $insert = $this->conexion->prepare('INSERT INTO clientes (fk_persona) VALUES (?)');
-      $insert->bind_param("i", $fk_persona); 
-      $insert->execute();  
+      $insert->bind_param("i", $fk_persona);
+      $insert->execute();
 
     }
 
     function insertAdministrador($fk_persona){
       $insert = $this->conexion->prepare('INSERT INTO administradores (fk_persona) VALUES (?)');
-      $insert->bind_param("i", $fk_persona); 
-      $insert->execute(); 
+      $insert->bind_param("i", $fk_persona);
+      $insert->execute();
     }
     function insertPersona($persona){
       $nombre = $persona->getNombre();
       $apellido = $persona->getApellido() ;
       $email = $persona->getEmail() ;
       $contrasena = $persona->getContrasena();
-      $insert = $this->conexion->prepare('INSERT INTO personas (nombre, apellido, email, contrasena) VALUES (?,?,?,?)'); 
+      $insert = $this->conexion->prepare('INSERT INTO personas (nombre, apellido, email, contrasena) VALUES (?,?,?,?)');
       $insert->bind_param("ssss", $nombre ,$apellido,$email , password_hash($contrasena, PASSWORD_DEFAULT));
       $insert->execute();
     }
 
     function actualizarUsuario($persona){
-      $update = $this->conexion->prepare('UPDATE personas SET nombre = ? , apellido = ?,  email = ?, contrasena = ?, fechanac = ?, direccion =?, zip_code =? , ciudad = ?, genero = ? WHERE id = ?'); 
-      $update->bind_param("ssssssissi", $persona->getNombre(), $persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena(), PASSWORD_DEFAULT), date('Y-m-d',$persona->getFecha_Nac()), $persona->getDireccion(), $persona->getCodigoPostal(), $persona->getCiudad(), $persona->getGenero(), $persona->getID()); 
+      $update = $this->conexion->prepare('UPDATE personas SET nombre = ? , apellido = ?,  email = ?, contrasena = ?, fechanac = ?, direccion =?, zip_code =? , ciudad = ?, genero = ? WHERE id = ?');
+      $update->bind_param("ssssssissi", $persona->getNombre(), $persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena(), PASSWORD_DEFAULT), date('Y-m-d',$persona->getFecha_Nac()), $persona->getDireccion(), $persona->getCodigoPostal(), $persona->getCiudad(), $persona->getGenero(), $persona->getID());
       $update->execute();
 
     }
 
-
-    
     function devolverIdProducto($descripcion){
-      $select = $this->conexion->prepare('SELECT id FROM productos  WHERE descripcion = ? '); 
+      $select = $this->conexion->prepare('SELECT id FROM productos  WHERE descripcion = ? ');
       $select->bind_param("s", $descripcion);
       $select->execute();
       $result = $select->get_result();
@@ -185,9 +129,5 @@ class conectorBD{
        return $insert->error;
      }
     }
-
-    
->>>>>>> Pablo
-
 }
 ?>
