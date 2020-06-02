@@ -82,8 +82,12 @@ class conectorBD{
       $insert->execute(); 
     }
     function insertPersona($persona){
+      $nombre = $persona->getNombre();
+      $apellido = $persona->getApellido() ;
+      $email = $persona->getEmail() ;
+      $contrasena = $persona->getContrasena();
       $insert = $this->conexion->prepare('INSERT INTO personas (nombre, apellido, email, contrasena) VALUES (?,?,?,?)'); 
-      $insert->bind_param("ssss", $persona->getNombre(),$persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena(), PASSWORD_DEFAULT));
+      $insert->bind_param("ssss", $nombre ,$apellido,$email , password_hash($contrasena, PASSWORD_DEFAULT));
       $insert->execute();
     }
 

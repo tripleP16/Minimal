@@ -8,6 +8,11 @@
     padding: 5%;
 }
 
+.contenedor3{
+    text-align: left;
+    width: 100%;
+}
+
 #minimal{
     font-family: 'Dancing Script';
     font-size: 80px;
@@ -37,6 +42,10 @@ a{
     color: black;
 }
 
+#title{
+    font-size: 20px;
+}
+
 .titulo{
     font-family: 'Comic Neue', sans-serif;
 }
@@ -53,24 +62,50 @@ a{
     border: 0.5px solid black;
 }
 
+#recuadroImag{
+    padding: 3%;
+    border: 0.5px solid black;
+    margin-bottom: 20px;
+}
+
 .descrip{
     font-family: 'Oswald';
     font-size: 16px;
 }
 
-#new-arrival{
-    text-align: center;
-    background-color: black;
-    color:white;
+#icon{
+    position:relative;
+    right:5px;
+    bottom: 2px;
 }
+
+#preview{
+    text-align: center;
+}
+
+#shopButton{
+    font-size: 18px;
+    text-align: center;
+}
+
+#price{
+    font-size: 20px;
+}
+
 
 #line{
     border-top: 3px groove #E9E9E9;
 }
 
+.comen{
+    font-size: 20px;
+    text-align: center;
+}
 
-a:hover{
-    color: lightgray;
+#separador{
+    display: block;
+    width:96%;
+    height:80px;
 }
 
 #footer{
@@ -82,3 +117,4 @@ a:hover{
 .foot{
     color: white;
 }
+

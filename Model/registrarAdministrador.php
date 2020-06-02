@@ -12,7 +12,7 @@ require('persona.php');
 $nombre_prueba1= 'Pablo';
 $apellido_prueba1= 'Perez';
 $email_prueba1 = 'perez51160900@hotmail.com';
-$contrasena_prueba1= '160900';
+$contrasena_prueba1= '12345678';
 $tipo_usuario = true;
 $administardor = new Administrador($nombre_prueba1, $apellido_prueba1, $email_prueba1,$contrasena_prueba1, null , null, null, null, null);
 $response['msg'] ='You have been successfully registered';

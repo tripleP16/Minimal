@@ -17,14 +17,20 @@
         <script>
             $(document).ready(function(){
                 $('#barra').hide();
-                $('#pass').hide();                
+                $('#contrasenaNueva').hide();
+                $('#contrasenaActual').hide();
 
                 $('#contrasena').click(function(){
                     if ($('#contrasenaActual').is(":visible")){
-                        $('#pass').hide(1000);
+                        $('#contrasenaNueva').hide(1000);
+                        $('#contrasenaActual').hide(1000);
+                        $('#contrasenaN').hide(1000);
+                        $('#contrasenaA').hide(1000);
                     }else{
-                        $('#pass').show(1000);
-                        
+                        $('#contrasenaNueva').show(1000);
+                        $('#contrasenaActual').show(1000);
+                        $('#contrasenaN').hide(1000);
+                        $('#contrasenaA').hide(1000);
                         
                     }
                 })
@@ -120,6 +126,7 @@
         </div>
         <br>
         <br>
+        
         <div class="grid-x grid-padding-x ">
             <div class="large-2 cell"></div>
             <div class="large-2 cell contenedor2"> 
@@ -163,16 +170,14 @@
                 </div>
                 <br>
                 <br>
-                <div class="recuadro contenedor" >
+                <div class="recuadro contenedor">
                     <h4 class="titulo">Password</h4>
                     <p class="descrip">You can change your password by clicking the button below</p>
                     <button class="button secondary descrip" id="contrasena">Change Password</button>
-                    <div id="pass">
-                        <label for="contraseña" class="descrip" id="contrasenaA">Current Pasword: </label>
-                        <input type="password" class="input" id="contrasenaActual" placeholder="Current Password">
-                        <label for="contraseña" class="descrip" id="contrasenaN">New Pasword: </label>
-                        <input type="password" class="input" id="contrasenaNueva" placeholder="New Password">
-                    </div>
+                    <label for="contraseña" class="descrip" id="contrasenaA">Current Pasword: </label>
+                    <input type="password" class="input" id="contrasenaActual" placeholder="Current Password">
+                    <label for="contraseña" class="descrip" id="contrasenaN">New Pasword: </label>
+                    <input type="password" class="input" id="contrasenaNueva" placeholder="New Password">
                 </div>
             </div>
             <div class="large-2 cell"></div>
@@ -202,14 +207,17 @@
                       </fieldset>
                       <br>
                       <div class="grid-x grid-padding-x align-center">
-                      <label for="subir" class="button secondary descrip " >Update</label>
+                      <label for="subir" class="button secondary descrip expanded" >Update</label>
                             <input type="submit" id="subir" class="show-for-sr">
                     </div>
                 </form>
                     
             </div>
         </div>
+        
         <br>
+        <br>
+
         <div class="grid-x grid-padding-x ">
             <div class="large-12 cell" id="footer">
                 <div class="grid-x grid-padding-x ">

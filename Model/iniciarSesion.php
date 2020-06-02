@@ -2,16 +2,13 @@
 
 require('conectorBD.php');
 require('persona.php');
+error_reporting(0);
 
 
-//$email = $_POST['email'];           /* peticiones post seran anexadas en el futuro cuando el front este listo */
-//$contrasena = $_POST['contrasena'];
-
-
-$email_prueba1 = 'griego@gmail';
-$contrasena_prueba1= '1234567';
+$email_prueba1 = $_POST['email'];
+$contrasena_prueba1= $_POST['contrasena'];
 $con = new ConectorBD('localhost', 'user_prueba', '123456P');
-$response['msg'] ='Welcome';
+$response['msg'] ='OK';
 
 if ($con->initConexion('minimal')== 'OK'){
     $contrasena = $con->devolverContrasena($email_prueba1);
@@ -31,6 +28,8 @@ if ($con->initConexion('minimal')== 'OK'){
                     
                 }
                     $_SESSION['user'] =$id['id'];
+
+                    $response['user']=$_SESSION['tipo_usuario'];
             }else{
                 $response['msg'] = 'Ooops, we could not find you, sorry please try again';
             }
@@ -43,7 +42,7 @@ if ($con->initConexion('minimal')== 'OK'){
     }
 }
 
-echo $response['msg'];
+echo json_encode($response);
 
 
 ?>
