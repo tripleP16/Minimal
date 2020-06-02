@@ -1,0 +1,114 @@
+.contenedor{
+    text-align: center;
+    width: 100%;
+    
+}
+
+.contenedor2{
+    padding: 5%;
+}
+
+#minimal{
+    font-family: 'Lobster Two';
+    font-size: 50px;
+}
+
+#barra{
+    display: none;
+}
+
+.menu li{
+    font-size: 15px;
+    color: black;
+}
+
+a{
+    color: black;
+}
+.dropdown menu{
+    color: lightgray;
+}
+
+.button{
+    color: white;
+}
+
+.show{
+    color: black;
+}
+
+.titulo{
+    font-family: 'Sen', sans-serif;
+}
+#TituloPrincipal{
+    border-bottom: 0.5px solid black;
+}
+
+#TituloSecundario{
+    border-top: 0.5px solid black;
+}
+
+.recuadro{
+    padding: 5%;
+    border: 0.5px solid black;
+}
+
+
+
+
+
+a:hover{
+    color: lightgray;
+}
+
+#footer{
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+.foot{
+    color: white;
+}
+.inicia{
+    
+    width: 300px;
+    height: 600px;
+    margin: 10px;
+    padding: 30px;
+    border: 5px solid black;
+    font-family: 'Sen', sans-serif;
+    
+}
+.button{
+    background-color: black;
+}
+.crea{
+    width: 300px;
+    height: 620px;
+    margin: 10px;
+    padding: 30px;
+    border: 5px solid black;
+    font-family: 'Sen', sans-serif;
+    
+    
+}
+.olvida{
+    width: 300px;
+    height: 500px;
+    margin: 10px;
+    padding: 30px;
+    border: 5px solid black;
+    font-family: 'Sen', sans-serif;
+    
+    
+}
+.reseña{
+    width: 300px;
+    height: 500px;
+    margin: 10px;
+    padding: 30px;
+    border: 5px solid black;
+    font-family: 'Sen', sans-serif;
+    
+}
