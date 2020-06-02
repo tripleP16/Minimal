@@ -129,5 +129,17 @@ class conectorBD{
        return $insert->error;
      }
     }
+<<<<<<< HEAD
+=======
+
+    
+
+    
+
+
+  
+  
+
+>>>>>>> Pablo
 }
 ?>
