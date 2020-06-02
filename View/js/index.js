@@ -4,6 +4,7 @@
 
 $(function(){
     function registrarCliente(){
+        event.preventDefault();
         let nombre = $('#name').val();
         let apellido = $('#last').val();
         let email = $('#emailR').val();
@@ -62,57 +63,8 @@ $(function(){
     
     }
 
-    function recopilarDatos(){
-     alert("Hola");
-      var request = $.ajax({
-        url:'../Model/obtenerDatos.php',
-        dataType:'json',
-        data: {activar:'ok'},
-        type:'POST'
-      })
-
-      request.done(function(response){
-        if(response.msg=='OK'){
-          console.log(response.nombre);
-        }
-      })
-
-      request.fail(function( jqXHR, textStatus, errorThrown ){
-        if (jqXHR.status === 0) {
-
-            alert('Not connect: Verify Network.');
-        
-          } else if (jqXHR.status == 404) {
-        
-            alert('Requested page not found [404]');
-        
-          } else if (jqXHR.status == 500) {
-        
-            alert('Internal Server Error [500].');
-        
-          } else if (textStatus === 'parsererror') {
-        
-            alert('Requested JSON parse failed.');
-        
-          } else if (textStatus === 'timeout') {
-        
-            alert('Time out error.');
-        
-          } else if (textStatus === 'abort') {
-        
-            alert('Ajax request aborted.');
-        
-          } else {
-        
-            alert('Uncaught Error: ' + jqXHR.responseText);
-        
-          }
-        
-    });
-
-    }
-
     function iniciarSesion(){
+        event.preventDefault();
         let email = $('#email').val(); 
         let contrasena = $('#contrasena').val();
 
@@ -221,13 +173,16 @@ $(function(){
         if ($('#register')[0].checkValidity()){
             registrarCliente();
         }
+        $('#name').val("");
+        $('#last').val("");
+        $('#emailR').val("");
+        $('#contrasenaR').val("");
         
     });
 
     $('#iniciar').click(function(){
         if ($('#login2')[0].checkValidity()){
             iniciarSesion();
-            recopilarDatos();
         }
        /* $('#email').val(""); 
         $('#contrasena').val("");**/
@@ -237,6 +192,4 @@ $(function(){
     $('#exit').click(function(){
         cerrarSesion();
     })
-
-  
 });
