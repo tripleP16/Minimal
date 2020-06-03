@@ -24,6 +24,7 @@ class Persona {
         $this->ciudad = $ciudad; 
         $this->genero = $genero; 
     }
+    
     function getID(){
         return $this->id;
     }

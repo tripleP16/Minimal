@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add/Edit Product</title>
+        <link rel="stylesheet" href="css/foundation.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="dist/pretty-checkbox.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+        <script src="js/index.js"></script>
+        
+        <script>
+            $(document).ready(function(){
+                 $('#lupa').click(function(){
+                    if($('#barra').is(":visible")){
+                        $('#barra').hide(1000);
+                    }else{
+                        $('#barra').show(1000);
+                    }
+                    
+                })
+                $('#form').submit(registrarProducto);
+            })
+function getInfoForm(){
+    var form_data = new FormData();
+    form_data.append('profile_img', $("[name='profile-img']").prop('files')[0]);
+    form_data.append('titulo', $('#tituloproducto').val());
+    form_data.append('descripcion', $('#descripcion').val());
+    form_data.append('precio', $('#precio').val());
+    form_data.append('categoria',$('select[id="categoria"] option:selected').text());
+    let valoresCheck = [];
+    $("input[type=checkbox]:checked").each(function(){
+        valoresCheck.push(this.value);
+    });
+    form_data.append('tallas', valoresCheck);
+    form_data.append('genero',  $('input:radio[name=gender]:checked').val());
+    return form_data;
+}
+function registrarProducto(event){
+  event.preventDefault();
+  var form_data = getInfoForm();
+  var request =$.ajax({
+    url:'../Model/insertarproducto.php',
+    type:"POST",
+    dataType:'html',
+    data: form, 
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+  });
+
+  request.done(function(data){
+    alert("Imagenes Agregadas");
+  })
+  request.fail(function( jqXHR, textStatus, errorThrown ){
+    if (jqXHR.status === 0) {
+
+        alert('Not connect: Verify Network.');
+    
+      } else if (jqXHR.status == 404) {
+    
+        alert('Requested page not found [404]');
+    
+      } else if (jqXHR.status == 500) {
+    
+        alert('Internal Server Error [500].');
+    
+      } else if (textStatus === 'parsererror') {
+    
+        alert('Requested JSON parse failed.');
+    
+      } else if (textStatus === 'timeout') {
+    
+        alert('Time out error.');
+    
+      } else if (textStatus === 'abort') {
+    
+        alert('Ajax request aborted.');
+    
+      } else {
+    
+        alert('Uncaught Error: ' + jqXHR.responseText);
+    
+      }
+    
+});
+
+}
+
+        </script>
+        
+    </head>
+    
+    <body lang="en">
+       <div class="contenedor" id="TituloPrincipal">
+            <h1 id="minimal">Minimal</h1>
+       </div>
+       
+       <div class="grid-x grid-padding-x">
+            <div class="menu large-4 cell align-left">
+                <ul class="dropdown menu titulo " data-dropdown-menu>
+                    <li>
+                        <a href="#" class="secondary-color">Women</a>
+                        <ul class="menu">
+                            <li><a href="#">All</a></li>
+                            <li><a href="#">Tops</a></li>
+                            <li><a href="#">Bottoms</a></li>
+                            <li><a href="#">Dresses</a></li>
+                            <li><a href="#">Hoodies</a></li>
+                            <li><a href="#">Hats</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="show">Men</a>
+                        <ul class="menu">
+                            <li><a href="#">All</a></li>
+                            <li><a href="#">Tops</a></li>
+                            <li><a href="#">Bottoms</a></li>
+                            <li><a href="#">Hoodies</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="show">Collections</a>
+                        <ul class="menu">
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Favorites</a></li>
+                            <li><a href="#">Top Rated</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">About</a></li>
+                
+                </ul>
+            </div>
+            <div class="menu titulo large-8 cell align-right">
+                <ul class="dropdown menu " data-dropdown-menu>
+                    <li><span class="material-icons">shopping_bag</span>
+                    <li>
+                        <a href="#" class="show">Account</a>
+                        <ul class="menu">
+                            <li><a href="editarUsuarioA.html"><span class="material-icons">
+                                edit
+                                </span>Edit my profile</a></li>
+                            <li><a href="agregarProducto.html"><span class="material-icons">
+                                add
+                                </span> Add Product</a></li>
+                            <li><a href="#"><span class="material-icons">
+                                how_to_reg
+                                </span> Register Admin</a></li>
+                            <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
+                                exit_to_app
+                                </span> Sign Out</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="material-icons large" id="lupa">search</span>
+                        <div id="barra">
+                            <input type="text" placeholder="Buscar">
+                        </div>
+                    </li>                 
+                </ul>
+            </div>
+        </div>
+        
+         <div class="contenedor " id="TituloSecundario">
+            <br>
+            <h3 class="titulo">Add Product</h3>
+        </div>
+        <br>
+        <br>
+        
+        <div class="grid-x">
+            <div class="cell large-2"></div>
+            <div class="cell large-2">
+                <br>
+                <br>
+                <br>
+                <div class="orbit" role="region" aria-label="Product" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+                    <div class="orbit-wrapper">
+                        <div class="orbit-controls">
+                            <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+                            <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+                        </div>
+                        <ul class="orbit-container">
+                            <li class="is-active orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/0728966712_1_1_3.jpg">
+                                </figure>
+                            </li>
+                            <li class="orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/0728966712_2_1_3.jpg">
+                                </figure>
+                            </li>
+                            <li class="orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/0728966712_2_4_3.jpg">
+                                </figure>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <p id="preview" class="descrip">Image Preview</p>
+            </div>
+            <div class="cell large-2"></div>
+            <div class="cell large-4">
+                <h4 class="titulo">Product Information:</h4>
+                <form id="form"  method="post" action="javascript:;"  > 
+                    <label for="tituloProducto" class="descrip">Title of the Product: </label>
+                    <input type="text" id="tituloproducto" for="tituloPoducto" required>
+                    <label for="description" class="descrip">Description:</label>
+                    <textarea for="description" id="descripcion" required></textarea>
+                    <label for="price" class="descrip">$ Price:</label>
+                    <input type="number" for="price" id="precio" required step="any"> 
+                    <fieldset class="large-7 cell">
+                        <legend class="descrip" >Select Available Sizes:</legend>
+                            <input id="XS" type="checkbox" value="XS"><label for="XS">XS</label>
+                            <input id="S" type="checkbox" value="S"><label for="S">S</label>
+                            <input id="M" type="checkbox" value="M"><label for="M">M</label>
+                            <input id="L" type="checkbox" value="L"><label for="L">L</label>
+                            <input id="XL" type="checkbox" value="XL"><label for="XL">XL</label>
+                    </fieldset>
+
+                    <p class="descrip">Categories</p>
+                    <div class="grid-x grid-padding-x align-center">
+                        <select id="categoria" required>
+                            <option></option>
+                            <option value="TOPS">Tops</option>
+                            <option value="BOTTOMS">Bottoms</option>
+                            <option value="DRESSES">Dresses</option>
+                            <option value="HOODIES">Hoodies</option>
+                            <option value="HATS">Hats</option>
+                        </select>
+                    </div>
+                    <p class="descrip">Gender</p>
+                    <div class="grid-x grid-padding-x align-center">
+                        <input type="radio" name="gender" value="F" id="mujer" required><label class="descrip " for="mujer">Female</label>
+                        <input type="radio" name="gender" value="M" id="hombre"><label class="descrip " for="hombre">Male</label>
+                    </div>
+                    <p class="descrip">Upload Images:</p>
+                    <div class="grid-x grid-padding-x align-center">
+                        <label for="profile-img" class="button descrip hollow expanded">Choose Images</label>
+                        <input type="file" name="profile-img" id="profile-img" class="show-for-sr">
+                        
+                    </div>
+                    <br>
+                    <br>
+                    <div class="grid-x grid-padding-x align-center">
+                        <label for="subirP" class="button secondary descrip expanded " >Update</label>
+                        <input type="submit" onsubmit="registrarProducto()" id="subirP" class="show-for-sr">
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <br>
+        <br>
+        
+        <div class="grid-x grid-padding-x ">
+            <div class="large-12 cell" id="footer">
+                <div class="grid-x grid-padding-x ">
+                    <div class="large-1 cell " ></div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <br>
+                        <br>
+                        <div class="descrip large-6 cell" >© 2020 Minimal, Inc</div>
+                        <div class="grid-x grid-padding-x ">
+                            <div class="large-4 cell" ></div>
+                            <div class="large-1 cell" >
+                               <a> <i class="fa fa-facebook-f " style="font-size:28px; color: white;"></i></a>
+                               <br>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-twitter" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-instagram" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">Shop</p>
+                        <a class="foot"><p class="descrip">Women</p></a>
+                        <a class="foot"><p class="descrip">Male</p></a>
+                        <a class="foot"><p class="descrip">Collections</p></a>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">About</p>
+                        <a class="foot"><p class="descrip">Policies and refunds</p></a>
+                        <a class="foot"><p class="descrip">Find My Size</p></a>
+                        <br> 
+                        <br> 
+                        
+                            
+                        
+                    </div>
+                    <div class="large-2 cell">
+                      
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+</html>

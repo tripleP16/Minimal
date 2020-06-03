@@ -28,7 +28,7 @@ if ($con->initConexion('minimal')== 'OK'){
                     
                 }
                     $_SESSION['user'] =$id['id'];
-                    
+                    $_SESSION['email']= $email_prueba1;
                     $response['user']=$_SESSION['tipo_usuario'];
             }else{
                 $response['msg'] = 'Ooops, we could not find you, sorry please try again';

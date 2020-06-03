@@ -31,6 +31,7 @@ class conectorBD{
       $select->execute();
       $result = $select->get_result();
       $fila = $result->fetch_assoc();
+      return $fila;
     }
 
     function devolverContrasena($email){
@@ -91,9 +92,9 @@ class conectorBD{
       $insert->execute();
     }
 
-    function actualizarUsuario($persona){
-      $update = $this->conexion->prepare('UPDATE personas SET nombre = ? , apellido = ?,  email = ?, contrasena = ?, fechanac = ?, direccion =?, zip_code =? , ciudad = ?, genero = ? WHERE id = ?'); 
-      $update->bind_param("ssssssissi", $persona->getNombre(), $persona->getApellido(), $persona->getEmail(), password_hash($persona->getContrasena(), PASSWORD_DEFAULT), date('Y-m-d',$persona->getFecha_Nac()), $persona->getDireccion(), $persona->getCodigoPostal(), $persona->getCiudad(), $persona->getGenero(), $persona->getID()); 
+    function actualizarUsuario($persona, $estado){
+      $update = $this->conexion->prepare('UPDATE personas SET nombre = ? , apellido = ?,  email = ?, fechanac = ?, direccion =?, zip_code =? , ciudad = ?, genero = ?, estado =? WHERE id = ?'); 
+      $update->bind_param("sssssisssi", $persona->getNombre(), $persona->getApellido(), $persona->getEmail(), date('Y-m-d',$persona->getFecha_Nac()), $persona->getDireccion(), $persona->getCodigoPostal(), $persona->getCiudad(), $persona->getGenero(), $estado, $persona->getID()); 
       $update->execute();
 
     }
@@ -110,8 +111,8 @@ class conectorBD{
     }
 
     function insertProducto($producto){
-      $insert = $this->conexion->prepare('INSERT INTO productos (titulo, descripcion, precio) VALUES (?,?,?)');
-      $insert->bind_param("ssd", $producto->getTitulo(), $producto->getDescripcion(), $producto->getPrecio());
+      $insert = $this->conexion->prepare('INSERT INTO productos (titulo, descripcion, precio, genero, categoria) VALUES (?,?,?, ?, ?)');
+      $insert->bind_param("ssdss", $producto->getTitulo(), $producto->getDescripcion(), $producto->getPrecio(), $producto->genero(), $producto->getCategoria());
       $insert->execute();
     }
 
@@ -129,6 +130,12 @@ class conectorBD{
      }else {
        return $insert->error;
      }
+    }
+
+    function updateContrasena($contrasenaNueva, $id){
+      $update = $this->conexion->prepare('UPDATE personas SET contrasena = ? WHERE id = ?'); 
+      $update->bind_param('si', password_hash($contrasenaNueva, PASSWORD_DEFAULT), $id);
+      $update->execute();
     }
 
     

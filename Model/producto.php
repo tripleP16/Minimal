@@ -7,14 +7,25 @@ class Producto  {
     private $precio ; 
     private $tallas ;
     private $imagenes ;
-
-    function __construct( $titulo, $descripcion, $precio, $tallas, $imagenes)
+    private $genero;
+    private $categoria;
+    function __construct( $titulo, $descripcion, $precio, $tallas, $imagenes, $genero, $categoria)
     {
         $this->titulo = $titulo; 
         $this->descripcion = $descripcion; 
         $this->precio = $precio; 
         $this->tallas = $tallas; 
         $this->imagenes = $imagenes;
+        $this->genero = $genero;
+        $this->categoria = $categoria;
+    }
+
+    function getCategoria(){
+        return $this->categoria;
+    }
+
+    function getGenero(){
+        return $this->genero; 
     }
 
     function getID(){

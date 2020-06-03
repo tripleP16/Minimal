@@ -3,39 +3,23 @@
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit User</title>
+        <title>Add/Edit Product</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="dist/pretty-checkbox.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+        
         <script>
             $(document).ready(function(){
-                $('#barra').hide();
-                $('#contrasenaNueva').hide();
-                $('#contrasenaActual').hide();
-
-                $('#contrasena').click(function(){
-                    if ($('#contrasenaActual').is(":visible")){
-                        $('#contrasenaNueva').hide(1000);
-                        $('#contrasenaActual').hide(1000);
-                        $('#contrasenaN').hide(1000);
-                        $('#contrasenaA').hide(1000);
-                    }else{
-                        $('#contrasenaNueva').show(1000);
-                        $('#contrasenaActual').show(1000);
-                        $('#contrasenaN').hide(1000);
-                        $('#contrasenaA').hide(1000);
-                        
-                    }
-                })
-
-                $('#lupa').click(function(){
+                 $('#lupa').click(function(){
                     if($('#barra').is(":visible")){
                         $('#barra').hide(1000);
                     }else{
@@ -98,10 +82,10 @@
                             <li><a href="#"><span class="material-icons">
                                 edit
                                 </span>Edit my profile</a></li>
-                            <li><a href="#"><span class="material-icons">
+                            <li><a href="editarUsuarioA.html"><span class="material-icons">
                                 add
                                 </span> Add Product</a></li>
-                            <li><a href="#"><span class="material-icons">
+                            <li><a href="agregarProducto.html"><span class="material-icons">
                                 how_to_reg
                                 </span> Register Admin</a></li>
                             <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
@@ -114,110 +98,89 @@
                         <div id="barra">
                             <input type="text" placeholder="Buscar">
                         </div>
-                    </li>
-                                   
+                    </li>                 
                 </ul>
             </div>
-           
         </div>
-        <div class="contenedor " id="TituloSecundario">
+        
+         <div class="contenedor " id="TituloSecundario">
             <br>
-            <h3 class="titulo">Edit Account</h3>
+            <h3 class="titulo">Add/Edit Product</h3>
         </div>
         <br>
         <br>
         
-        <div class="grid-x grid-padding-x ">
-            <div class="large-2 cell"></div>
-            <div class="large-2 cell contenedor2"> 
-                <div class="recuadro contenedor">
-                    <br>
-                    <h4 class="titulo">My Account</h4>
-                    <br>
-                    <a class="titulo ">
-                        <div class="grid-x grid-padding-x contenedor">
-                            <div class="large-2 cell"></div>
-                            <div class="large-2 cell">
-                                <span class="material-icons">favorite_border</span>
-                            </div>
-                            <div class="large-1 cell">
-                                <p class="titulo">Wishlist</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="titulo ">
-                        <div class="grid-x grid-padding-x contenedor">
-                            <div class="large-2 cell"></div>
-                            <div class="large-2 cell">
-                                <span class="material-icons">local_shipping</span>
-                            </div>
-                            <div class="large-5 cell">
-                                <p class="titulo">My Orders</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="titulo ">
-                        <div class="grid-x grid-padding-x contenedor">
-                            <div class="large-2 cell"></div>
-                            <div class="large-2 cell">
-                                <span class="material-icons">exit_to_app</span>
-                            </div>
-                            <div class="large-5 cell">
-                                <p class="titulo">Sign Out</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+        <div class="grid-x">
+            <div class="cell large-2"></div>
+            <div class="cell large-2">
                 <br>
                 <br>
-                <div class="recuadro contenedor">
-                    <h4 class="titulo">Password</h4>
-                    <p class="descrip">You can change your password by clicking the button below</p>
-                    <button class="button secondary descrip" id="contrasena">Change Password</button>
-                    <label for="contraseña" class="descrip" id="contrasenaA">Current Pasword: </label>
-                    <input type="password" class="input" id="contrasenaActual" placeholder="Current Password">
-                    <label for="contraseña" class="descrip" id="contrasenaN">New Pasword: </label>
-                    <input type="password" class="input" id="contrasenaNueva" placeholder="New Password">
+                <br>
+                <div class="orbit" role="region" aria-label="Product" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+                    <div class="orbit-wrapper">
+                        <div class="orbit-controls">
+                            <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+                            <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+                        </div>
+                        <ul class="orbit-container">
+                            <li class="is-active orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/0728966712_1_1_3.jpg">
+                                </figure>
+                            </li>
+                            <li class="orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/0728966712_2_1_3.jpg">
+                                </figure>
+                            </li>
+                            <li class="orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/0728966712_2_4_3.jpg">
+                                </figure>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            <p id="preview" class="descrip">Image Preview</p>
             </div>
-            <div class="large-2 cell"></div>
-            <div class="large-4 cell align-right">
-                <h4 class="titulo">Personal Information:</h4>
+            <div class="cell large-2"></div>
+            <div class="cell large-4">
+                <h4 class="titulo">Product Information:</h4>
                 <form>
-                    <label for="nombre" class="descrip">First Name: </label>
-                    <input type="text" placeholder="First Name" id="nombre" for="nombre">
-                    <label for="apellido" class="descrip">Last Name: </label>
-                    <input type="text" placeholder="Last Name" id="apellido" for="apellido">
-                    <label for="Email" class="descrip">Email: </label>
-                    <input type="email" placeholder="Enter your Email" id="email" for="email">
-                    <label for="birthday" class="descrip">Birthday: </label>
-                    <input type="date" id="birthday" for="birthday">
-                    <label for="adress" class="descrip">Adress</label>
-                    <textarea for="adress" id="adrees"></textarea>
-                    <label for="codigo" class="descrip">Zip Code</label>
-                    <input type="number" for="codigo" id="codigo" max="8055" min="1050">
-                    <label for="state" class="descrip">State </label>
-                    <input type="text" for="state" id="estado"> 
-                    <label for="city" class="descrip">City</label>
-                    <input type="text" for="city" id="ciudad">
-                    <fieldset class="large-5 cell">
-                        <legend class="descrip">Gender</legend>
-                            <input type="radio" name="gender" value="F" id="mujer" required><label class="descrip " for="mujer">Female</label>
-                            <input type="radio" name="gender" value="M" id="hombre"><label class="descrip " for="hombre">Male</label>
-                      </fieldset>
-                      <br>
-                      <div class="grid-x grid-padding-x align-center">
-                      <label for="subir" class="button secondary descrip expanded" >Update</label>
-                            <input type="submit" id="subir" class="show-for-sr">
+                    <label for="tituloProducto" class="descrip">Title of the Product: </label>
+                    <input type="text" id="tituloproducto" for="tituloPoducto">
+                    <label for="description" class="descrip">Description:</label>
+                    <textarea for="description" id="descripcion"></textarea>
+                    <label for="price" class="descrip">$ Price:</label>
+                    <input type="text" for="price" id="precio"> 
+                    <fieldset class="large-7 cell">
+                        <legend class="descrip">Select Available Sizes:</legend>
+                            <input id="XS" type="checkbox"><label for="XS">XS</label>
+                            <input id="S" type="checkbox"><label for="S">S</label>
+                            <input id="M" type="checkbox"><label for="M">M</label>
+                            <input id="L" type="checkbox"><label for="L">L</label>
+                            <input id="XL" type="checkbox"><label for="XL">XL</label>
+                    </fieldset>
+
+
+                    <p class="descrip">Upload Images:</p>
+                    <div class="grid-x grid-padding-x align-center">
+                        <label for="FileUpload" class="button descrip hollow expanded">Choose Images</label>
+                        <input type="file" id="FileUpload" class="show-for-sr">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="grid-x grid-padding-x align-center">
+                        <label for="subir" class="button secondary descrip expanded " >Update</label>
+                        <input type="submit" id="subir" class="show-for-sr">
                     </div>
                 </form>
-                    
             </div>
         </div>
         
         <br>
         <br>
-
+        
         <div class="grid-x grid-padding-x ">
             <div class="large-12 cell" id="footer">
                 <div class="grid-x grid-padding-x ">
@@ -266,7 +229,6 @@
                     </div>
                 </div>
             </div>
-    
  
 
     <script src="js/vendor/jquery.js"></script>
