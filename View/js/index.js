@@ -149,7 +149,59 @@ $(function(){
             
         });
     }
+  function busquedaParametrizada(genero , valor){
+    if (genero ==  "w search"){
+      genero = "F";
+    }else {
+      genero = "M";
+    }
 
+    event.preventDefault(); 
+    var request = $.ajax({
+      url: '../Model/buscarProducto.php',
+      type: 'POST', 
+      dataType:'html', 
+      data : {genero: genero, valor:valor}
+    })
+
+    request.done(function(data){
+      var response = JSON.parse(data);
+     console.log(response);
+
+    }); 
+
+    request.fail(function(response){
+      if (jqXHR.status === 0) {
+
+        alert('Not connect: Verify Network.');
+    
+      } else if (jqXHR.status == 404) {
+    
+        alert('Requested page not found [404]');
+    
+      } else if (jqXHR.status == 500) {
+    
+        alert('Internal Server Error [500].');
+    
+      } else if (textStatus === 'parsererror') {
+    
+        alert('Requested JSON parse failed.');
+    
+      } else if (textStatus === 'timeout') {
+    
+        alert('Time out error.');
+    
+      } else if (textStatus === 'abort') {
+    
+        alert('Ajax request aborted.');
+    
+      } else {
+    
+        alert('Uncaught Error: ' + jqXHR.responseText);
+    
+      }
+    })
+  }
 
   function actualizarContrasena(){
       event.preventDefault();
@@ -292,5 +344,15 @@ $(function(){
       if ($('#pass').is(":visible")){
         actualizarContrasena();
       }
+    })
+
+    $('#barra').keypress(function(e){
+      if (e.which == 13){
+        e.preventDefault();
+        alert("Hola puto");
+      }
+    })
+    $('.search').click(function(e){
+      busquedaParametrizada($(this).attr("class"), $(this).attr("value"));
     })
 });

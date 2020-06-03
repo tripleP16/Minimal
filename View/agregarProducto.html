@@ -30,6 +30,10 @@
                 })
                 $('#form').submit(registrarProducto);
             })
+
+function cambiarImagen(data){
+    $('.orbit-image').attr('src', data);
+}
 function getInfoForm(){
     var form_data = new FormData();
     form_data.append('profile_img', $("[name='profile-img']").prop('files')[0]);
@@ -38,9 +42,12 @@ function getInfoForm(){
     form_data.append('precio', $('#precio').val());
     form_data.append('categoria',$('select[id="categoria"] option:selected').text());
     let valoresCheck = [];
+    console.log($('select[id="categoria"] option:selected').text());
     $("input[type=checkbox]:checked").each(function(){
         valoresCheck.push(this.value);
     });
+    console.log(valoresCheck.length)
+    form_data.append('contador', valoresCheck.length);
     form_data.append('tallas', valoresCheck);
     form_data.append('genero',  $('input:radio[name=gender]:checked').val());
     return form_data;
@@ -61,6 +68,7 @@ function registrarProducto(event){
 
   request.done(function(data){
     alert("Imagenes Agregadas");
+    cambiarImagen(data);
   })
   request.fail(function( jqXHR, textStatus, errorThrown ){
     if (jqXHR.status === 0) {
@@ -107,40 +115,40 @@ function registrarProducto(event){
        </div>
        
        <div class="grid-x grid-padding-x">
-            <div class="menu large-4 cell align-left">
-                <ul class="dropdown menu titulo " data-dropdown-menu>
-                    <li>
-                        <a href="#" class="secondary-color">Women</a>
-                        <ul class="menu">
-                            <li><a href="#">All</a></li>
-                            <li><a href="#">Tops</a></li>
-                            <li><a href="#">Bottoms</a></li>
-                            <li><a href="#">Dresses</a></li>
-                            <li><a href="#">Hoodies</a></li>
-                            <li><a href="#">Hats</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" class="show">Men</a>
-                        <ul class="menu">
-                            <li><a href="#">All</a></li>
-                            <li><a href="#">Tops</a></li>
-                            <li><a href="#">Bottoms</a></li>
-                            <li><a href="#">Hoodies</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="show">Collections</a>
-                        <ul class="menu">
-                            <li><a href="#">New Arrivals</a></li>
-                            <li><a href="#">Favorites</a></li>
-                            <li><a href="#">Top Rated</a></li>
-                            <li><a href="#">Best Sellers</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">About</a></li>
-                
-                </ul>
-            </div>
+        <div class="menu large-4 cell align-left">
+            <ul class="dropdown menu titulo " data-dropdown-menu>
+                <li>
+                    <a href="#" class="secondary-color">Women</a>
+                    <ul class="menu">
+                        <li><a id="women">All</a></li>
+                        <li><a  class = "w search" value="Tops">Tops</a></li>
+                        <li><a  class = "w search" value="Bottoms">Bottoms</a></li>
+                        <li><a  class = "w search" value="Dresses">Dresses</a></li>
+                        <li><a  class = "w search" value="Hoodies">Hoodies</a></li>
+                        <li><a  class = "w search" value="Hats">Hats</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="show">Men</a>
+                    <ul class="menu">
+                        <li><a id="men">All</a></li>
+                        <li><a  class="m search" value="Tops">Tops</a></li>
+                        <li><a  class="m search" value="Bottoms">Bottoms</a></li>
+                        <li><a  class="m search" value="Hoodies">Hoodies</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="show">Collections</a>
+                    <ul class="menu">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Favorites</a></li>
+                        <li><a href="#">Top Rated</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">About</a></li>
+            
+            </ul>
+        </div>
             <div class="menu titulo large-8 cell align-right">
                 <ul class="dropdown menu " data-dropdown-menu>
                     <li><span class="material-icons">shopping_bag</span>

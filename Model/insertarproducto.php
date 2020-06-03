@@ -2,8 +2,8 @@
 require('../Model/conectorBD.php');
 require('../Model/producto.php');
 require('library.php');
+error_reporting(0);
 
-$response ='Lo hiciste';
 $respuestas = uploadFile('profile_img', '../View/img');
   if(isset($respuestas["newSource"])){
     $newImg = $respuestas["newSource"];
@@ -16,11 +16,18 @@ $respuestas = uploadFile('profile_img', '../View/img');
   if ($con->initConexion('minimal')== 'OK'){
     $con->insertProducto($producto);
     $id = $con->devolverIdProducto($producto->getDescripcion());
-    echo $id['id'];
+    $tallas = $_POST['tallas'];
+    for ($i=0; $i <($_POST['contador'] *2) -1  ; $i++) { 
+        if($tallas[$i]!=',')
+            $con->insertTallas($tallas[$i], $id['id']);
+    }
+    $con->insertImagen($newImg, $id['id']);
+    $response= $newImg;
+    echo $response;
   }else{
 
   }
-echo $response ;
+
 
 
 

@@ -112,7 +112,7 @@ class conectorBD{
 
     function insertProducto($producto){
       $insert = $this->conexion->prepare('INSERT INTO productos (titulo, descripcion, precio, genero, categoria) VALUES (?,?,?, ?, ?)');
-      $insert->bind_param("ssdss", $producto->getTitulo(), $producto->getDescripcion(), $producto->getPrecio(), $producto->genero(), $producto->getCategoria());
+      $insert->bind_param("ssdss", $producto->getTitulo(), $producto->getDescripcion(), $producto->getPrecio(), $producto->getGenero(), $producto->getCategoria());
       $insert->execute();
     }
 
@@ -136,6 +136,36 @@ class conectorBD{
       $update = $this->conexion->prepare('UPDATE personas SET contrasena = ? WHERE id = ?'); 
       $update->bind_param('si', password_hash($contrasenaNueva, PASSWORD_DEFAULT), $id);
       $update->execute();
+    }
+
+
+    function insertImagen($ruta, $id){
+      $insert = $this->conexion->prepare('INSERT INTO imagenes (fk_producto, imagen) VALUES (?,?)');
+      $insert->bind_param("is", $id, $ruta);
+      if( $insert->execute()){
+        return 'oK';
+      }else {
+        echo $insert->error;
+      }
+    }
+
+    function devolverProductoCategoria($genero, $categoria){
+      $select = $this->conexion->prepare('SELECT id,titulo,descripcion FROM productos  WHERE genero = ? and categoria=? '); 
+      $select->bind_param("ss", $genero, $categoria);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    
+    }
+
+    function devolverImagen($fk_producto){
+      $select = $this->conexion->prepare('SELECT imagen FROM imagenes  WHERE fk_producto = ? '); 
+      $select->bind_param("i", $fk_producto);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
     }
 
     
