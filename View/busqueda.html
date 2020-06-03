@@ -16,7 +16,98 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="js/index.js"></script>
         <script>
-            $(document).ready(function(){
+    function recibirParametros(){
+      var url = new URL(window.location.href);
+      var c1 = url.searchParams.get("campo1");
+      var c2 = url.searchParams.get("campo2");
+    
+      busquedaParametrizada(c1, c2);
+        console.log(c1,c2);
+    }
+
+    function busquedaParametrizada(genero , valor){
+    if (genero ==  "w search"){
+      genero = "F";
+    }else {
+      genero = "M";
+    }
+
+    event.preventDefault(); 
+    var request = $.ajax({
+      url: '../Model/buscarProducto.php',
+      type: 'POST', 
+      dataType:'html', 
+      data : {genero: genero, valor:valor}
+    })
+
+    request.done(function(data){
+      var response = JSON.parse(data);
+      desplegarBusqueda(response);
+      console.log(response);
+
+    }); 
+
+    request.fail(function(response){
+      if (jqXHR.status === 0) {
+
+        alert('Not connect: Verify Network.');
+    
+      } else if (jqXHR.status == 404) {
+    
+        alert('Requested page not found [404]');
+    
+      } else if (jqXHR.status == 500) {
+    
+        alert('Internal Server Error [500].');
+    
+      } else if (textStatus === 'parsererror') {
+    
+        alert('Requested JSON parse failed.');
+    
+      } else if (textStatus === 'timeout') {
+    
+        alert('Time out error.');
+    
+      } else if (textStatus === 'abort') {
+    
+        alert('Ajax request aborted.');
+    
+      } else {
+    
+        alert('Uncaught Error: ' + jqXHR.responseText);
+    
+      }
+    })
+  }
+
+  function desplegarBusqueda(array){
+      
+      console.log(array);
+      
+      
+      $('#tabla').empty();
+      var tabla = [];
+      for(let i = 0 ; i< array.productos.length ; i ++){
+        console.log(i);
+        tabla += `<div class="cell large-3">
+        <div class="card">
+            <a href=""><img href="" src="${array.productos[i].imagen}"></a>
+            <div class="card-section">
+                <a href=""><p id="title" class="titulo"> ${array.productos[i].titulo} </p></a>
+                <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
+            </div>
+        </div>
+    </div>`;
+        
+      }
+      $('#tabla').append(tabla);
+
+      
+    }
+
+
+   
+            $(document).load(function(){
                  $('#lupa').click(function(){
                     if($('#barra').is(":visible")){
                         $('#barra').hide(1000);
@@ -25,13 +116,15 @@
                     }
                     
                 })
+
+                
             })
             
         </script>
         
     </head>
     
-    <body lang="en">
+    <body lang="en" onload="recibirParametros()">
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
@@ -130,121 +223,8 @@
                     </nav>
                 </div>
                 <div class="grid-x grid-padding-x" id="tabla">
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3">
-                         <div class="card">
-                             <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3  shrink">
-                        <div class="card">
-                            <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                           <div class="card-section">
-                               <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                               <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="cell large-3">
-                       <div class="card">
-                           <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                           <div class="card-section">
-                               <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                               <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="cell large-3">
-                       <div class="card">
-                           <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                           <div class="card-section">
-                               <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                               <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                           </div>
-                       </div>
-                   </div>
                 </div>
-                <br>
-                
-                <br>
-                <div class="grid-x grid-padding-x">
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3  shrink">
-                         <div class="card">
-                             <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img src="img/0728966712_1_1_3.jpg"></a>
-                            <div class="card-section">
-                                <a href=""><p id="title" class="titulo"> Ropa </p></a>
-                                <a href=""><p class="descrip">This is a simple card with an image.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
+               
                 
                 <div class="grid-x align-right">
                      <nav aria-label="Pagination">

@@ -30,6 +30,7 @@
 
 
 
+
 $(function(){
     function registrarCliente(){
         event.preventDefault();
@@ -90,7 +91,31 @@ $(function(){
         });
     
     }
+  
+    function desplegarBusqueda(array){
+      
+      console.log(array);
+      
+      
+      $('#tabla').empty();
+      var tabla = [];
+      for(let i = 0 ; i< array.productos.length ; i ++){
+        console.log(i);
+        tabla += `<div class="cell large-3">
+        <div class="card">
+            <a href=""><img href="" src="${array.productos[i].imagen}"></a>
+            <div class="card-section">
+                <a href=""><p id="title" class="titulo"> ${array.productos[i].titulo} </p></a>
+                <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
+            </div>
+        </div>
+    </div>`;
+        
+      }
+      $('#tabla').append(tabla);
 
+      
+    }
     function iniciarSesion(){
         event.preventDefault();
         let email = $('#email').val(); 
@@ -166,7 +191,8 @@ $(function(){
 
     request.done(function(data){
       var response = JSON.parse(data);
-     console.log(response);
+      desplegarBusqueda(response);
+      console.log(response);
 
     }); 
 
@@ -353,6 +379,11 @@ $(function(){
       }
     })
     $('.search').click(function(e){
-      busquedaParametrizada($(this).attr("class"), $(this).attr("value"));
+      var categoria = $(this).attr("value");
+      console.log(categoria);
+      window.location.href = `busqueda.html?campo1=${$(this).attr("class")}&campo2=${categoria}`
+      
     })
+
+
 });

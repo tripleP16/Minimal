@@ -7,18 +7,22 @@
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <script>
             $(document).ready(function(){
+                $('#dialog2').hide();
                  $('#lupa').click(function(){
                     if($('#barra').is(":visible")){
                         $('#barra').hide(1000);
@@ -26,6 +30,9 @@
                         $('#barra').show(1000);
                     }
                     
+                })
+                $('#registro').click(function(){
+                    $('#dialog2').dialog();
                 })
             })
             
@@ -37,7 +44,40 @@
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
-       
+       <div class="miniContenedor large-3 cell " id="dialog2">
+        <div class="contenedor">
+            <h2 class="titulo">Create Your Account</h2>
+        </div>
+        
+            <form id="register" >
+                <div class="grid-x grid-padding-x ">
+                <div class="large-6 cell">
+                    <label for="name">First Name</label>
+                    <input type="text" id="name" required placeholder="Introduce your name">
+                </div>
+                <div class="large-6 cell">
+                    <label for="last">Last Name</label>
+                    <input type="text" id="last" required placeholder="Introduce your last name">
+                </div>
+                <div class="large-12 cell">
+                    <label for="email">Email:</label>
+                    <input type="email" id="emailR" required placeholder="Introduce your Email">
+                </div>
+                <div class="large-12 cell">
+                    <label for="contrasenaR">Password:</label>
+                    <input type="password" id="contrasenaR" required placeholder="Introduce your Password" minlength="8">
+                </div>
+                <div class="contenedor">
+                    <label for="subir" class="button secondary descrip " >Register</label>                        
+                    <input type="submit" id="subir" class="show-for-sr">
+                </div>
+                <div class="contenedor">
+                    <a class="titulo" id="cuenta">I already have an account</a>
+                </div>
+            </div>
+            </form>
+        
+    </div>
        <div class="grid-x grid-padding-x">
         <div class="menu large-4 cell align-left">
             <ul class="dropdown menu titulo " data-dropdown-menu>
@@ -85,7 +125,7 @@
                             <li><a href="agregarProducto.html"><span class="material-icons">
                                 add
                                 </span> Add Product</a></li>
-                            <li><a href="#"><span class="material-icons">
+                            <li><a id="registro"><span class="material-icons">
                                 how_to_reg
                                 </span> Register Admin</a></li>
                             <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
@@ -376,8 +416,6 @@
             </div>
         
  
-
-    <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
