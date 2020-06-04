@@ -337,7 +337,54 @@ $(function(){
     }
 
   
-   
+    function registrarAdministrador(){
+      event.preventDefault();
+      let nombre = $('#name').val();
+      let apellido = $('#last').val();
+      let email = $('#emailR').val();
+      let contrasena = $('#contrasenaR').val();
+      var request = $.ajax({
+          url:'../Model/registrarAdministrador.php',
+          data: {nombre:nombre, apellido:apellido, email:email, contrasena:contrasena},
+          type:'POST',
+          dataType: "html"
+      })
+      request.done(function(response){
+         if (response == 'OK'){
+             alert ("the administrator has successfully registered");
+             $('#dialog2').dialog("close");
+
+         }else
+             alert(response);
+      });
+      request.fail(function( jqXHR, textStatus, errorThrown ){
+          if (jqXHR.status === 0)
+              alert('Not connect: Verify Network.');
+          else if (jqXHR.status == 404)
+              alert('Requested page not found [404]');
+          else if (jqXHR.status == 500)
+              alert('Internal Server Error [500].');
+          else if (textStatus === 'parsererror')
+              alert('Requested JSON parse failed.');
+          else if (textStatus === 'timeout')
+              alert('Time out error.');
+          else if (textStatus === 'abort')
+              alert('Ajax request aborted.');
+          else
+              alert('Uncaught Error: ' + jqXHR.responseText);
+      });
+      }
+
+  $('#registrarAdmin').click(function(){
+      if ($('#register')[0].checkValidity()){
+          registrarAdministrador();
+      }
+      $('#name').val("");
+      $('#last').val("");
+      $('#emailR').val("");
+      $('#contrasenaR').val("");
+  });
+
 
 
     
@@ -374,8 +421,9 @@ $(function(){
 
     $('#barra').keypress(function(e){
       if (e.which == 13){
-        e.preventDefault();
-        alert("Hola puto");
+        var busqueda = $('#barrita').val();
+        window.location.href = `busqueda.html?campo1=${busqueda}`
+        console.log(busqueda);
       }
     })
     $('.search').click(function(e){
@@ -384,6 +432,8 @@ $(function(){
       window.location.href = `busqueda.html?campo1=${$(this).attr("class")}&campo2=${categoria}`
       
     })
+
+    
 
 
 });

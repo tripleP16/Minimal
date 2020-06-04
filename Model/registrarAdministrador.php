@@ -2,45 +2,30 @@
 require('conectorBD.php');
 require('persona.php');
 
+error_reporting(0);
+$nombre = $_POST['nombre'];
+$apellido = $_POST['apellido'];
+$email = $_POST['email'];
+$contrasena = $_POST['contrasena'];
 
-//$email = $_POST['email'];           /* peticiones post seran anexadas en el futuro cuando el front este listo */
-//$contrasena = $_POST['contrasena'];
-//$tipo_usuario = $_POST['tipo'];
-//$nombre = $_POST['nombre'];
-//$apellido = $_POST['apellido'];
-
-$nombre_prueba1= 'Pablo';
-$apellido_prueba1= 'Perez';
-$email_prueba1 = 'perez51160900@hotmail.com';
-$contrasena_prueba1= '12345678';
-$tipo_usuario = true;
-$administardor = new Administrador($nombre_prueba1, $apellido_prueba1, $email_prueba1,$contrasena_prueba1, null , null, null, null, null);
-$response['msg'] ='You have been successfully registered';
+$Administrador = new administrador($nombre,$apellido,$email,$contrasena, null, null, null, null, null);
 
 $con = new ConectorBD('localhost', 'user_prueba', '123456P');
 
 if($con->initConexion('minimal')== 'OK'){
-    $id= $con->devolverIdPersonas($administardor->getEmail());
+    $id= $con->devolverIdPersonas($Administrador->getEmail());
     if ($id['id'] == null){
-        if($tipo_usuario == true){
-            $con->insertPersona($administardor);
-            $id= $con->devolverIdPersonas($administardor->getEmail());
-            echo $id['id'];
-            $con->insertAdministrador($id['id']);
-            echo "TODO OK";
-        }
-
+          $con->insertPersona($Administrador);
+          $id= $con->devolverIdPersonas($Administrador->getEmail());
+          $con->insertAdministrador($id['id']);
+          $response ='OK';
     }else {
-        $response['msg'] = 'Oops it seems that you have already been registered before, please try to sign in ';
+        $response = 'Oops it seems that you have already been registered before, please try to sign in ';
     }
-    
 }else {
-    $response['msg'] ='Oops it seems that we have a promblem with the database :(';
+    $response='Oops it seems that we have a promblem with the database :(';
 }
 
-echo $response['msg'];
-
-
-
+echo $response;
 
 ?>

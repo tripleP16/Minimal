@@ -159,6 +159,15 @@ class conectorBD{
     
     }
 
+    function devolverBuscado($busqueda){
+      $select = $this->conexion->prepare("SELECT id,titulo,descripcion FROM productos  WHERE descripcion LIKE  CONCAT('%',?,'%') "); 
+      $select->bind_param("s", $busqueda);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
+
     function devolverImagen($fk_producto){
       $select = $this->conexion->prepare('SELECT imagen FROM imagenes  WHERE fk_producto = ? '); 
       $select->bind_param("i", $fk_producto);
@@ -168,13 +177,43 @@ class conectorBD{
       return $fila ;
     }
 
-    
 
-    
+    function crearLista($id){
+      $insert = $this->conexion->prepare('INSERT INTO listas_de_deseos (fk_cliente) VALUES (?)');
+      $insert->bind_param("i", $id);
+      if( $insert->execute()){
+        return 'oK';
+      }else {
+        echo $insert->error;
+      }
+    }
 
+    function devolverLista($fk_cliente){
+      $select = $this->conexion->prepare('SELECT * FROM listas_de_deseos WHERE fk_cliente = ? '); 
+      $select->bind_param("i", $fk_cliente);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
 
-  
-  
+    function devolverProductoLista ($fk_producto){
+      $select = $this->conexion->prepare('SELECT fk_producto FROM lista_de_deseos WHERE fk_producto = ? '); 
+      $select->bind_param("i", $fk_producto);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
 
+    function insertProductLista($fk_producto, $fk_lista){
+      $insert = $this->conexion->prepare('INSERT INTO lista_de_deseos (fk_lista, fk_producto) VALUES (?, ?)');
+      $insert->bind_param("ii", $fk_lista, $fk_producto);
+      if( $insert->execute()){
+        return 'oK';
+      }else {
+        echo $insert->error;
+      }
+    }
 }
 ?>

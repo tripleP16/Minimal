@@ -24,8 +24,7 @@
         if (c2 ==  null){
             buscarBarra(c1);
         }else{
-          window.location.href = `categoriasColecciones.html?campo1=${c1}&campo2=${c2}`
-      
+            busquedaParametrizada(c1, c2);
         }
         console.log(c1,c2);
     }
@@ -143,16 +142,29 @@
       var tabla = [];
       for(let i = 0 ; i< array.productos.length ; i ++){
         console.log(i);
-        tabla += `<div class="cell large-3">
-        <div class="card">
-            <a href=""><img href="" src="${array.productos[i].imagen}"></a>
-            <div class="card-section">
-                <a href=""><p id="title" class="titulo"> ${array.productos[i].titulo} </p></a>
-                <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
-                <button class="button secondary descrip expanded producto" onclick="selectProducto(${i})"> See More </button>
-            </div>
-        </div>
-    </div>`;
+        tabla += ` <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="${array.productos[i].imagen}"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">${array.productos[i].titulo}</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="cell large-8">
+                                        <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-2">
+                                        <a href=""><img src="img/square-edit-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
         
       }
       $('#tabla').append(tabla);
@@ -160,11 +172,7 @@
       
     }
 
-    function selectProducto(i){
-      console.log(i);
-
-      window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}`;
-    }
+    
        
     $(document).ready(function(){
                  $('#lupa').click(function(){
