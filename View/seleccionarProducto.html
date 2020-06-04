@@ -29,6 +29,51 @@
             function review(){
                 window.location.href = `comentarios.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
             }
+
+            function cargarComentarios(){
+                var request = $.ajax({
+                    url : '../Model/devolverComentarios.php', 
+                    type: 'POST',
+                    dataType: 'html',
+                    data : {id: id}
+                })
+
+                request.done(function(data){
+                    alert(data);
+                })
+    request.fail(function( jqXHR, textStatus, errorThrown ){
+        if (jqXHR.status === 0) {
+
+            alert('Not connect: Verify Network.');
+        
+          } else if (jqXHR.status == 404) {
+        
+            alert('Requested page not found [404]');
+        
+          } else if (jqXHR.status == 500) {
+        
+            alert('Internal Server Error [500].');
+        
+          } else if (textStatus === 'parsererror') {
+        
+            alert('Requested JSON parse failed.');
+        
+          } else if (textStatus === 'timeout') {
+        
+            alert('Time out error.');
+        
+          } else if (textStatus === 'abort') {
+        
+            alert('Ajax request aborted.');
+        
+          } else {
+        
+            alert('Uncaught Error: ' + jqXHR.responseText);
+        
+          }
+        
+    });
+            }
             function recibirParametros(){
                 var url = new URL(window.location.href);
                 imagen = url.searchParams.get("imagen");
@@ -45,7 +90,7 @@
                 $('#dProducto').text(descripcion);
             }
 
-            function anadirListaDeDeseos(){
+    function anadirListaDeDeseos(){
                 var request = $.ajax({
                     url : '../Model/anadirDeseos.php', 
                     type: 'POST',
@@ -57,7 +102,7 @@
                     alert(data);
                 })
 
-                request.fail(function( jqXHR, textStatus, errorThrown ){
+    request.fail(function( jqXHR, textStatus, errorThrown ){
         if (jqXHR.status === 0) {
 
             alert('Not connect: Verify Network.');

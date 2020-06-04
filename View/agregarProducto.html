@@ -46,7 +46,11 @@ function getInfoForm(){
     $("input[type=checkbox]:checked").each(function(){
         valoresCheck.push(this.value);
     });
-    console.log(valoresCheck.length)
+    for(let i = 0 ; i< valoresCheck.length ; i++){
+        console.log(valoresCheck[i]);
+    }
+    console.log(valoresCheck.length);
+    valoresCheck = JSON.stringify(valoresCheck);
     form_data.append('contador', valoresCheck.length);
     form_data.append('tallas', valoresCheck);
     form_data.append('genero',  $('input:radio[name=gender]:checked').val());

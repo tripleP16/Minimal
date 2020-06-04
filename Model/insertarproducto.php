@@ -16,14 +16,15 @@ $respuestas = uploadFile('profile_img', '../View/img');
   if ($con->initConexion('minimal')== 'OK'){
     $con->insertProducto($producto);
     $id = $con->devolverIdProducto($producto->getDescripcion());
-    $tallas = $_POST['tallas'];
-    for ($i=0; $i <($_POST['contador'] *2) -1  ; $i++) { 
-        if($tallas[$i]!=',')
+    $tallas = json_decode($_POST['tallas'], true);
+    $talla;
+    $check = false; 
+    for ($i=0; $i <$_POST['contador'] ; $i++) { 
             $con->insertTallas($tallas[$i], $id['id']);
-    }
+        }
     $con->insertImagen($newImg, $id['id']);
     $response= $newImg;
-    echo $response;
+    echo  $response;
   }else{
 
   }
