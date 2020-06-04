@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/styles.css">    
+        <link rel="stylesheet" href="css/foundation.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/index.js"></script>
+        <link href="css/starrr.css" rel=stylesheet/>
+        <script src="js/starrr.js"></script>
+        
+    </head>
+    
+    <body lang="en" onload="recibirParametros()">
+
+                <div class="contenedor contenedor-cuadro ">
+                        <div class="titulo-center">
+                            <h2>Write</h2>
+                            <h2>Your Review</h2>
+                        </div>
+                        <div class="Title-Product">
+                            <img src="img/cuadro.jpg" class="cuadro_image" alt="">
+                            <div>
+                                <h5>Title Product</h5>
+                                <p> $ Price</p>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            
+                        <p class="stars">
+                        <hr/>
+                        Rating: <span id="Estrellas"></span>
+                        <hr/>
+                        </p>
+                        </div>
+                        <div class="campo">
+                            <label for="titulo"> Review Title </label>
+                            <input type="text" id="titulo" >
+                        </div>
+                        <div class="campo mensaje">
+                            <textarea id="comentario" cols="15" rows="8" placeholder="Write your review or comment"></textarea>
+                        </div>
+                        <div class="campo enviar">
+                           <button onclick="enviar()" class="button secondary descrip expanded align-center" >Submit</button>
+                        </div>
+                   
+                </div>
+        <script>
+            var rating ; 
+            $('#Estrellas').starrr({
+                rating:3,
+                change:function(e,valor){
+                    rating = valor;
+                }
+                
+            });
+
+            var imagen;
+            var id ; 
+            var titulo; 
+            var descripcion;
+
+            
+            function recibirParametros(){
+                var url = new URL(window.location.href);
+                imagen = url.searchParams.get("imagen");
+                id = url.searchParams.get("id");
+                titulo = url.searchParams.get("titulo");
+                descripcion = url.searchParams.get("descripcion");
+                $('.cuadro_image').attr('src', imagen);
+                
+
+            }
+
+            function enviar(){
+                let titulo = $('#titulo').val();
+                let comentario = $('#comentario').val();
+                var request = $.ajax({
+                    url: '../Model/insertarPuntuacion.php', 
+                    type: 'POST',
+                    dataType: 'html', 
+                    data: {titulo:titulo, comentario:comentario, puntuacion:rating, descripcion:descripcion}
+                })
+
+                request.done(function(data){
+                    alert(data);
+                    window.location.href = `seleccionarProducto.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
+                })
+
+                request.fail(function( jqXHR, textStatus, errorThrown ){
+        if (jqXHR.status === 0) {
+
+            alert('Not connect: Verify Network.');
+        
+          } else if (jqXHR.status == 404) {
+        
+            alert('Requested page not found [404]');
+        
+          } else if (jqXHR.status == 500) {
+        
+            alert('Internal Server Error [500].');
+        
+          } else if (textStatus === 'parsererror') {
+        
+            alert('Requested JSON parse failed.');
+        
+          } else if (textStatus === 'timeout') {
+        
+            alert('Time out error.');
+        
+          } else if (textStatus === 'abort') {
+        
+            alert('Ajax request aborted.');
+        
+          } else {
+        
+            alert('Uncaught Error: ' + jqXHR.responseText);
+        
+          }
+        
+    });
+            }
+             
+             </script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+</html>

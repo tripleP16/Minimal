@@ -9,13 +9,11 @@ if ($con->initConexion('minimal')== 'OK'){
         $con->crearLista($id_cliente['id']);
 
     }
-    if ($con->devolverProductoLista($_POST['id'])== null){
+   
         $con->insertProductLista($_POST['id'], $id_cliente['id']);
 
         $response = "Your Product has been succesfully added to your wishlist";
-    }else {
-        $response = "Your product it's already in the list";
-    }
+    
 
 }
 

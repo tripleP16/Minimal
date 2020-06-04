@@ -28,6 +28,54 @@
 }
 
 
+function obtenerWish(){
+  alert("Hola");
+  var request  = $.ajax({
+    url: '../Model/DevolverLista.php', 
+    type: 'POST', 
+    dataType: 'json'
+  });
+
+  request.done(function(data){
+    var response = JSON.parse(JSON.stringify(data));
+    console.log(response);
+
+  });
+  request.fail(function( jqXHR, textStatus, errorThrown ){
+    if (jqXHR.status === 0) {
+
+        alert('Not connect: Verify Network.');
+    
+      } else if (jqXHR.status == 404) {
+    
+        alert('Requested page not found [404]');
+    
+      } else if (jqXHR.status == 500) {
+    
+        alert('Internal Server Error [500].');
+    
+      } else if (textStatus === 'parsererror') {
+    
+        alert('Requested JSON parse failed.');
+    
+      } else if (textStatus === 'timeout') {
+    
+        alert('Time out error.');
+    
+      } else if (textStatus === 'abort') {
+    
+        alert('Ajax request aborted.');
+    
+      } else {
+    
+        alert('Uncaught Error: ' + jqXHR.responseText);
+    
+      }
+    
+});
+}
+
+
 
 
 
@@ -431,6 +479,12 @@ $(function(){
       console.log(categoria);
       window.location.href = `busqueda.html?campo1=${$(this).attr("class")}&campo2=${categoria}`
       
+    })
+
+
+    $('#wish').click(function(){
+      window.location.href = `wishlist.html`;
+
     })
 
     

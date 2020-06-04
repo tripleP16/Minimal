@@ -122,9 +122,9 @@ class conectorBD{
       $insert->execute();
     }
 
-    function insertReview ($comentario, $puntuacion){
-     $insert = $this->conexion->prepare('INSERT INTO puntuaciones (fk_cliente, fk_producto, puntuacion, comentario) VALUES (?,?,?,?)');
-      $insert->bind_param("iiis", $comentario->getId(),  $comentario->getIdProducto(), $puntuacion->getPuntuacion(), $comentario->getComentario());
+    function insertReview ($comentario, $puntuacion, $titulo){
+     $insert = $this->conexion->prepare('INSERT INTO puntuaciones (fk_cliente, fk_producto, puntuacion, comentario, titulo) VALUES (?,?,?,?, ?)');
+      $insert->bind_param("iiiss", $comentario->getId(),  $comentario->getIdProducto(), $puntuacion->getPuntuacion(), $comentario->getComentario(), $titulo);
      if( $insert->execute()){
        return 'oK';
      }else {
@@ -206,6 +206,16 @@ class conectorBD{
       return $fila ;
     }
 
+    function devolverProductoLista2 ($fk_lista){
+      $select = $this->conexion->prepare('SELECT fk_producto FROM lista_de_deseos WHERE fk_lista = ? '); 
+      $select->bind_param("i", $fk_lista);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
+
+
     function insertProductLista($fk_producto, $fk_lista){
       $insert = $this->conexion->prepare('INSERT INTO lista_de_deseos (fk_lista, fk_producto) VALUES (?, ?)');
       $insert->bind_param("ii", $fk_lista, $fk_producto);
@@ -213,6 +223,27 @@ class conectorBD{
         return 'oK';
       }else {
         echo $insert->error;
+      }
+    }
+
+    function devolverBuscado2($id){
+      $select = $this->conexion->prepare("SELECT id,titulo,descripcion FROM productos  WHERE id = ?"); 
+      $select->bind_param("i", $id);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
+
+
+    function eliminarDeLaLista($fk_producto, $fk_cliente){
+      $delete = $this->conexion->prepare("DELETE FROM lista_de_deseos WHERE fk_lista = ? and fk_producto =?");
+      $delete->bind_param("ii", $fk_cliente, $fk_producto); 
+      $delete->execute();
+      if( $delete->execute()){
+        return 'oK';
+      }else {
+        echo $delete->error;
       }
     }
 }

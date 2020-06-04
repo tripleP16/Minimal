@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>"nombre producto"</title>
+        <title>Product</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
@@ -14,6 +14,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="css/starrr.css" rel=stylesheet/>
+        <script src="js/starrr.js"></script>
         <script src="js/index.js"></script>
         <script type="text/javascript">
             window.onload = function(){
@@ -22,7 +24,11 @@
             var imagen;
             var id ; 
             var titulo; 
-            var descripcion; 
+            var descripcion;
+
+            function review(){
+                window.location.href = `comentarios.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
+            }
             function recibirParametros(){
                 var url = new URL(window.location.href);
                 imagen = url.searchParams.get("imagen");
@@ -138,6 +144,7 @@
             
             </ul>
         </div>
+        
         <div class="menu titulo large-8 cell align-right">
             <ul class="dropdown menu " data-dropdown-menu>
                 <li><span class="material-icons">shopping_bag</span>
@@ -451,75 +458,12 @@
         <hr>
             <div class="titulo comen"><p><b>We want to hear from you!</b></p></div>
             <div class="descrip"><p id="preview">Tell us what you think about this item</p></div>
-            <div class="descrip center"><button id="shopButton" class="hollow button" href="#">Write Review</button></div>
+            <div class="descrip center"><button id="shopButton" class="hollow button" onclick="review()" >Write Review</button></div>
     </div>
     <div class="cell large-1"></div>
-    <div class="cell  large-5">
-        <div class="grid-x">
-            <div class="cell large-4">
-                <div class="descrip"><p id="preview">Name</p></div>
-                <div class="descrip"><p id="preview">dd/mm/aaaa</p></div>
-            </div>
-            <div class="cell large-4">
-               <div class="grid-x">
-                   <div class="cell large-2"></div>
-                    <div class="cell large-2">
-                        <img src="img/star.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star-half-outline.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star-outline.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star-outline.svg" width="15px">
-                    </div>
-                    <div class="cell large-2"></div>
-                </div>
-            </div> 
-            <div class="cell large-4">
-                <div class="descrip comen"><p><b>Tittle</b></p></div>
-                <div class="descrip"><p id="preview">Description</p></div>
-            </div>
-        </div>
+    <div class="cell  large-5" id="tabla">
         
-        <hr>
-        
-        <div class="grid-x">
-            <div class="cell large-4">
-                <div class="descrip"><p id="preview">Name</p></div>
-                <div class="descrip"><p id="preview">dd/mm/aaaa</p></div>
-            </div>
-            <div class="cell large-4">
-               <div class="grid-x">
-                   <div class="cell large-2"></div>
-                    <div class="cell large-2">
-                        <img src="img/star.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star-half-outline.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star-outline.svg" width="15px">
-                    </div>
-                    <div class="cell large-2">
-                        <img src="img/star-outline.svg" width="15px">
-                    </div>
-                    <div class="cell large-2"></div>
-                </div>
-            </div> 
-            <div class="cell large-4">
-                <div class="descrip comen"><p><b>Tittle</b></p></div>
-                <div class="descrip"><p id="preview">Description</p></div>
-            </div>
-        </div>
+    </div>
         
         <hr>
         
