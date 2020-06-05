@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Add/Edit Product</title>
+        <title>Edit Product</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
@@ -16,35 +16,36 @@
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-        
+
+        <script src="js/ModificarProducto.js"></script>
+        <script src="js/indexA.js"></script>
+
         <script>
             $(document).ready(function(){
-                 $('#lupa').click(function(){
-                    if($('#barra').is(":visible")){
-                        $('#barra').hide(1000);
-                    }else{
-                        $('#barra').show(1000);
-                    }
-                    
+               $('#lupa').click(function(){
+                  if($('#barra').is(":visible"))
+                      $('#barra').hide(1000);
+                  else
+                      $('#barra').show(1000);
                 })
             })
-            
         </script>
-        
+
     </head>
-    
-    <body lang="en">
+
+    <body onload="mostrarProducto()" lang="en">
+
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
-       
+
        <div class="grid-x grid-padding-x">
         <div class="menu large-4 cell align-left">
             <ul class="dropdown menu titulo " data-dropdown-menu>
                 <li>
                     <a href="#" class="secondary-color">Women</a>
                     <ul class="menu">
-                        <li><a  id="women" class="genero"></a>All</a></li>
+                        <li><a id="women" class="genero">All</a></li>
                         <li><a  class = "w search" value="Tops">Tops</a></li>
                         <li><a  class = "w search" value="Bottoms">Bottoms</a></li>
                         <li><a  class = "w search" value="Dresses">Dresses</a></li>
@@ -70,7 +71,7 @@
                     </ul>
                 </li>
                 <li><a href="#">About</a></li>
-            
+
             </ul>
         </div>
             <div class="menu titulo large-8 cell align-right">
@@ -98,18 +99,18 @@
                         <div id="barra">
                             <input type="text" placeholder="Buscar" id="barrita">
                         </div>
-                    </li>                 
+                    </li>
                 </ul>
             </div>
         </div>
-        
+
          <div class="contenedor " id="TituloSecundario">
             <br>
-            <h3 class="titulo">Add/Edit Product</h3>
+            <h3 class="titulo">Edit Product</h3>
         </div>
         <br>
         <br>
-        
+
         <div class="grid-x">
             <div class="cell large-2"></div>
             <div class="cell large-2">
@@ -125,17 +126,7 @@
                         <ul class="orbit-container">
                             <li class="is-active orbit-slide">
                                 <figure class="orbit-figure">
-                                    <img class="orbit-image" src="img/0728966712_1_1_3.jpg">
-                                </figure>
-                            </li>
-                            <li class="orbit-slide">
-                                <figure class="orbit-figure">
-                                    <img class="orbit-image" src="img/0728966712_2_1_3.jpg">
-                                </figure>
-                            </li>
-                            <li class="orbit-slide">
-                                <figure class="orbit-figure">
-                                    <img class="orbit-image" src="img/0728966712_2_4_3.jpg">
+**                                    <img class="orbit-image" src="img/0728966712_1_1_3.jpg">
                                 </figure>
                             </li>
                         </ul>
@@ -148,39 +139,44 @@
                 <h4 class="titulo">Product Information:</h4>
                 <form>
                     <label for="tituloProducto" class="descrip">Title of the Product: </label>
-                    <input type="text" id="tituloproducto" for="tituloPoducto">
+                    <input type="text" id="inputTituloProducto" for="tituloPoducto">
                     <label for="description" class="descrip">Description:</label>
-                    <textarea for="description" id="descripcion"></textarea>
+                    <textarea for="description" id="InputDescripcion"></textarea>
                     <label for="price" class="descrip">$ Price:</label>
-                    <input type="text" for="price" id="precio"> 
-                    <fieldset class="large-7 cell">
-                        <legend class="descrip">Select Available Sizes:</legend>
-                            <input id="XS" type="checkbox"><label for="XS">XS</label>
-                            <input id="S" type="checkbox"><label for="S">S</label>
-                            <input id="M" type="checkbox"><label for="M">M</label>
-                            <input id="L" type="checkbox"><label for="L">L</label>
-                            <input id="XL" type="checkbox"><label for="XL">XL</label>
-                    </fieldset>
-
-
-                    <p class="descrip">Upload Images:</p>
+                    <input type="text" for="price" id="InputPrecio">
+                    <p class="descrip">Categories</p>
                     <div class="grid-x grid-padding-x align-center">
-                        <label for="FileUpload" class="button descrip hollow expanded">Choose Images</label>
-                        <input type="file" id="FileUpload" class="show-for-sr">
+                        <select id="categoria" required>
+                            <option></option>
+                            <option value="TOPS">Tops</option>
+                            <option value="BOTTOMS">Bottoms</option>
+                            <option value="DRESSES">Dresses</option>
+                            <option value="HOODIES">Hoodies</option>
+                            <option value="HATS">Hats</option>
+                        </select>
+                    </div>
+                    <p class="descrip">Gender</p>
+                    <div class="grid-x grid-padding-x align-center">
+                        <input type="radio" name="gender" value="F" id="mujer" required><label class="descrip " for="mujer">Female</label>
+                        <input type="radio" name="gender" value="M" id="hombre"><label class="descrip " for="hombre">Male</label>
+                    </div>
+                    
+                    <div class="grid-x grid-padding-x align-center">
+                        
                     </div>
                     <br>
                     <br>
                     <div class="grid-x grid-padding-x align-center">
-                        <label for="subir" class="button secondary descrip expanded " >Update</label>
-                        <input type="submit" id="subir" class="show-for-sr">
+                        <label for="clickUpdate" class="button secondary descrip expanded " >Update</label>
+                        <input type="submit" onclick="actualizarProducto()" id="clickUpdate" class="show-for-sr">
                     </div>
                 </form>
             </div>
         </div>
-        
+
         <br>
         <br>
-        
+
         <div class="grid-x grid-padding-x ">
             <div class="large-12 cell" id="footer">
                 <div class="grid-x grid-padding-x ">
@@ -216,22 +212,22 @@
                         <p class="titulo">About</p>
                         <a class="foot"><p class="descrip">Policies and refunds</p></a>
                         <a class="foot"><p class="descrip">Find My Size</p></a>
-                        <br> 
-                        <br> 
-                        
-                            
-                        
+                        <br>
+                        <br>
+
+
+
                     </div>
                     <div class="large-2 cell">
-                      
-                        
+
+
                         </div>
                     </div>
                 </div>
             </div>
- 
 
-    <script src="js/vendor/jquery.js"></script>
+
+
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
