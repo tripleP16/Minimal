@@ -8,8 +8,8 @@
     $id_productos = $con->devolverProductoLista2($id_clientes['id']);
     $i = 0; 
     $arrayId ;
-    while (count($id_productos) > $i){
-        $arrayId[$i]['id_productos']= $id_productos['fk_producto'];
+    while ($id_producto = $id_productos->fetch_assoc()){
+        $arrayId[$i]['id_productos']= $id_producto['fk_producto'];
         $i ++ ;   
     }
     $j = 0;

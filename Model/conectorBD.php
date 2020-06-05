@@ -154,8 +154,8 @@ class conectorBD{
       $select->bind_param("ss", $genero, $categoria);
       $select->execute();
       $result = $select->get_result();
-      $fila = $result->fetch_assoc();
-      return $fila ;
+      
+      return $result ;
     
     }
 
@@ -164,8 +164,8 @@ class conectorBD{
       $select->bind_param("s", $busqueda);
       $select->execute();
       $result = $select->get_result();
-      $fila = $result->fetch_assoc();
-      return $fila ;
+    
+      return $result ;
     }
 
     function devolverImagen($fk_producto){
@@ -211,8 +211,7 @@ class conectorBD{
       $select->bind_param("i", $fk_lista);
       $select->execute();
       $result = $select->get_result();
-      $fila = $result->fetch_assoc();
-      return $fila ;
+      return $result ;
     }
 
 
@@ -245,6 +244,15 @@ class conectorBD{
       }else {
         echo $delete->error;
       }
+    }
+
+    function devolverComentario($fk_producto){
+      $select = $this->conexion->prepare("SELECT * FROM puntuaciones WHERE fk_producto = ?");
+      $select->bind_param("i",$fk_producto); 
+      $select->execute();
+      $result = $select->get_result(); 
+      return $result;
+
     }
 }
 ?>

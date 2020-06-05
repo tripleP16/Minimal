@@ -61,7 +61,7 @@
       $exito = false;
     }
 
-    if ($tamanio_archivo > 1000000000) {
+    if ($tamanio_archivo > 1000000000000000) {
       $respuestas["mensaje"] =  "El archivo es demasiado grande.";
       $exito = false;
     }

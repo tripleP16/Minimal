@@ -4,13 +4,14 @@
 if ($con->initConexion('minimal')== 'OK'){
     $productos = $con->devolverProductoCategoria($_POST['genero'], $_POST['valor']); 
     $i=0; 
-    while(count($productos) - 2> $i){
-        $response['productos'][$i]['id']= $productos['id'];
-        $response['productos'][$i]['descripcion']= $productos['descripcion'];
-        $response['productos'][$i]['titulo']= $productos['titulo'];
-        $imagen= $con->devolverImagen( $productos['id']); 
+    while($producto = $productos->fetch_assoc()){
+        $response['productos'][$i]['id']= $producto['id'];
+        $response['productos'][$i]['descripcion']= $producto['descripcion'];
+        $response['productos'][$i]['titulo']= $producto['titulo'];
+        $imagen= $con->devolverImagen( $producto['id']); 
         $response['productos'][$i]['imagen'] = $imagen['imagen'];
         $i++;
+
     }
     
     echo json_encode($response);

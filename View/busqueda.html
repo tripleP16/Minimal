@@ -95,7 +95,7 @@
     })
 
     request.done(function(data){
-      var response = JSON.parse(data);
+      var response = JSON.parse(JSON.stringify(data));
       if (response[0] == null){
         $('#tabla').append(`<h3 class="titulo">We couldn't make any matches please try another search</h3>`);
       }else{
