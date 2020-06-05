@@ -81,8 +81,9 @@ function registrarProducto(event){
   });
 
   request.done(function(data){
-    alert("Imagenes Agregadas");
+    alert("Your product has been added ");
     cambiarImagen(data);
+    
   })
   request.fail(function( jqXHR, textStatus, errorThrown ){
     if (jqXHR.status === 0) {
