@@ -254,5 +254,21 @@ class conectorBD{
       return $result;
 
     }
+
+    function devolerProductoGenero($genero){
+      $select = $this->conexion->prepare("SELECT id,titulo,descripcion FROM productos  WHERE genero = ?"); 
+      $select->bind_param("s", $genero);
+      $select->execute();
+      $result = $select->get_result();
+ 
+      return $result;
+
+    }
+
+    function eliminarProducto($id){
+      $delete =$this->conexion->prepare("DELETE FROM productos WHERE id = ?");
+      $delete->bind_param("i", $id);
+      $delete->execute();
+    }
 }
 ?>

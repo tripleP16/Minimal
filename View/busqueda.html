@@ -21,11 +21,14 @@
       var url = new URL(window.location.href);
       var c1 = url.searchParams.get("campo1");
       var c2 = url.searchParams.get("campo2");
-        if (c2 ==  null){
+      var c3 = url.searchParams.get("campo3");
+        if ((c2 ==  null) && (c3 == null)){
             buscarBarra(c1);
-        }else{
+        }else if ((c2!=null)&&(c3 == null)){
           window.location.href = `categoriasColecciones.html?campo1=${c1}&campo2=${c2}`
       
+        }else if(c3 != null){
+          window.location.href = `categoriasColecciones.html?campo1=${c1}&campo2=${c2}&campo3=${c3}`;
         }
         console.log(c1,c2);
     }
@@ -202,7 +205,7 @@
                     <li>
                         <a href="#" class="secondary-color">Women</a>
                         <ul class="menu">
-                            <li><a id="women">All</a></li>
+                            <li><a id="women" class="genero">All</a></li>
                             <li><a  class = "w search" value="Tops">Tops</a></li>
                             <li><a  class = "w search" value="Bottoms">Bottoms</a></li>
                             <li><a  class = "w search" value="Dresses">Dresses</a></li>
@@ -212,7 +215,7 @@
                     </li>
                     <li><a href="#" class="show">Men</a>
                         <ul class="menu">
-                            <li><a id="men">All</a></li>
+                            <li><a id="men" class="genero">All</a></li>
                             <li><a  class="m search" value="Tops">Tops</a></li>
                             <li><a  class="m search" value="Bottoms">Bottoms</a></li>
                             <li><a  class="m search" value="Hoodies">Hoodies</a></li>
@@ -234,19 +237,19 @@
             <div class="menu titulo large-8 cell align-right">
                 <ul class="dropdown menu " data-dropdown-menu>
                     <li><span class="material-icons">shopping_bag</span>
-                    <li>
-                        <a href="#" class="show">Account</a>
+                      <li>
+                        <a class="show">Account</a>
                         <ul class="menu">
-                            <li><a href="#"><span class="material-icons">
+                            <li><a href="editarUsuarioC.html"><span class="material-icons">
                                 edit
                                 </span>Edit my profile</a></li>
+                            <li><a id="wish"><span class="material-icons">
+                                favorite_border
+                                </span> Wishlist</a></li>
                             <li><a href="#"><span class="material-icons">
-                                add
-                                </span> Add Product</a></li>
-                            <li><a href="#"><span class="material-icons">
-                                how_to_reg
-                                </span> Register Admin</a></li>
-                            <li><a href="#"><span class="material-icons">
+                                local_shipping
+                                </span> My Orders</a></li>
+                            <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
                                 exit_to_app
                                 </span> Sign Out</a></li>
                         </ul>

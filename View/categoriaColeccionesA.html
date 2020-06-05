@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inicio</title>
+        <title>Collection's Categories</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
@@ -23,180 +23,11 @@
         <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
         
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-        <script src="js/indexA.js"></script>
-        <script type="text/javascript">
-          var arr ;
-    function recibirParametros(){
-      var url = new URL(window.location.href);
-      var c1 = url.searchParams.get("campo1");
-      var c2 = url.searchParams.get("campo2");
-      var c3 = url.searchParams.get("campo3");
-        if ((c2 ==  null) && (c3 == null)){
-            buscarBarra(c1);
-        }else if ((c2!=null)&&(c3 == null)){
-          window.location.href = `categoriaColeccionesA.html?campo1=${c1}&campo2=${c2}`
-      
-        }else if(c3 != null){
-          window.location.href = `categoriaColeccionesA.html?campo1=${c1}&campo2=${c2}&campo3=${c3}`;
-        }
-        console.log(c1,c2);
-    }
-
-    function buscarBarra(c1){
-        let busqueda = c1; 
-        var request = $.ajax({
-            url: '../Model/barra.php',
-            type:'POST',
-            dataType: 'html',
-            data:{busqueda: busqueda}
-        });
-        request.done(function(data){
-      var response = JSON.parse(data);
-      desplegarBusqueda(response);
-      console.log(response);
-
-    }); 
-
-    request.fail(function(response){
-      if (jqXHR.status === 0) {
-
-        alert('Not connect: Verify Network.');
-    
-      } else if (jqXHR.status == 404) {
-    
-        alert('Requested page not found [404]');
-    
-      } else if (jqXHR.status == 500) {
-    
-        alert('Internal Server Error [500].');
-    
-      } else if (textStatus === 'parsererror') {
-    
-        alert('Requested JSON parse failed.');
-    
-      } else if (textStatus === 'timeout') {
-    
-        alert('Time out error.');
-    
-      } else if (textStatus === 'abort') {
-    
-        alert('Ajax request aborted.');
-    
-      } else {
-    
-        alert('Uncaught Error: ' + jqXHR.responseText);
-    
-      }
-    })
-
-    }
-
-    function busquedaParametrizada(genero , valor){
-    if (genero ==  "w search"){
-      genero = "F";
-    }else {
-      genero = "M";
-    }
-
-    event.preventDefault(); 
-    var request = $.ajax({
-      url: '../Model/buscarProducto.php',
-      type: 'POST', 
-      dataType:'html', 
-      data : {genero: genero, valor:valor}
-    })
-
-    request.done(function(data){
-      var response = JSON.parse(JSON.stringify(data));
-      if (response[0] == null){
-        $('#tabla').append(`<h3 class="titulo">We couldn't make any matches please try another search</h3>`);
-      }else{
-        desplegarBusqueda(response);
-        console.log(response);
-      }
-
-    }); 
-
-    request.fail(function(response){
-      if (jqXHR.status === 0) {
-
-        alert('Not connect: Verify Network.');
-    
-      } else if (jqXHR.status == 404) {
-    
-        alert('Requested page not found [404]');
-    
-      } else if (jqXHR.status == 500) {
-    
-        alert('Internal Server Error [500].');
-    
-      } else if (textStatus === 'parsererror') {
-    
-        alert('Requested JSON parse failed.');
-    
-      } else if (textStatus === 'timeout') {
-    
-        alert('Time out error.');
-    
-      } else if (textStatus === 'abort') {
-    
-        alert('Ajax request aborted.');
-    
-      } else {
-    
-        alert('Uncaught Error: ' + jqXHR.responseText);
-    
-      }
-    })
-  }
-
-  function desplegarBusqueda(array){
-      
-      console.log(array);
-      
-      arr = array;
-      $('#tabla').empty();
-      var tabla = [];
-      for(let i = 0 ; i< array.productos.length ; i ++){
-        console.log(i);
-        tabla += ` <div class="cell large-3">
-                        <div class="card">
-                            <a href=""><img href="" src="${array.productos[i].imagen}"></a>
-                            <div class="card-section">
-                                <div class="grid-x ">
-                                    <div class="cell large-6">
-                                        <a href=""><p id="title"class="titulo">${array.productos[i].titulo}</p></a>
-                                    </div>
-                                    <div class="cell large-2 large-offset-4">
-                                        <a onclick="eliminarProducto(${i})"><img src="img/trash-outline.svg" width="22px"></a>
-                                    </div>
-                                </div>
-                                <div class="grid-x">
-                                    <div class="cell large-8">
-                                        <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
-                                    </div>
-                                    <div class="cell large-2 large-offset-2">
-                                        <a href=""><img src="img/square-edit-outline.svg" width="22px"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-        
-      }
-      $('#tabla').append(tabla);
-
-      
-    }
-
-        function eliminarProducto(i){
-            var opcion = confirm("Do you want to delete this product?"); 
-            
-        }
-    
-       
-    $(document).ready(function(){
-        $('#dialog2').hide();
+    <script src="js/indexA.js"></script>
+        <script>
+           
+            $(document).ready(function(){
+                $('#dialog2').hide();
                 $('#registro').click(function(){
                     $('#dialog2').dialog();
                 })
@@ -208,18 +39,14 @@
                     }
                     
                 })
-
-              
-
-                
             })
             
         </script>
         
     </head>
     
-    <body lang="en" onload="recibirParametros()">
-       <div class="contenedor" id="TituloPrincipal" >
+    <body lang="en">
+       <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
        <div class="miniContenedor large-3 cell " id="dialog2">
@@ -258,7 +85,7 @@
             <div class="menu large-4 cell align-left">
                 <ul class="dropdown menu titulo " data-dropdown-menu>
                     <li>
-                        <a href="#" class="secondary-color">Women</a>
+                        <a  class="secondary-color">Women</a>
                         <ul class="menu">
                             <li><a id="women" class="genero">All</a></li>
                             <li><a  class = "w search" value="Tops">Tops</a></li>
@@ -268,7 +95,7 @@
                             <li><a  class = "w search" value="Hats">Hats</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="show">Men</a>
+                    <li><a  class="show">Men</a>
                         <ul class="menu">
                             <li><a id="men" class="genero">All</a></li>
                             <li><a  class="m search" value="Tops">Tops</a></li>
@@ -293,7 +120,7 @@
                 <ul class="dropdown menu " data-dropdown-menu>
                     <li><span class="material-icons">shopping_bag</span>
                         <li>
-                            <a href="#" class="show">Account</a>
+                            <a  class="show">Account</a>
                             <ul class="menu">
                                 <li><a href="editarUsuarioA.html"><span class="material-icons">
                                     edit
@@ -321,69 +148,34 @@
         
         <div class="contenedor3 " id="TituloSecundario">
             <br>
+            <br>
              <div class="grid-x">
                 <div class="cell large-1"></div>
                  <div class="cel large-10">
-                    <h3 class="titulo">Results of the Search</h3>
+                    <h3 class="titulo">Collections</h3>
                  </div>
                  <div class="cell large-1"></div>
              </div>
         </div>
         <br>
-        <br>
         
         <div class="grid-x grid-padding-x">
             <div class="cell large-1"></div>
-            <div class="cell large-10 ">
-                <div class="grid-x align-right">
-                    <nav aria-label="Pagination">
-                        <ul class="pagination">
-                            <li class="pagination-previous disabled"><span class="show-for-sr">page</span></li>
-                            <li class="current descrip"><span class="show-for-sr">You're on page</span> 1</li>
-                            <li class="descrip"><a href="#" aria-label="Page 2">2</a></li>
-                            <li class="descrip"><a href="#" aria-label="Page 3">3</a></li>
-                            <li class="ellipsis descrip" aria-hidden="true"></li>
-                            <li class="pagination-next"><a href="#" aria-label="Next page"><span class="show-for-sr">page</span></a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="grid-x grid-padding-x" id="tabla">
-
-                </div>
-               
-                
-                <div class="grid-x align-right">
-                     <nav aria-label="Pagination">
-                        <ul class="pagination">
-                            <li class="pagination-previous disabled"><span class="show-for-sr">page</span></li>
-                            <li class="current descrip"><span class="show-for-sr">You're on page</span> 1</li>
-                            <li class="descrip"><a href="#" aria-label="Page 2">2</a></li>
-                            <li class="descrip"><a href="#" aria-label="Page 3">3</a></li>
-                            <li class="ellipsis descrip" aria-hidden="true"></li>
-                            <li class="pagination-next"><a href="#" aria-label="Next page"><span class="show-for-sr">page</span></a></li>
-                        </ul>
-                    </nav>
-                </div>
+                <div class="cell large-10">
+                <div class="swiper-container" >
+                    <div class="swiper-wrapper" id="tabla">
+                        
+                    </div>
+                    
+                <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-black"></div>
+                    <div class="swiper-button-prev swiper-button-black"></div>
+            </div>
+            </div>
+        <div class="cell large-1"></div>
+        </div>
             </div>
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <br>
         <div class="grid-x grid-padding-x ">
             <div class="large-12 cell" id="footer">
                 <div class="grid-x grid-padding-x ">
@@ -432,9 +224,136 @@
                     </div>
                 </div>
             </div>
+        
+      
+     
+              
+        
  
+
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
+    
+    <script>
+      var arr ;
+        var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        },
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+        });
+        window.onload = function(){
+                recibirParametros();
+                
+ }
+
+ 
+
+ function recibirParametros(){
+      var url = new URL(window.location.href);
+      var c1 = url.searchParams.get("campo1");
+      var c2 = url.searchParams.get("campo2");
+      var c3 = url.searchParams.get("campo3");
+      if (c3 == null){
+        busquedaParametrizada(c1, c2);
+      }else {
+          busquedaGenero(c3);
+      }
+
+        console.log(c1,c2);
+    }
+    function busquedaGenero(c3){
+        let genero ="";
+        if(c3 == "women"){
+            genero = "F";
+        }else{
+            genero = "M";
+        }
+
+        var request = $.ajax({
+            url: '../Model/buscarProductoG.php', 
+            type:'POST', 
+            dataType:'html', 
+            data: {genero:genero}
+        }); 
+
+    request.done(function(data){
+      var response = JSON.parse(data);
+      desplegarBusqueda(response);
+      console.log(response);
+
+    }); 
+
+
+    }
+function busquedaParametrizada(genero , valor){
+    if (genero ==  "w search"){
+      genero = "F";
+    }else {
+      genero = "M";
+    }
+
+
+
+    event.preventDefault(); 
+    var request = $.ajax({
+      url: '../Model/buscarProducto.php',
+      type: 'POST', 
+      dataType:'html', 
+      data : {genero: genero, valor:valor}
+    })
+
+    request.done(function(data){
+      var response = JSON.parse(data);
+      desplegarBusqueda(response);
+      console.log(response);
+
+    }); 
+}
+
+
+function desplegarBusqueda(array){
+
+      
+      console.log(array);
+      
+      arr = array;
+
+      var tabla = [];
+      for(let i = 0 ; i< array.productos.length ; i ++){ 
+        console.log(i);
+        tabla += `
+        <div class="swiper-slide">
+            <div class="card">
+                <a href=""><img src="${array.productos[i].imagen}"></a>
+                <div class="card-section">
+                    <a href=""><p id="title" class="titulo"> ${array.productos[i].titulo} </p></a>
+                    <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
+                    
+                </div>
+            </div>
+        </div>`;
+        
+      }
+      
+      swiper.appendSlide(tabla);
+
+      
+    }
+
+    
+
+    </script>
+       
     </body>
 </html>

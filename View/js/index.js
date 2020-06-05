@@ -487,6 +487,11 @@ $(function(){
 
     })
 
+    $('.genero').click(function(){
+      window.location.href=`busqueda.html?campo1=${null}&campo2=${null}&campo3=${$(this).attr("id")}`;
+    })
+    
+
     
 
 
