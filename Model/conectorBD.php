@@ -311,5 +311,20 @@ class conectorBD{
         echo $delete->error;
       }
     }
+
+    function actualizarProducto($id,$titulo,$descripcion,$precio,$categoria,$genero){
+      $update = $this->conexion->prepare('UPDATE productos SET titulo = ? , descripcion = ?,  precio = ?, genero = ?, categoria =? WHERE id = ?');
+      $update->bind_param("ssdssi", $titulo, $descripcion, $precio,$genero,$categoria,$id);
+      $update->execute();
+    }
+
+    function devolverUnProducto($id){
+      $select = $this->conexion->prepare('SELECT id,titulo,descripcion,precio,genero,categoria FROM productos  WHERE id = ?');
+      $select->bind_param("i", $id);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila ;
+    }
 }
 ?>
