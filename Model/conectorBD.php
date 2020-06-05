@@ -264,11 +264,52 @@ class conectorBD{
       return $result;
 
     }
+    function eliminarProductoP($id){
+      $delete =$this->conexion->prepare("DELETE FROM puntuaciones WHERE fk_producto = ?");
+      $delete->bind_param("i", $id);
+      if($delete->execute()){
+   
+      }else{
+        echo $delete->error;
+      }
+
+    }
 
     function eliminarProducto($id){
       $delete =$this->conexion->prepare("DELETE FROM productos WHERE id = ?");
       $delete->bind_param("i", $id);
-      $delete->execute();
+      if($delete->execute()){
+   
+      }else{
+        echo $delete->error;
+      }
+    }
+    function eliminarProductoTallas($id){
+      $delete =$this->conexion->prepare("DELETE FROM tallas WHERE fk_producto = ?");
+      $delete->bind_param("i", $id);
+      if($delete->execute()){
+      
+      }else{
+        echo $delete->error;
+      }
+    }
+    function eliminarProductoImagenes($id){
+      $delete =$this->conexion->prepare("DELETE FROM imagenes WHERE fk_producto = ?");
+      $delete->bind_param("i", $id);
+      if($delete->execute()){
+        
+      }else{
+        echo $delete->error;
+      }
+    }
+    function eliminarProductoL($id){
+      $delete =$this->conexion->prepare("DELETE FROM lista_de_deseos WHERE fk_producto = ?");
+      $delete->bind_param("i", $id);
+      if($delete->execute()){
+        
+      }else{
+        echo $delete->error;
+      }
     }
 }
 ?>
