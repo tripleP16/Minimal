@@ -20,9 +20,12 @@ if ($con->initConexion('minimal')== 'OK'){
     $response['categoria']= $productos['categoria'];
 
     $con->actualizarProducto($id,$titulo,$descripcion,$precio,$categoria,$genero);
-    $response =  "Your data has been successfully updated";
-    echo json_encode($response);
+    $response['msg'] =  "Your data has been successfully updated";
+    
+}else { 
+    $response['msg'] = "Please try again later";
 }
-echo $response;
+
+echo json_encode($response);
 
 ?>

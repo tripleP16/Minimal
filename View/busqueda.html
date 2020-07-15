@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -16,185 +18,104 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="js/index.js"></script>
         <script type="text/javascript">
-        var arr ;
-    function recibirParametros(){
-      var url = new URL(window.location.href);
-      var c1 = url.searchParams.get("campo1");
-      var c2 = url.searchParams.get("campo2");
-      var c3 = url.searchParams.get("campo3");
-        if ((c2 ==  null) && (c3 == null)){
-            buscarBarra(c1);
-        }else if ((c2!=null)&&(c3 == null)){
-          window.location.href = `categoriasColecciones.html?campo1=${c1}&campo2=${c2}`
-      
-        }else if(c3 != null){
-          window.location.href = `categoriasColecciones.html?campo1=${c1}&campo2=${c2}&campo3=${c3}`;
-        }
-        console.log(c1,c2);
-    }
-
-    function buscarBarra(c1){
-        let busqueda = c1; 
-        var request = $.ajax({
-            url: '../Model/barra.php',
-            type:'POST',
-            dataType: 'html',
-            data:{busqueda: busqueda}
-        });
-        request.done(function(data){
-      var response = JSON.parse(data);
-      desplegarBusqueda(response);
-      console.log(response);
-
-    }); 
-
-    request.fail(function(response){
-      if (jqXHR.status === 0) {
-
-        alert('Not connect: Verify Network.');
-    
-      } else if (jqXHR.status == 404) {
-    
-        alert('Requested page not found [404]');
-    
-      } else if (jqXHR.status == 500) {
-    
-        alert('Internal Server Error [500].');
-    
-      } else if (textStatus === 'parsererror') {
-    
-        alert('Requested JSON parse failed.');
-    
-      } else if (textStatus === 'timeout') {
-    
-        alert('Time out error.');
-    
-      } else if (textStatus === 'abort') {
-    
-        alert('Ajax request aborted.');
-    
-      } else {
-    
-        alert('Uncaught Error: ' + jqXHR.responseText);
-    
-      }
-    })
-
-    }
-
-    function busquedaParametrizada(genero , valor){
-    if (genero ==  "w search"){
-      genero = "F";
-    }else {
-      genero = "M";
-    }
-
-    event.preventDefault(); 
-    var request = $.ajax({
-      url: '../Model/buscarProducto.php',
-      type: 'POST', 
-      dataType:'html', 
-      data : {genero: genero, valor:valor}
-    })
-
-    request.done(function(data){
-      var response = JSON.parse(JSON.stringify(data));
-      if (response[0] == null){
-        $('#tabla').append(`<h3 class="titulo">We couldn't make any matches please try another search</h3>`);
-      }else{
-        desplegarBusqueda(response);
-        console.log(response);
-      }
-
-    }); 
-
-    request.fail(function(response){
-      if (jqXHR.status === 0) {
-
-        alert('Not connect: Verify Network.');
-    
-      } else if (jqXHR.status == 404) {
-    
-        alert('Requested page not found [404]');
-    
-      } else if (jqXHR.status == 500) {
-    
-        alert('Internal Server Error [500].');
-    
-      } else if (textStatus === 'parsererror') {
-    
-        alert('Requested JSON parse failed.');
-    
-      } else if (textStatus === 'timeout') {
-    
-        alert('Time out error.');
-    
-      } else if (textStatus === 'abort') {
-    
-        alert('Ajax request aborted.');
-    
-      } else {
-    
-        alert('Uncaught Error: ' + jqXHR.responseText);
-    
-      }
-    })
-  }
-
-  function desplegarBusqueda(array){
-      
-      console.log(array);
-      
-      arr = array;
-      $('#tabla').empty();
-      var tabla = [];
-      for(let i = 0 ; i< array.productos.length ; i ++){
-        console.log(i);
-        tabla += `<div class="cell large-3">
-        <div class="card">
-            <a href=""><img href="" src="${array.productos[i].imagen}"></a>
-            <div class="card-section">
-                <a href=""><p id="title" class="titulo"> ${array.productos[i].titulo} </p></a>
-                <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
-                <button class="button secondary descrip expanded producto" onclick="selectProducto(${i})"> See More </button>
-            </div>
-        </div>
-    </div>`;
-        
-      }
-      $('#tabla').append(tabla);
-
-      
-    }
-
-    function selectProducto(i){
-      console.log(i);
-
-      window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}`;
-    }
        
-    $(document).ready(function(){
-                 $('#lupa').click(function(){
-                    if($('#barra').is(":visible")){
-                        $('#barra').hide(1000);
-                    }else{
-                        $('#barra').show(1000);
-                    }
-                    
-                })
-
-                $('.producto').click(function(){
-                  alert("Hola")
-                })
-
+          $(document).ready(function(){
+            recibirParametros();
+             $('#lupa').click(function(){
+                if($('#barra').is(":visible")){
+                    $('#barra').hide(1000);
+                }else{
+                    $('#barra').show(1000);
+                }
                 
             })
+            $('#dialog').hide();
+                $('#dialog2').hide();
+                $('#account').click(function(){
+                  $('#dialog').dialog();
+                })
+
+                $('#newAccount').click(function(){
+                  $('#dialog').dialog("close");
+                  $('#dialog2').dialog();
+                })
+
+                $('#cuenta').click(function(){
+                  $('#dialog2').dialog("close");
+                  $('#dialog').dialog();
+                })
+            $('.producto').click(function(){
+              alert("Hola")
+            })
+
+            
+        })
+
             
         </script>
         
     </head>
     
-    <body lang="en" onload="recibirParametros()">
+    <body lang="en"  >
+      <div class="miniContenedor large-3 cell "  id="dialog">
+        <div class="contenedor">
+            <h2 class="titulo">Sign In</h2>
+        </div>
+        <div class="grid-x grid-padding-x align-center">
+        <form id="login2">
+            <label for="email" class="titulo"><b>Email:</b></label>
+            <input type="email" id="email" placeholder="Introduce your Email" required>
+            
+                <label for="password" class="titulo">Password: </label>
+            <input type="password" id="contrasena" placeholder="Introduce your Password" required minlength="8">
+            <div class="contenedor">
+                <a class="titulo" href="">Forgot your Password?</a>
+                <br>
+                <br>
+                <label for="iniciar" class="button secondary descrip " >Sign In</label>
+                
+                    <input type="submit" id="iniciar" class="show-for-sr">
+            </div>
+            <br>
+            <h5 class="titulo">New Customer?</h5>
+            <a class="titulo" id="newAccount">Create a new account</a>
+        </form>
+        </div>
+    </div>
+    <div class="miniContenedor large-3 cell " id="dialog2">
+      <div class="contenedor">
+          <h2 class="titulo">Create Your Account</h2>
+      </div>
+      
+          <form id="register" >
+              <div class="grid-x grid-padding-x ">
+              <div class="large-6 cell">
+                  <label for="name">First Name</label>
+                  <input type="text" id="name" required placeholder="Introduce your name">
+              </div>
+              <div class="large-6 cell">
+                  <label for="last">Last Name</label>
+                  <input type="text" id="last" required placeholder="Introduce your last name">
+              </div>
+              <div class="large-12 cell">
+                  <label for="email">Email:</label>
+                  <input type="email" id="emailR" required placeholder="Introduce your Email">
+              </div>
+              <div class="large-12 cell">
+                  <label for="contrasenaR">Password:</label>
+                  <input type="password" id="contrasenaR" required placeholder="Introduce your Password" minlength="8">
+              </div>
+              <div class="contenedor">
+                  <label for="subir" class="button secondary descrip " >Register</label>                        
+                  <input type="submit" id="subir" class="show-for-sr">
+              </div>
+              <div class="contenedor">
+                  <a class="titulo" id="cuenta">I already have an account</a>
+              </div>
+          </div>
+          </form>
+      
+  </div>
        <div class="contenedor" id="TituloPrincipal" >
             <h1 id="minimal">Minimal</h1>
        </div>
@@ -237,9 +158,9 @@
             <div class="menu titulo large-8 cell align-right">
                 <ul class="dropdown menu " data-dropdown-menu>
                     <li><span class="material-icons">shopping_bag</span>
-                      <li>
-                        <a class="show">Account</a>
-                        <ul class="menu">
+                    <li>
+                        <a class="show" id="account">Account</a>
+                        <ul class="menu" id="usuario">
                             <li><a href="editarUsuarioC.html"><span class="material-icons">
                                 edit
                                 </span>Edit my profile</a></li>
@@ -379,7 +300,6 @@
             </div>
  
 
-    <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
