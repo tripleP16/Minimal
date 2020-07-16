@@ -3,6 +3,7 @@ var imagen;
 var id ; 
 var titulo; 
 var descripcion;
+var c4 = null;
 function desplegarComentarios(array){
      
 console.log(array);
@@ -114,7 +115,13 @@ $('.cinco').text(cinco + " Reviews");
 
 }
 function review(){
-    window.location.href = `comentarios.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
+   if (c4 == "true"){
+       console.log(c4)
+        alert("Oops It seems that you haven't logged yet ");
+   }else{
+        window.location.href = `comentarios.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
+    }
+    
 }
 
 window.cargarComentarios = function(){
@@ -170,6 +177,14 @@ window.recibirParametros2 = function(){
     id = url.searchParams.get("id");
     titulo = url.searchParams.get("titulo");
     descripcion = url.searchParams.get("descripcion");
+    c4 = url.searchParams.get("campo4"); 
+    console.log(c4);
+    if(c4 == "true"){
+        $('#usuario').hide();
+        
+    }else {
+        $('#account').removeAttr('id');
+    }
     acomodarProducto(imagen,titulo, descripcion);
     
 }

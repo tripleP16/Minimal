@@ -1,10 +1,10 @@
-
+var c4 = null
  function recibirParametros2(){
     var url = new URL(window.location.href);
     var c1 = url.searchParams.get("campo1");
     var c2 = url.searchParams.get("campo2");
     var c3 = url.searchParams.get("campo3");
-    var c4 = url.searchParams.get("campo4");
+        c4 = url.searchParams.get("campo4");
       if(c4 == null){
           $('#account').removeAttr('id');
       }else {
@@ -100,5 +100,5 @@ function desplegarBusqueda(array){
   function selectProducto(i){
     console.log(i);
 
-    window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}`;
+    window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}&campo4=${c4}`;
   }
