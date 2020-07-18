@@ -1,6 +1,6 @@
 var arr ;
 var c4 = null ;
- function devolverDatos(){
+function devolverDatos(){
   event.preventDefault();
   var f = 0;
   var request = $.ajax({
@@ -29,6 +29,21 @@ var c4 = null ;
   })
 }
 
+
+function olvidarContrasena(){
+  event.preventDefault(); 
+  let email = $('#emailf').val()
+  var request = $.ajax({
+    url:'../Model/olvidarContrasena.php',
+    type : 'POST', 
+    dataType: 'json', 
+    data : {email:email}
+  }); 
+  request.done(function(response){
+    alert(response.msg)
+    location.reload();
+  })
+}
 
 
 
@@ -612,7 +627,9 @@ $(function(){
       }
     })
     
-
+    $('#recover').click(function(){
+      olvidarContrasena();
+    })
     
 
 

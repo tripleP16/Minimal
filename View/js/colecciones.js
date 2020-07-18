@@ -1,4 +1,18 @@
 var c4 = null
+function olvidarContrasena(){
+  event.preventDefault(); 
+  let email = $('#emailf').val()
+  var request = $.ajax({
+    url:'../Model/olvidarContrasena.php',
+    type : 'POST', 
+    dataType: 'json', 
+    data : {email:email}
+  }); 
+  request.done(function(response){
+    alert(response.msg)
+    location.reload();
+  })
+}
  function recibirParametros2(){
     var url = new URL(window.location.href);
     var c1 = url.searchParams.get("campo1");
@@ -102,3 +116,7 @@ function desplegarBusqueda(array){
 
     window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}&campo4=${c4}`;
   }
+
+  $('#recover').click(function(){
+    olvidarContrasena();
+  })

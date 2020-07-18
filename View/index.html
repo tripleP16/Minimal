@@ -34,6 +34,7 @@
                 })
                 $('#dialog').hide();
                 $('#dialog2').hide();
+                $('#dialog3').hide();
                 $('#account').click(function(){
                   $('#dialog').dialog();
                 })
@@ -47,6 +48,10 @@
                   $('#dialog2').dialog("close");
                   $('#dialog').dialog();
                 })
+                $('#password_F').click(function(){
+                  $('#dialog').dialog("close");
+                  $('#dialog3').dialog();
+                })
                 
             })
             
@@ -58,6 +63,7 @@
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
+      
        
        <div class="grid-x grid-padding-x">
         <div class="menu large-4 cell align-left">
@@ -123,7 +129,7 @@
                       <label for="password" class="titulo">Password: </label>
                   <input type="password" id="contrasena" placeholder="Introduce your Password" required minlength="8">
                   <div class="contenedor">
-                      <a class="titulo" href="">Forgot your Password?</a>
+                    <a class="titulo"  id="password_F">Forgot your Password?</a>
                       <br>
                       <br>
                       <label for="iniciar" class="button secondary descrip " >Sign In</label>
@@ -131,11 +137,27 @@
                           <input type="submit" id="iniciar" class="show-for-sr">
                   </div>
                   <br>
+                  
                   <h5 class="titulo">New Customer?</h5>
                   <a class="titulo" id="newAccount">Create a new account</a>
               </form>
               </div>
           </div>
+          <div class="miniContenedor large-3 cell " id="dialog3">
+            <div class="contenedor">
+                <h2 class="titulo">Recover Your Password</h2>
+            </div>
+            <div class="grid-x grid-padding-x align-center">
+            <form>
+                <label for="emailf" class="titulo"><b>Email:</b></label>
+                <input type="email" id="emailf" placeholder="Introduce your Email" required >
+                    <label for="recover" class="button secondary descrip " >Submit</label>
+                    <input type="submit" id="recover" class="show-for-sr">
+                </div>
+                <br>
+                
+            </form>
+            </div>
           <div class="miniContenedor large-3 cell " id="dialog2">
             <div class="contenedor">
                 <h2 class="titulo">Create Your Account</h2>

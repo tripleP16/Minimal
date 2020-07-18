@@ -15,7 +15,7 @@ if ($con->initConexion('minimal')== 'OK'){
     if ($contrasena['contrasena']!= null ){
         if(password_verify($contrasena_prueba1,$contrasena['contrasena'])){
             session_start();
-            $id = $con->devolverIdPersonas($email_prueba1);;
+            $id = $con->devolverIdPersonas($email_prueba1);
             if ($id['id']!=null){
                 $id_administradores = $con->devolverIdAdministradores($id['id']);
                 

@@ -4,8 +4,22 @@ var id ;
 var titulo; 
 var descripcion;
 var c4 = null;
+function olvidarContrasena(){
+    event.preventDefault(); 
+    let email = $('#emailf').val()
+    var request = $.ajax({
+      url:'../Model/olvidarContrasena.php',
+      type : 'POST', 
+      dataType: 'json', 
+      data : {email:email}
+    }); 
+    request.done(function(response){
+      alert(response.msg)
+      location.reload();
+    })
+  }
 function desplegarComentarios(array){
-     
+
 console.log(array);
 let uno = 0; 
 let dos = 0; 
@@ -251,4 +265,8 @@ $(document).ready(function(){
         }
         
     })
+
+    $('#recover').click(function(){
+        olvidarContrasena();
+      })
 })

@@ -36,6 +36,7 @@
                     }
                     
                 })
+                $('#dialog3').hide();
                 $('#dialog').hide();
                 $('#dialog2').hide();
                 $('#account').click(function(){
@@ -51,6 +52,10 @@
                   $('#dialog2').dialog("close");
                   $('#dialog').dialog();
                 })
+                $('#password_F').click(function(){
+                  $('#dialog').dialog("close");
+                  $('#dialog3').dialog();
+                })
             })
             
         </script>
@@ -58,6 +63,21 @@
     </head>
     
     <body lang="en">
+        <div class="miniContenedor large-3 cell " id="dialog3">
+            <div class="contenedor">
+                <h2 class="titulo">Recover Your Password</h2>
+            </div>
+            <div class="grid-x grid-padding-x align-center">
+            <form>
+                <label for="emailf" class="titulo"><b>Email:</b></label>
+                <input type="email" id="emailf" placeholder="Introduce your Email" required >
+                    <label for="recover" class="button secondary descrip " >Submit</label>
+                    <input type="submit" id="recover" class="show-for-sr">
+                </div>
+                <br>
+                
+            </form>
+            </div>
         <div class="miniContenedor large-3 cell "  id="dialog">
             <div class="contenedor">
                 <h2 class="titulo">Sign In</h2>
@@ -70,7 +90,7 @@
                     <label for="password" class="titulo">Password: </label>
                 <input type="password" id="contrasena" placeholder="Introduce your Password" required minlength="8">
                 <div class="contenedor">
-                    <a class="titulo" href="">Forgot your Password?</a>
+                    <a class="titulo" href="" id="password_F">Forgot your Password?</a>
                     <br>
                     <br>
                     <label for="iniciar" class="button secondary descrip " >Sign In</label>
