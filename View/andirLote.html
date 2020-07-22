@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit User</title>
+        <title>Add Batch</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
@@ -61,37 +61,6 @@
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
-       <div class="miniContenedor large-3 cell " id="dialog2">
-        <div class="contenedor">
-            <h2 class="titulo">Create Your Account</h2>
-        </div>
-
-            <form id="register" >
-                <div class="grid-x grid-padding-x ">
-                <div class="large-6 cell">
-                    <label for="name">First Name</label>
-                    <input type="text" id="name" required placeholder="Introduce your name">
-                </div>
-                <div class="large-6 cell">
-                    <label for="last">Last Name</label>
-                    <input type="text" id="last" required placeholder="Introduce your last name">
-                </div>
-                <div class="large-12 cell">
-                    <label for="email">Email:</label>
-                    <input type="email" id="emailR" required placeholder="Introduce your Email">
-                </div>
-                <div class="large-12 cell">
-                    <label for="contrasenaR">Password:</label>
-                    <input type="password" id="contrasenaR" required placeholder="Introduce your Password" minlength="8">
-                </div>
-                <div class="contenedor">
-                    <label for="registrarAdmin" class="button secondary descrip " >Register</label>
-                    <input type="submit" id="registrarAdmin" class="show-for-sr">
-                </div>
-            </div>
-            </form>
-
-    </div>
        
        <div class="grid-x grid-padding-x">
         <div class="menu large-4 cell align-left">
@@ -161,58 +130,43 @@
         </div>
         <div class="contenedor " id="TituloSecundario">
             <br>
-            <h3 class="titulo">Edit Account</h3>
+            <h3 class="titulo">Add Batch</h3>
         </div>
         <br>
         <br>
         
         <div class="grid-x grid-padding-x ">
             <div class="large-2 cell"></div>
-            <div class="large-2 cell contenedor2"> 
-                
-                <br>
-                <br>
-                <div class="recuadro contenedor">
-                    <h4 class="titulo">Password</h4>
-                    <p class="descrip">You can change your password by clicking the button below</p>
-                    <button class="button secondary descrip" id="contrasena">Change Password</button>
-                    <div id="pass">
-                        <label for="contraseña" class="descrip" id="contrasenaA">Current Pasword: </label>
-                        <input type="password" class="input" id="contrasenaActual" placeholder="Current Password">
-                        <label for="contraseña" class="descrip" id="contrasenaN">New Pasword: </label>
-                        <input type="password" class="input" id="contrasenaNueva" placeholder="New Password" minlength="8">
-                    </div>
-                </div>
-            </div>
-            <div class="large-2 cell"></div>
-            <div class="large-4 cell align-right">
-                <h4 class="titulo">Personal Information:</h4>
+            <div class="large-4 cell "> 
                 <form>
-                    <label for="nombre" class="descrip">First Name: </label>
-                    <input type="text" placeholder="First Name" id="nombre" for="nombre" required>
-                    <label for="apellido" class="descrip">Last Name: </label>
-                    <input type="text" placeholder="Last Name" id="apellido" for="apellido" required>
-                    <label for="Email" class="descrip">Email: </label>
-                    <input type="email" placeholder="Enter your Email" id="email" for="email" required>
-                    <label for="birthday" class="descrip">Birthday: </label>
-                    <input type="date" id="birthday" for="birthday" required>
-                    <label for="adress" class="descrip">Adress</label>
-                    <textarea for="adress" id="adress" required></textarea>
-                    <label for="codigo" class="descrip">Zip Code</label>
-                    <input type="number" for="codigo" id="codigo" max="8055" min="1050" required>
-                    <label for="state" class="descrip">State </label>
-                    <input type="text" for="state" id="estado" required> 
-                    <label for="city" class="descrip">City</label>
-                    <input type="text" for="city" id="ciudad" required>
-                    <fieldset class="large-5 cell">
-                        <legend class="descrip">Gender</legend>
-                            <input type="radio" name="gender" value="F" id="mujer" required><label class="descrip " for="mujer">Female</label>
-                            <input type="radio" name="gender" value="M" id="hombre"><label class="descrip " for="hombre">Male</label>
-                      </fieldset>
+                    <label for="title" class="descrip">Title of the product: </label>
+                    <input type="text" placeholder="title" id="title" for="title" disabled>
+                    <label for="batch" class="descrip">Batch number: </label>
+                    <input type="number" placeholder="0000" id="batch" for="batch"  min= "0" step="1"  required>
+                    <label for="bP" class="descrip">Batch price: </label>
+                    <input type="number" placeholder="0.0" id="bP" for="bP" step="0.5" required>
+                    <label for="size" class="descrip">Sizes</label>
+                    <select id="size" required>
+                        <option></option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                
+                
+            </div>
+            <div class="large-1 cell"></div>
+            <div class="large-4 cell align-right">
+                    <label for="dateA" class="descrip">Date of Arrival: </label>
+                    <input type="date" id="dateA" for="dateA" max="2020-07-28" required>
+                    <label for="stock" class="descrip">Stock: </label>
+                    <input type="number" for="stock" id="stock" min="0" step="1" required>
                       <br>
                       <div class="grid-x grid-padding-x align-center">
-                      <label for="update" class="button secondary descrip expanded" >Update</label>
-                            <input type="submit" id="update" class="show-for-sr">
+                      <label for="addB" class="button secondary descrip expanded" >Save</label>
+                            <input type="submit" id="addB" class="show-for-sr">
                     </div>
                 </form>
                     

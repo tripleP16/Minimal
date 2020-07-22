@@ -4,6 +4,14 @@
     
 }
 
+.deleteB{
+    width: 30px;
+}
+
+.editB{
+    width: 20%;
+}
+
 .contenedor2{
     padding: 5%;
 }
@@ -11,6 +19,16 @@
 .contenedor3{
     text-align: left;
     width: 100%;
+}
+
+#inventario{
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+    padding: 1.5%;
+}
+
+.contenedor4{
+    padding: 1.5%;
 }
 
 #minimal{
