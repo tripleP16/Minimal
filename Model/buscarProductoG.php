@@ -1,5 +1,6 @@
 <?php
 require('conectorBD.php');
+error_reporting(0);
     $con = new ConectorBD('localhost', 'user_prueba', '123456P');
 if ($con->initConexion('minimal')== 'OK'){
     $productos = $con->devolerProductoGenero($_POST['genero']); 

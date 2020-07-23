@@ -28,9 +28,10 @@ function olvidarContrasena(){
       busquedaParametrizada(c1, c2);
     }else {
         busquedaGenero(c3);
+        console.log("hola")
     }
 
-      console.log(c1,c2);
+      console.log(c1,c2,c3);
   }
   function busquedaGenero(c3){
       let genero ="";
@@ -38,6 +39,7 @@ function olvidarContrasena(){
           genero = "F";
       }else{
           genero = "M";
+          console.log("Hombre")
       }
 
       var request = $.ajax({
