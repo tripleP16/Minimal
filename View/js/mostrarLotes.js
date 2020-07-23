@@ -48,7 +48,7 @@ window.desplegarLotes = function(arr){
     
 }
 function actualizarLote(i){
-    console.log(array.lotes[i].titulo);
+    window.location.href = `editarLote.html?campo1=${array.lotes[i].id}&campo2=${array.lotes[i].titulo}&campo3=${array.lotes[i].numero_lote}&campo4=${array.lotes[i].costo}&campo5=${array.lotes[i].talla}&campo6=${array.lotes[i].fecha_arribo}&campo7=${array.lotes[i].cant_producto}`;
     
 }
 function eliminarLote(id){

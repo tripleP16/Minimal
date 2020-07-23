@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <script src="js/editarLote.js"></script>
         <script src="js/indexA.js"></script>
         <script>
             $(document).ready(function(){
@@ -31,7 +32,7 @@
                 $('#registro').click(function(){
                     $('#dialog2').dialog();
                 })
-
+                
 
                 $('#contrasena').click(function(){
                     if ($('#pass').is(":visible")){
@@ -50,6 +51,12 @@
                     }
                     
                 })
+
+                recibirParametrosE();
+                $('form').on('submit', function(e){
+                    e.preventDefault();
+                    actualizarLote();
+                })
             })
             
             
@@ -57,7 +64,7 @@
         
     </head>
     
-    <body lang="en" onload="devolverDatos()">
+    <body lang="en" >
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
@@ -170,7 +177,7 @@
                       <br>
                       <div class="grid-x grid-padding-x align-center">
                       <label for="upB" class="button secondary descrip expanded" >Update</label>
-                            <input type="submit" id="upB" class="show-for-sr">
+                            <input type="submit" id="upB" class="show-for-sr" onclick="">
                     </div>
                 </form>
                     

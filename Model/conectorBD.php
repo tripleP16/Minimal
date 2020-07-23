@@ -359,5 +359,16 @@ class conectorBD{
       }
 
     }
+
+    function actualizarLote($fk_producto, $numero_lote, $precio, $talla, $fecha, $stock, $id){
+      $insert = $this->conexion->prepare('UPDATE lotes SET numero_lote =? ,  costo =?, fecha_arribo =?, cant_producto =?, talla=? WHERE id =?');
+      $insert->bind_param('iisisi',$numero_lote,$precio,date('Y-m-d',$fecha), $stock, $talla,$id);
+      if($insert->execute()){
+        return true;
+      }else{
+        return $insert->error;
+      }
+
+    }
 }
 ?>
