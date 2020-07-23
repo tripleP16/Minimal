@@ -348,5 +348,16 @@ class conectorBD{
       $fila = $result->fetch_assoc();
       return $fila;
     }
+
+    function eliminarlote($id){
+      $delete =$this->conexion->prepare("DELETE FROM lotes WHERE id = ?");
+      $delete->bind_param("i", $id);
+      if($delete->execute()){
+        return true;
+      }else{
+        return $delete->error;
+      }
+
+    }
 }
 ?>

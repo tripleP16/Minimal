@@ -52,7 +52,20 @@ function actualizarLote(i){
     
 }
 function eliminarLote(id){
-    
+    var productoC = id;
+    var eliminacion = confirm ("Doy you really want to delete this batch??"); 
+    if (eliminacion == true){
+        var request = $.ajax({
+            url: '../Model/eliminarLote.php', 
+            type: 'post',
+            data : {'productoC':productoC}, 
+            dataType: 'html'
+        })
+        request.done(function(response){
+            alert(response)
+            location.reload();
+        })
+    }
 }
 
 window.busqueda= function(){
