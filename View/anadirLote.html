@@ -21,7 +21,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <script src="js/anadirLote.js"></script>
         <script src="js/indexA.js"></script>
+        
         <script>
             $(document).ready(function(){
                 $('#barra').hide();
@@ -30,8 +32,14 @@
                 $('#dialog2').hide();
                 $('#registro').click(function(){
                     $('#dialog2').dialog();
+                   
                 })
 
+                recibirParametrosA()
+                $('form').on('submit', function(e){
+                    e.preventDefault();
+                    anadirLote();
+                })
 
                 $('#contrasena').click(function(){
                     if ($('#pass').is(":visible")){
@@ -57,7 +65,7 @@
         
     </head>
     
-    <body lang="en" onload="devolverDatos()">
+    <body lang="en">
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
@@ -103,7 +111,7 @@
                     <li>
                         <a href="#" class="show">Account</a>
                         <ul class="menu">
-                            <li><a href="#"><span class="material-icons">
+                            <li><a href="editarUsuarioA.html"><span class="material-icons">
                                 edit
                                 </span>Edit my profile</a></li>
                             <li><a href="agregarProducto.html"><span class="material-icons">
@@ -138,11 +146,11 @@
         <div class="grid-x grid-padding-x ">
             <div class="large-2 cell"></div>
             <div class="large-4 cell "> 
-                <form>
+                <form id="lotes">
                     <label for="title" class="descrip">Title of the product: </label>
                     <input type="text" placeholder="title" id="title" for="title" disabled>
                     <label for="batch" class="descrip">Batch number: </label>
-                    <input type="number" placeholder="0000" id="batch" for="batch"  min= "0" step="1"  required>
+                    <input type="number" placeholder="0000" id="batch" for="batch"  min= "0" step="1" name="batch"  required>
                     <label for="bP" class="descrip">Batch price: </label>
                     <input type="number" placeholder="0.0" id="bP" for="bP" step="0.5" required>
                     <label for="size" class="descrip">Sizes</label>
@@ -162,11 +170,11 @@
                     <label for="dateA" class="descrip">Date of Arrival: </label>
                     <input type="date" id="dateA" for="dateA" max="2020-07-28" required>
                     <label for="stock" class="descrip">Stock: </label>
-                    <input type="number" for="stock" id="stock" min="0" step="1" required>
+                    <input type="number" for="stock" id="stock" min="0" step="1"  name= "stock" required>
                       <br>
                       <div class="grid-x grid-padding-x align-center">
                       <label for="addB" class="button secondary descrip expanded" >Save</label>
-                            <input type="submit" id="addB" class="show-for-sr">
+                            <input type="submit" id="addB" class="show-for-sr" >
                     </div>
                 </form>
                     

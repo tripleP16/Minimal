@@ -336,12 +336,16 @@ function desplegarBusqueda(array){
         <div class="swiper-slide">
             <div class="card">
                 <a href=""><img src="${array.productos[i].imagen}"></a>
+                
                 <div class="card-section">
                     <a href=""><p id="title" class="titulo"> ${array.productos[i].titulo} </p></a>
                     <a href=""><p class="descrip">${array.productos[i].descripcion}</p></a>
-                    <div class="cell large-2 large-offset-4">
+                    <div class="cell large-4 large-offset-4">
                         <a onclick="eliminarProducto(${i})"><img src="img/trash-outline.svg" width="22px"></a>
                         <a onclick="editarProducto(${i})"><img src="img/square-edit-outline.svg" width="22px"></a>
+                        <br>
+                        <a onclick="agregarLote(${i})"> <span class="material-icons" style="font-size:30px;">add_business</span></a>
+                        
                     </div>
                     <div class="cell large-2 large-offset-2">
                        
@@ -356,7 +360,9 @@ function desplegarBusqueda(array){
 
       
     }
-
+    function agregarLote(i){
+        window.location.href= `anadirLote.html?titulo=${arr.productos[i].titulo}&campo2=${arr.productos[i].id}`;
+      }
     function editarProducto(i){
             window.location.href = `modificarProducto.html?campo1=${arr.productos[i].id}&campo2=${arr.productos[i].imagen}`
         }

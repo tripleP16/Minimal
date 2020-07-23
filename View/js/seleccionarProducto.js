@@ -221,6 +221,7 @@ function anadirListaDeDeseos(){
 
     request.done(function(data){
         alert(data);
+        
     })
 
 request.fail(function( jqXHR, textStatus, errorThrown ){

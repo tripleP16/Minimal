@@ -170,6 +170,7 @@
                                     <div class="cell large-2 large-offset-4">
                                         <a onclick="eliminarProducto(${i})"><img src="img/trash-outline.svg" width="22px"></a>
                                     </div>
+                                    
                                 </div>
                                 <div class="grid-x">
                                     <div class="cell large-8">
@@ -177,6 +178,10 @@
                                     </div>
                                     <div class="cell large-2 large-offset-2">
                                         <a onclick="editarProducto(${i})"><img src="img/square-edit-outline.svg" width="22px"></a>
+                                    </div>
+                                    <div class="cell large-8"></div>
+                                    <div class="cell large-2 large-offset-2">
+                                        <a onclick="agregarLote(${i})"><span class="material-icons">add_business</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +193,9 @@
 
       
     }
+      function agregarLote(i){
+        window.location.href= `anadirLote.html?titulo=${arr.productos[i].titulo}&campo2=${arr.productos[i].id}`;
+      }
         function editarProducto(i){
             window.location.href = `modificarProducto.html?campo1=${arr.productos[i].id}&campo2=${arr.productos[i].imagen}`
         }

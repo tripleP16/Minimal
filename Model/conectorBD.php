@@ -326,5 +326,27 @@ class conectorBD{
       $fila = $result->fetch_assoc();
       return $fila ;
     }
+
+    function insertarLote($fk_producto, $numero_lote, $precio, $talla, $fecha, $stock){
+      $insert = $this->conexion->prepare('INSERT INTO lotes (numero_lote, fk_producto, costo, fecha_arribo, cant_producto, talla) VALUES(?,?,?,?,?, ?)');
+      $insert->bind_param('iiisis',$numero_lote, $fk_producto,$precio,date('Y-m-d',$fecha), $stock, $talla);
+      $insert->execute();
+    }
+
+    function devolverLotes(){
+      $select = $this->conexion->prepare('SELECT * from lotes'); 
+      $select->execute();
+      $result = $select->get_result();
+      return $result ;
+    }
+
+    function devolverTitulo($id){ 
+      $select = $this->conexion->prepare('SELECT titulo FROM productos WHERE id =  ?'); 
+      $select->bind_param("i", $id);
+      $select->execute();
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila;
+    }
 }
 ?>

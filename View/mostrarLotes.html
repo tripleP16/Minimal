@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <script src="js/mostrarLotes.js"></script>
         <script src="js/indexA.js"></script>
         <script>
             $(document).ready(function(){
@@ -32,7 +33,7 @@
                     $('#dialog2').dialog();
                 })
 
-
+                devolverLotes();
                 $('#contrasena').click(function(){
                     if ($('#pass').is(":visible")){
                         $('#pass').hide(1000);
@@ -50,6 +51,8 @@
                     }
                     
                 })
+
+                
             })
             
             
@@ -57,7 +60,7 @@
         
     </head>
     
-    <body lang="en" onload="devolverDatos()">
+    <body lang="en" >
        <div class="contenedor" id="TituloPrincipal">
             <h1 id="minimal">Minimal</h1>
        </div>
@@ -132,20 +135,22 @@
             <br>
             
         </div>
+        <br>
+        <br>
         
         <div class="grid-x grid-padding-x ">
-            <div class="large-1 cell "></div>
+            <div class="large-2 cell "></div>
             <div class="large-1 cell ">
                 <div class="contenedor4" >
-                    <br>
+                    
                     <h3 class="titulo">Inventory</h3>
                 </div>
             </div>
             
             <div class="large-9 cell ">
-                <div class="grid-x grid-padding-x ">
+                <div class="grid-x grid-padding-x " id="buscar">
                     <div class="large-1 cell"></div>
-                    <div class="large-9 cell "> <input type="text" id="buscarLote" placeholder="search"></div>
+                    <div class="large-6 cell "> <input type="text" id="buscarLote" placeholder="search" onkeyup="busqueda()"></div>
                     <span class="material-icons" style="font-size: 50px;" >search</span>
                 </div>  
             </div>
@@ -154,53 +159,12 @@
         <div class="grid-x grid-padding-x ">
     
             <div class="large-1 cell "></div>
-            <div class="large-10 cell contenedor">
-                <div class="grid-x grid-padding-x " id="inventarioT">
-                    <div class="large-2 cell"><label class="descrip">Number</label>  </div>
-                    <div class="large-2 cell"><label class="descrip">Product </label> </div>
-                    <div class="large-2 cell"><label class="descrip">Stock</label>  </div>
-                    <div class="large-2 cell"><label class="descrip">Date</label>  </div>
-                    <div class="large-2 cell"><label class="descrip">Size </label> </div>
-                    <div class="large-2 cell"><label class="descrip">U/A </label> </div>
-                </div>
+            <div class="large-10 cell " id="tabla" class="tablero">
+               
             </div>
-            <div class="large-1 cell"></div>
-            <div class="large-1 cell"></div>
-            <div class="large-10 cell contenedor">
-                <div class="grid-x grid-padding-x " id="inventario">
-                    <div class="large-2 cell"><label class="descrip" id="number">Number</label>  </div>
-                    <div class="large-2 cell"><label class="descrip" id="product"> Product </label></div>
-                    <div class="large-2 cell"><label class="descrip" id="stock">Stock </label> </div>
-                    <div class="large-2 cell"><label class="descrip" id="date">Date </label> </div>
-                    <div class="large-2 cell"><label class="descrip" id="size">Size</label>  </div>
-                    <div class="large-2 cell"><img src="img/trash-outline.svg" class="deleteB"> <img src="img/square-edit-outline.svg" class="editB"></div>
-                </div>
-            </div>
-            <div class="large-1 cell"></div>
-            <div class="large-1 cell"></div>
-            <div class="large-10 cell contenedor">
-                <div class="grid-x grid-padding-x " id="inventario">
-                    <div class="large-2 cell"><label class="descrip" id="number">Number</label>  </div>
-                    <div class="large-2 cell"><label class="descrip" id="product"> Product </label></div>
-                    <div class="large-2 cell"><label class="descrip" id="stock">Stock </label> </div>
-                    <div class="large-2 cell"><label class="descrip" id="date">Date </label> </div>
-                    <div class="large-2 cell"><label class="descrip" id="size">Size</label>  </div>
-                    <div class="large-2 cell"><img src="img/trash-outline.svg" class="deleteB"> <img src="img/square-edit-outline.svg" class="editB"></div>
-                </div>
-            </div>
-            <div class="large-1 cell"></div>
-            <div class="large-1 cell"></div>
-            <div class="large-10 cell contenedor">
-                <div class="grid-x grid-padding-x " id="inventario">
-                    <div class="large-2 cell"><label class="descrip" id="number">Number</label>  </div>
-                    <div class="large-2 cell"><label class="descrip" id="product"> Product </label></div>
-                    <div class="large-2 cell"><label class="descrip" id="stock">Stock </label> </div>
-                    <div class="large-2 cell"><label class="descrip" id="date">Date </label> </div>
-                    <div class="large-2 cell"><label class="descrip" id="size">Size</label>  </div>
-                    <div class="large-2 cell"><img src="img/trash-outline.svg" class="deleteB"> <img src="img/square-edit-outline.svg" class="editB"></div>
-                </div>
-            </div>
-            <div class="large-1 cell"></div>
+            <div class="large-1 cell "></div>
+            
+           
             
         </div>
         
