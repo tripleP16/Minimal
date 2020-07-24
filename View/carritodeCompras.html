@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit User</title>
+        <link rel="stylesheet" href="css/foundation.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/index.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#barra').hide();
+                $('#contrasenaNueva').hide();
+                $('#contrasenaActual').hide();
+
+                $('#contrasena').click(function(){
+                    if ($('#contrasenaActual').is(":visible")){
+                        $('#contrasenaNueva').hide(1000);
+                        $('#contrasenaActual').hide(1000);
+                        $('#contrasenaN').hide(1000);
+                        $('#contrasenaA').hide(1000);
+                    }else{
+                        $('#contrasenaNueva').show(1000);
+                        $('#contrasenaActual').show(1000);
+                        $('#contrasenaN').hide(1000);
+                        $('#contrasenaA').hide(1000);
+                        
+                    }
+                })
+
+                $('#lupa').click(function(){
+                    if($('#barra').is(":visible")){
+                        $('#barra').hide(1000);
+                    }else{
+                        $('#barra').show(1000);
+                    }
+                    
+                })
+            })
+            
+        </script>
+        
+    </head>
+    
+    <body lang="en">
+       <div class="contenedor" id="TituloPrincipal">
+            <h1 id="minimal">Minimal</h1>
+       </div>
+       
+       <div class="grid-x grid-padding-x">
+        <div class="menu large-4 cell align-left">
+            <ul class="dropdown menu titulo " data-dropdown-menu>
+                <li>
+                    <a href="#" class="secondary-color">Women</a>
+                    <ul class="menu">
+                        <li><a id="women"  class="genero">All</a></li>
+                        <li><a  class = "w search" value="Tops">Tops</a></li>
+                        <li><a  class = "w search" value="Bottoms">Bottoms</a></li>
+                        <li><a  class = "w search" value="Dresses">Dresses</a></li>
+                        <li><a  class = "w search" value="Hoodies">Hoodies</a></li>
+                        <li><a  class = "w search" value="Hats">Hats</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="show">Men</a>
+                    <ul class="menu">
+                        <li><a id="men"  class="genero">All</a></li>
+                        <li><a  class="m search" value="Tops">Tops</a></li>
+                        <li><a  class="m search" value="Bottoms">Bottoms</a></li>
+                        <li><a  class="m search" value="Hoodies">Hoodies</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="show">Collections</a>
+                    <ul class="menu">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Favorites</a></li>
+                        <li><a href="#">Top Rated</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">About</a></li>
+            
+            </ul>
+        </div>
+        
+            <div class="menu titulo large-8 cell align-right">
+                <ul class="dropdown menu " data-dropdown-menu>
+                    <li><span class="material-icons">shopping_bag</span>
+                        <li>
+                            <a class="show" id="account">Account</a>
+                            <ul class="menu" id="usuario">
+                                <li><a href="editarUsuarioC.html"><span class="material-icons">
+                                    edit
+                                    </span>Edit my profile</a></li>
+                                <li><a id="wish"><span class="material-icons">
+                                    favorite_border
+                                    </span> Wishlist</a></li>
+                                <li><a href="#"><span class="material-icons">
+                                    local_shipping
+                                    </span> My Orders</a></li>
+                                <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
+                                    exit_to_app
+                                    </span> Sign Out</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <span class="material-icons large" id="lupa">search</span>
+                        <div id="barra">
+                            <input type="text" placeholder="Buscar" id="barrita">
+                        </div>
+                    </li>                 
+                </ul>
+            </div>
+        </div>
+        <div class="contenedor " id="TituloSecundario">
+            <br>
+            <h3 class="titulo">My Shopping Bag</h3>
+        </div>
+        <br>
+        <br>
+        
+        <div class="grid-x">
+            <div class="large-1 cell"></div>
+            <div class="large-2 cell"> 
+                <h5 class="titulo contenedor"><i>Order Summary</i></h5>
+                <hr>
+                <div class="grid-x">
+                    <div class="large-6 cell">
+                        <p class="descrip izq">Products Added</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere">3 items</p>
+                    </div>
+                </div>
+                    <div class="grid-x">
+                    <div class="large-6 cell">
+                        <p class="descrip izq">Sub-total</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere"><img class="icon" src="img/dollar.svg" width="15px">100.00</p>
+                    </div>
+                    </div>
+                <div class="grid-x">
+                    <div class="large-6 cell">
+                        <p class="descrip izq">Discount</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere"><img class="icon" src="img/dollar.svg" width="15px">0.00</p>
+                    </div>
+                    </div>
+                
+                <div class="grid-x" id="line2">
+                    <div class="large-6 cell">
+                        <p class="descrip izq" id="title">Total</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere" id="title"><img class="icon" src="img/dollar.svg" width="18px">100.00</p>
+                    </div>
+                    </div>
+                <br>
+                <a class="button secondary descrip expanded" id="title" href="#">Buy items</a>
+                
+            </div>
+            <div class="large-1 cell"></div>
+            <div class="large-7 cell">
+                <div class="grid-x align-right">
+                    <nav aria-label="Pagination">
+                        <ul class="pagination">
+                            <li class="pagination-previous disabled"><span class="show-for-sr">page</span></li>
+                            <li class="current descrip"><span class="show-for-sr">You're on page</span> 1</li>
+                            <li class="descrip"><a href="#" aria-label="Page 2">2</a></li>
+                            <li class="descrip"><a href="#" aria-label="Page 3">3</a></li>
+                            <li class="ellipsis descrip" aria-hidden="true"></li>
+                            <li class="pagination-next"><a href="#" aria-label="Next page"><span class="show-for-sr">page</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title" class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip" >
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                               <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                              <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                               <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell large-3">
+                        <div class="card">
+                            <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>
+                            <div class="card-section">
+                                <div class="grid-x ">
+                                    <div class="cell large-6">
+                                        <a href=""><p id="title"class="titulo">Ropa</p></a>
+                                    </div>
+                                    <div class="cell large-2 large-offset-4">
+                                        <a href=""><img src="img/trash-outline.svg" width="22px"></a>
+                                    </div>
+                                </div>
+                                <p class="descrip center"><img class="dollar" src="img/dollar.svg" width="15px">8.00</p>
+                                <div class="grid-x">
+                                    <div class="large-7 cell">
+                                        <p class="descrip">Selected size</p>
+                                    </div>
+                                    <div class="cell large-5 descrip">
+                                            <select>
+                                                <option class="descrip" value="XS">XS</option>
+                                                <option class="descrip" value="S">S</option>
+                                                <option class="descrip" value="M">M</option>
+                                                <option class="descrip" value="L">L</option>
+                                                <option class="descrip" value="XL">XL</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="grid-x">
+                                    <div class="large-4 cell">
+                                        <p class="descrip">Units</p>
+                                    </div>
+                                    <div class="large-3 cell"></div>
+                                    <div class="large-5 cell descrip">
+                                         <input type="number" class="descrip" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="grid-x align-right">
+                    <nav aria-label="Pagination">
+                        <ul class="pagination">
+                            <li class="pagination-previous disabled"><span class="show-for-sr">page</span></li>
+                            <li class="current descrip"><span class="show-for-sr">You're on page</span> 1</li>
+                            <li class="descrip"><a href="#" aria-label="Page 2">2</a></li>
+                            <li class="descrip"><a href="#" aria-label="Page 3">3</a></li>
+                            <li class="ellipsis descrip" aria-hidden="true"></li>
+                            <li class="pagination-next"><a href="#" aria-label="Next page"><span class="show-for-sr">page</span></a></li>
+                        </ul>
+                    </nav>
+                </div>    
+            </div>
+            <div class="large-1 cell">
+            </div>
+        </div>
+        
+        <br>
+        <br>
+
+        <div class="grid-x grid-padding-x ">
+            <div class="large-12 cell" id="footer">
+                <div class="grid-x grid-padding-x ">
+                    <div class="large-1 cell " ></div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <br>
+                        <br>
+                        <div class="descrip large-6 cell" >© 2020 Minimal, Inc</div>
+                        <div class="grid-x grid-padding-x ">
+                            <div class="large-4 cell" ></div>
+                            <div class="large-1 cell" >
+                               <a> <i class="fa fa-facebook-f " style="font-size:28px; color: white;"></i></a>
+                               <br>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-twitter" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-instagram" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">Shop</p>
+                        <a class="foot"><p class="descrip">Women</p></a>
+                        <a class="foot"><p class="descrip">Male</p></a>
+                        <a class="foot"><p class="descrip">Collections</p></a>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">About</p>
+                        <a class="foot"><p class="descrip">Policies and refunds</p></a>
+                        <a class="foot"><p class="descrip">Find My Size</p></a>
+                        <br> 
+                        <br> 
+                        
+                            
+                        
+                    </div>
+                    <div class="large-2 cell">
+                      
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+ 
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+</html>

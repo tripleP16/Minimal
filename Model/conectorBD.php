@@ -372,7 +372,7 @@ class conectorBD{
     }
 
     function devolverTallaLotes($fk_producto){
-      $select = $this->conexion->prepare('SELECT talla FROM lotes WHERE fk_producto =?');
+      $select = $this->conexion->prepare('SELECT talla FROM lotes WHERE fk_producto =? AND cant_producto >0');
       $select->bind_param("i", $fk_producto);
       $select->execute();
       $result = $select->get_result();
