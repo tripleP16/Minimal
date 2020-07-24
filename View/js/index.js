@@ -561,11 +561,6 @@ $(function(){
         if ($('#register')[0].checkValidity()){
             registrarCliente();
         }
-        $('#name').val("");
-        $('#last').val("");
-        $('#emailR').val("");
-        $('#contrasenaR').val("");
-        
     });
 
   
