@@ -35,7 +35,7 @@
                         <div class="Title-Product">
                             <img src="" class="cuadro_image" alt="">
                             <div>
-                                <h5>Title Product</h5>
+                                <h5 id="title">Title Product</h5>
                                 <p id="price"> $ Price</p>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
 
             var imagen;
             var id ; 
-            var titulo; 
+            var titulo1; 
             var descripcion;
             var precio ;
             var c4 ;
@@ -81,13 +81,13 @@
                 imagen = url.searchParams.get("imagen");
                 console.log(imagen);
                 id = url.searchParams.get("id");
-                titulo = url.searchParams.get("titulo");
+                titulo1 = url.searchParams.get("titulo");
                 descripcion = url.searchParams.get("descripcion");
                 precio = url.searchParams.get("precio");
                 c4 = url.searchParams.get("campo4");
                 $('.cuadro_image').attr('src', imagen);
                 $('#price').text("$"+ precio);
-
+                $('#title').text(titulo1)
             }
 
             function enviar(){
@@ -102,7 +102,7 @@
 
                 request.done(function(data){
                     alert(data);
-                    window.location.href = `seleccionarProducto.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}&precio=${precio}&campo4=${c4}`;
+                    window.location.href = `seleccionarProducto.html?imagen=${imagen}&id=${id}&titulo=${titulo1}&descripcion=${descripcion}&precio=${precio}&campo4=${c4}`;
                 })
 
                 request.fail(function( jqXHR, textStatus, errorThrown ){

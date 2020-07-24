@@ -340,19 +340,19 @@ function ponerTallas(array){
         }
 
         if(xs == false){
-            $("#XS").prop('disabled', true);
+            $("#XS").hide();
         }
         if(s == false){
-            $("#S").prop('disabled', true);
+            $("#S").hide();
         }
         if(m == false){
-            $("#M").prop('disabled', true);
+            $("#M").hide();
         }
         if(l == false){
-            $("#L").prop('disabled', true);
+            $("#L").hide();
         }
         if(xl == false){
-            $("#XL").prop('disabled', true);
+            $("#XL").hide();
         }
     }
 }
