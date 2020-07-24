@@ -11,6 +11,7 @@ if ($con->initConexion('minimal')== 'OK'){
         $response['productos'][$i]['titulo']= $producto['titulo'];
         $imagen= $con->devolverImagen( $producto['id']); 
         $response['productos'][$i]['imagen'] = $imagen['imagen'];
+        $response['productos'][$i]['precio']=$producto['precio'];
         $i++;
 
     }

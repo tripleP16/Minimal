@@ -150,7 +150,7 @@ class conectorBD{
     }
 
     function devolverProductoCategoria($genero, $categoria){
-      $select = $this->conexion->prepare('SELECT id,titulo,descripcion FROM productos  WHERE genero = ? and categoria=? '); 
+      $select = $this->conexion->prepare('SELECT id,titulo,descripcion,precio FROM productos  WHERE genero = ? and categoria=? '); 
       $select->bind_param("ss", $genero, $categoria);
       $select->execute();
       $result = $select->get_result();
@@ -160,7 +160,7 @@ class conectorBD{
     }
 
     function devolverBuscado($busqueda){
-      $select = $this->conexion->prepare("SELECT id,titulo,descripcion FROM productos  WHERE descripcion LIKE  CONCAT('%',?,'%') "); 
+      $select = $this->conexion->prepare("SELECT id,titulo,descripcion,precio FROM productos  WHERE descripcion LIKE  CONCAT('%',?,'%') "); 
       $select->bind_param("s", $busqueda);
       $select->execute();
       $result = $select->get_result();
@@ -369,6 +369,15 @@ class conectorBD{
         return $insert->error;
       }
 
+    }
+
+    function devolverTallaLotes($fk_producto){
+      $select = $this->conexion->prepare('SELECT talla FROM lotes WHERE fk_producto =?');
+      $select->bind_param("i", $fk_producto);
+      $select->execute();
+      $result = $select->get_result();
+ 
+      return $result;
     }
 }
 ?>

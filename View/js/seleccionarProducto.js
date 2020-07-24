@@ -4,6 +4,7 @@ var id ;
 var titulo; 
 var descripcion;
 var c4 = null;
+var precio ;
 function olvidarContrasena(){
     event.preventDefault(); 
     let email = $('#emailf').val()
@@ -133,7 +134,7 @@ function review(){
        console.log(c4)
         alert("Oops It seems that you haven't logged yet ");
    }else{
-        window.location.href = `comentarios.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
+        window.location.href = `comentarios.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}&precio=${precio}&campo4=${c4}`;
     }
     
 }
@@ -192,26 +193,30 @@ window.recibirParametros2 = function(){
     titulo = url.searchParams.get("titulo");
     descripcion = url.searchParams.get("descripcion");
     c4 = url.searchParams.get("campo4"); 
+    precio = url.searchParams.get("precio");
     console.log(c4);
     if(c4 == "true"){
         $('#usuario').hide();
-        
+        $('#shopButton2').prop('disabled', true);
     }else {
         $('#account').removeAttr('id');
     }
-    acomodarProducto(imagen,titulo, descripcion);
+    acomodarProducto2(imagen,titulo, descripcion, precio);
+    comprobarTallas();
     
 }
 
-function acomodarProducto(imagen,titulo, descripcion){
+function acomodarProducto2(imagen,titulo, descripcion, precio){
     $('.recuadroImag').attr('src', imagen);
     $('.orbit-image').attr('src', imagen);
     $('#tProducto').html(titulo);
     $('#dProducto').text(descripcion);
+    $('#price').text("$" + precio);
     
 }
 
 function anadirListaDeDeseos(){
+    if (c4 != "true"){ 
     var request = $.ajax({
         url : '../Model/anadirDeseos.php', 
         type: 'POST',
@@ -256,6 +261,100 @@ alert('Uncaught Error: ' + jqXHR.responseText);
 }
 
 });
+}else {
+    alert("Please sign in first ")
+}
+}
+
+function comprobarTallas(){
+    var request = $.ajax({
+        url: '../Model/comprobarTalla.php',
+        type: 'POST',
+        dataType:'json',
+        data : {id: id}
+    })
+
+    request.done(function(data){
+        var response = JSON.parse(JSON.stringify(data));
+        ponerTallas(response);
+    })
+    request.fail(function( jqXHR, textStatus, errorThrown ){
+        if (jqXHR.status === 0) {
+        
+        alert('Not connect: Verify Network.');
+        
+        } else if (jqXHR.status == 404) {
+        
+        alert('Requested page not found [404]');
+        
+        } else if (jqXHR.status == 500) {
+        
+        alert('Internal Server Error [500].');
+        
+        } else if (textStatus === 'parsererror') {
+        
+        alert('Requested JSON parse failed.');
+        
+        } else if (textStatus === 'timeout') {
+        
+        alert('Time out error.');
+        
+        } else if (textStatus === 'abort') {
+        
+        alert('Ajax request aborted.');
+        
+        } else {
+        
+        alert('Uncaught Error: ' + jqXHR.responseText);
+        
+        }
+        
+        });
+}
+
+function ponerTallas(array){
+    console.log("Hola");
+    var xs = false; 
+    var s = false; 
+    var m = false; 
+    var l = false;
+    var xl = false;
+    if(array == null){
+        $('#tablero').empty(); 
+        $('#tablero').append(`<p> Sorry we don't have this product in stock `);
+        $('#shopButton2').prop('disabled', true);
+    }else {
+        for (let i = 0; i < array.length; i++) {
+            switch (array[i].talla){
+                case "XS" : xs = true; 
+                            break;
+                case "S" : s = true; 
+                            break;
+                case "M" : m = true; 
+                            break;
+                case "L" : l = true; 
+                            break;
+                case "XL" : xl = true; 
+                            break;
+            }
+        }
+
+        if(xs == false){
+            $("#XS").prop('disabled', true);
+        }
+        if(s == false){
+            $("#S").prop('disabled', true);
+        }
+        if(m == false){
+            $("#M").prop('disabled', true);
+        }
+        if(l == false){
+            $("#L").prop('disabled', true);
+        }
+        if(xl == false){
+            $("#XL").prop('disabled', true);
+        }
+    }
 }
 $(document).ready(function(){
      $('#lupa').click(function(){

@@ -19,13 +19,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="js/index.js"></script>
+        
         <link href="css/starrr.css" rel=stylesheet/>
         <script src="js/starrr.js"></script>
         
     </head>
     
-    <body lang="en" onload="recibirParametros()">
+    <body lang="en" onload="recibirParametrosC()">
 
                 <div class="contenedor contenedor-cuadro ">
                         <div class="titulo-center">
@@ -33,10 +33,10 @@
                             <h2>Your Review</h2>
                         </div>
                         <div class="Title-Product">
-                            <img src="img/cuadro.jpg" class="cuadro_image" alt="">
+                            <img src="" class="cuadro_image" alt="">
                             <div>
                                 <h5>Title Product</h5>
-                                <p> $ Price</p>
+                                <p id="price"> $ Price</p>
                             </div>
                         </div>
                         <div class="rating">
@@ -73,16 +73,20 @@
             var id ; 
             var titulo; 
             var descripcion;
-
+            var precio ;
+            var c4 ;
             
-            function recibirParametros(){
+            function recibirParametrosC(){
                 var url = new URL(window.location.href);
                 imagen = url.searchParams.get("imagen");
+                console.log(imagen);
                 id = url.searchParams.get("id");
                 titulo = url.searchParams.get("titulo");
                 descripcion = url.searchParams.get("descripcion");
+                precio = url.searchParams.get("precio");
+                c4 = url.searchParams.get("campo4");
                 $('.cuadro_image').attr('src', imagen);
-                
+                $('#price').text("$"+ precio);
 
             }
 
@@ -98,7 +102,7 @@
 
                 request.done(function(data){
                     alert(data);
-                    window.location.href = `seleccionarProducto.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}`;
+                    window.location.href = `seleccionarProducto.html?imagen=${imagen}&id=${id}&titulo=${titulo}&descripcion=${descripcion}&precio=${precio}&campo4=${c4}`;
                 })
 
                 request.fail(function( jqXHR, textStatus, errorThrown ){

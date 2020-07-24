@@ -236,7 +236,7 @@ function desplegarBusqueda(array){
 function selectProducto(i){
   console.log(i);
 
-  window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}&campo4${c4}`;
+  window.location.href = `seleccionarProducto.html?imagen=${arr.productos[i].imagen}&id=${arr.productos[i].id}&titulo=${arr.productos[i].titulo}&descripcion=${arr.productos[i].descripcion}&campo4=${c4}&precio=${arr.productos[i].precio}`;
 }
 
 
