@@ -32,3 +32,4 @@ if ($con->initConexion('minimal')== 'OK'){
     
 }
 echo $respuesta;
+?>

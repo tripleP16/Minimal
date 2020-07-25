@@ -402,7 +402,7 @@ class conectorBD{
     }
 
     function devolverLoteCantidad($fk_cliente){
-      $select = $this->conexion->prepare('SELECT fk_lote, unidades FROM lista_compra WHERE fk_cliente =? ');
+      $select = $this->conexion->prepare('SELECT fk_lote, unidades,id FROM lista_compra WHERE fk_cliente =? ');
       $select->bind_param("i", $fk_cliente );
       $select->execute();
       if($select->execute()){
@@ -426,6 +426,27 @@ class conectorBD{
       $result = $select->get_result();
       $fila = $result->fetch_assoc();
       return $fila;
+    }
+
+    function actualizarCarro($lote_viejo, $id_cliente, $unidades, $lote_nuevo, $id_lote){
+      $insert = $this->conexion->prepare('UPDATE lista_compra SET fk_lote =? ,  unidades =? WHERE id=?');
+      $insert->bind_param('iii',$lote_nuevo,$unidades, $id_lote);
+      if($insert->execute()){
+        return true;
+      }else{
+        return $insert->error;
+      }
+    }
+
+
+    function eliminarCarro($id){
+      $delete =$this->conexion->prepare("DELETE FROM lista_compra WHERE id = ?");
+      $delete->bind_param("i", $id);
+      if($delete->execute()){
+        return true;
+      }else{
+        return $delete->error;
+      }
     }
 }
 ?>

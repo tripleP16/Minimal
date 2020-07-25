@@ -19,6 +19,7 @@ if ($con->initConexion('minimal')== 'OK'){
           
             $response['compra'][$i]['lote'] = $compra['fk_lote'];
             $response['compra'][$i]['unidad'] = $compra['unidades'];
+            $response['compra'][$i]['id_compra'] = $compra['id'];
             $producto = $con->devolverClaveProducto( $response['compra'][$i]['lote']);
             $response['compra'][$i]['talla'] = $producto['talla'];
             $productoImagen = $con->devolverUnProducto($producto['fk_producto']);
@@ -26,6 +27,8 @@ if ($con->initConexion('minimal')== 'OK'){
             $response['compra'][$i]['imagen']=$productoImagen2['imagen'];
             $response['compra'][$i]['titulo']=$productoImagen['titulo'];
             $response['compra'][$i]['precio']=$productoImagen['precio'];
+            $response['compra'][$i]['id_producto']= $producto['fk_producto'];
+            $response['compra'][$i]['id_cliente']= $id_cliente['id'];
             $i ++;
             
         }
