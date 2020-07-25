@@ -169,7 +169,8 @@
         
         <div class="menu titulo large-8 cell align-right">
             <ul class="dropdown menu " data-dropdown-menu>
-                <li><span class="material-icons">shopping_bag</span>
+                <li><span class="material-icons" style="cursor:pointer;" 
+ id="compras">shopping_bag</span>
                     <li>
                         <a class="show" id="account">Account</a>
                         <ul class="menu" id="usuario">
@@ -179,9 +180,7 @@
                             <li><a id="wish"><span class="material-icons">
                                 favorite_border
                                 </span> Wishlist</a></li>
-                            <li><a href="#"><span class="material-icons">
-                                local_shipping
-                                </span> My Orders</a></li>
+                            
                             <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
                                 exit_to_app
                                 </span> Sign Out</a></li>
@@ -287,7 +286,7 @@
             </div>
             <br>
             <div class="descrip"><p><a href="#">Don't know your Size?</a></p></div>
-            <div class="descrip"><button id="shopButton2" class="secondary button expanded" href="#">ADD TO BAG</button></div>
+            <div class="descrip"><button id="shopButton2" class="secondary button expanded" onclick="anadirCompras()">ADD TO BAG</button></div>
             <br>
             <div class="descrip"><button id="shopButton" class="hollow button expanded" onclick="anadirListaDeDeseos()"><img id="icon" src="img/heart-outline.svg" width="23px">ADD TO WISHLIST</button></div>
         

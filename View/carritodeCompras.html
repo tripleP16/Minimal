@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit User</title>
+        <title>Bag</title>
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/estilos.css">
@@ -14,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/carroDeCompras.js"></script>
         <script src="js/index.js"></script>
         <script>
             $(document).ready(function(){
@@ -44,6 +45,8 @@
                     }
                     
                 })
+
+                cargarCarro();
             })
             
         </script>
@@ -183,7 +186,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="grid-x grid-padding-x">
+                <div class="grid-x grid-padding-x" id="tabla">
                     <div class="cell large-3">
                         <div class="card">
                             <a href=""><img href="" src="img/0728966712_1_1_3.jpg"></a>

@@ -626,6 +626,13 @@ $(function(){
       olvidarContrasena();
     })
     
+    $('#compras').click(function(){
+      if(c4 == "true"){
+        window.location.href = `carritodeCompras.html?campo4=${c4}`
+      }else{
+        window.location.href = `carritodeCompras.html`;
+      }
+    })
 
 
 });

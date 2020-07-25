@@ -67,6 +67,7 @@ class conectorBD{
       $select->execute();
       $result = $select->get_result();
       $fila = $result->fetch_assoc();
+      
       return $fila ;
     }
 
@@ -256,7 +257,7 @@ class conectorBD{
     }
 
     function devolerProductoGenero($genero){
-      $select = $this->conexion->prepare("SELECT id,titulo,descripcion FROM productos  WHERE genero = ?"); 
+      $select = $this->conexion->prepare("SELECT id,titulo,descripcion,precio FROM productos  WHERE genero = ?"); 
       $select->bind_param("s", $genero);
       $select->execute();
       $result = $select->get_result();
@@ -378,6 +379,53 @@ class conectorBD{
       $result = $select->get_result();
  
       return $result;
+    }
+
+    function seleccionarLote($fk_producto,$talla){
+      $select = $this->conexion->prepare('SELECT id FROM lotes WHERE fk_producto =? AND talla = ? AND cant_producto >0');
+      $select->bind_param("is", $fk_producto, $talla);
+      $select->execute();
+      $result = $select->get_result();
+ 
+      return $result;
+    }
+
+
+    function anadirCompra($fk_lote, $fk_cliente, $cantidad){
+      $insert = $this->conexion->prepare('INSERT INTO lista_compra (fk_lote, fk_cliente, unidades) VALUES(?,?,?)');
+      $insert->bind_param('iii',$fk_lote, $fk_cliente, $cantidad);
+      if($insert->execute()){
+        return true;
+      }else{
+        return $insert->error;
+      }
+    }
+
+    function devolverLoteCantidad($fk_cliente){
+      $select = $this->conexion->prepare('SELECT fk_lote, unidades FROM lista_compra WHERE fk_cliente =? ');
+      $select->bind_param("i", $fk_cliente );
+      $select->execute();
+      if($select->execute()){
+        
+      }else{
+        echo $select->error;
+      };
+      $result = $select->get_result();
+ 
+      return $result;
+    }
+
+    function devolverClaveProducto($id){
+      $select = $this->conexion->prepare('SELECT fk_producto,talla from lotes WHERE id = ?'); 
+      $select->bind_param("i", $id );
+      if($select->execute()){
+        //echo true;
+      }else{
+       // echo $select->error;
+      };
+      $result = $select->get_result();
+      $fila = $result->fetch_assoc();
+      return $fila;
     }
 }
 ?>

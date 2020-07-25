@@ -5,6 +5,7 @@ var titulo;
 var descripcion;
 var c4 = null;
 var precio ;
+var talla = null;
 function olvidarContrasena(){
     event.preventDefault(); 
     let email = $('#emailf').val()
@@ -313,7 +314,6 @@ function comprobarTallas(){
 }
 
 function ponerTallas(array){
-    console.log("Hola");
     var xs = false; 
     var s = false; 
     var m = false; 
@@ -356,6 +356,24 @@ function ponerTallas(array){
         }
     }
 }
+
+function anadirCompras(){
+
+    if(talla != null){
+    var request = $.ajax({
+        url : '../Model/anadirCarrito.php',
+        type: 'POST', 
+        dataType:'html',
+        data : {id: id, talla: talla}
+    })
+
+    request.done(function(data){
+        alert(data);
+    })
+}else {
+    alert("Please select a size ");
+}
+}
 $(document).ready(function(){
      $('#lupa').click(function(){
         if($('#barra').is(":visible")){
@@ -369,4 +387,51 @@ $(document).ready(function(){
     $('#recover').click(function(){
         olvidarContrasena();
       })
+
+
+    $('#XS').click(function(){
+        talla = "XS";
+        $('#XS').prop('disabled', true);
+        $('#S').prop('disabled', false);
+        $('#M').prop('disabled', false);
+        $('#L').prop('disabled', false);
+        $('#XL').prop('disabled', false);
+        console.log(talla);
+    })
+    $('#S').click(function(){
+        talla = "S";
+        $('#XS').prop('disabled', false);
+        $('#S').prop('disabled', true);
+        $('#M').prop('disabled', false);
+        $('#L').prop('disabled', false);
+        $('#XL').prop('disabled', false);
+        console.log(talla);
+    })
+    $('#M').click(function(){
+        talla = "M";
+        console.log(talla);
+        $('#XS').prop('disabled', false);
+        $('#S').prop('disabled', false);
+        $('#M').prop('disabled', true);
+        $('#L').prop('disabled', false);
+        $('#XL').prop('disabled', false);
+    })
+    $('#L').click(function(){
+        talla = "L";
+        console.log(talla);
+        $('#XS').prop('disabled', false);
+        $('#S').prop('disabled', false);
+        $('#M').prop('disabled', false);
+        $('#L').prop('disabled', true);
+        $('#XL').prop('disabled', false);
+    })
+    $('#XL').click(function(){
+        talla = "XL";
+        console.log(talla);
+        $('#XS').prop('disabled', false);
+        $('#S').prop('disabled', false);
+        $('#M').prop('disabled', false);
+        $('#L').prop('disabled', false);
+        $('#XL').prop('disabled', true);
+    })
 })
