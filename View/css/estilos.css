@@ -139,4 +139,19 @@ a{
 .foot{
     color: white;
 }
+.dere{
+    text-align: right;
+}
+.nada{
+    list-style: none
+}
+#icon{
+    position:relative;
+    right:5px;
+    bottom: 2px;
+}
 
+.icon{
+    position: relative;
+    bottom:3px;
+}

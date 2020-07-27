@@ -47,6 +47,9 @@
                 })
 
                 cargarCarro();
+                $('#buy').click(function(){
+                    irAcompra();
+                })
             })
             
         </script>
@@ -96,7 +99,7 @@
         
             <div class="menu titulo large-8 cell align-right">
                 <ul class="dropdown menu " data-dropdown-menu>
-                    <li><span class="material-icons">shopping_bag</span>
+                    <li><span class="material-icons" id="compras" >shopping_bag</span>
                         <li>
                             <a class="show" id="account">Account</a>
                             <ul class="menu" id="usuario">
@@ -106,9 +109,6 @@
                                 <li><a id="wish"><span class="material-icons">
                                     favorite_border
                                     </span> Wishlist</a></li>
-                                <li><a href="#"><span class="material-icons">
-                                    local_shipping
-                                    </span> My Orders</a></li>
                                 <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
                                     exit_to_app
                                     </span> Sign Out</a></li>
@@ -140,7 +140,7 @@
                         <p class="descrip izq">Products Added</p>
                     </div>
                     <div class="large-6 cell">
-                        <p class="descrip dere">3 items</p>
+                        <p class="descrip dere" id="items">0 items</p>
                     </div>
                 </div>
                     <div class="grid-x">
@@ -148,7 +148,7 @@
                         <p class="descrip izq">Sub-total</p>
                     </div>
                     <div class="large-6 cell">
-                        <p class="descrip dere"><img class="icon" src="img/dollar.svg" width="15px">100.00</p>
+                        <p class="descrip dere" id="sub-total"><img class="icon" src="img/dollar.svg" width="15px">0.00</p>
                     </div>
                     </div>
                 <div class="grid-x">
@@ -165,11 +165,11 @@
                         <p class="descrip izq" id="title">Total</p>
                     </div>
                     <div class="large-6 cell">
-                        <p class="descrip dere" id="title"><img class="icon" src="img/dollar.svg" width="18px">100.00</p>
+                        <p class="descrip dere" id="total" style="font-size: 20px;"><img class="icon" src="img/dollar.svg" width="18px">0.00</p>
                     </div>
                     </div>
                 <br>
-                <a class="button secondary descrip expanded" id="title" href="#">Buy items</a>
+                <a class="button secondary descrip expanded" id="buy" >Buy items</a>
                 
             </div>
             <div class="large-1 cell"></div>

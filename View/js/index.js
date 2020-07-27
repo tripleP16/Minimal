@@ -586,13 +586,16 @@ $(function(){
     $('#barra').keypress(function(e){
       if (e.which == 13){
         var busqueda = $('#barrita').val();
-        console.log(window.location.href);
-        if (window.location.href == "http://localhost/Minimal2/View/index.html" || c4 == "true"){
-          window.location.href = `busqueda.html?campo1=${busqueda}&campo4=${true}`
+        console.log(busqueda)
+        if (busqueda == ""){
+          alert("If it's empty we don't know what to do");
         }else{
-          window.location.href = `busqueda.html?campo1=${busqueda}`
+          if (window.location.href == "http://localhost/Minimal2/View/index.html" || c4 == "true"){
+            window.location.href = `busqueda.html?campo1=${busqueda}&campo4=${true}`
+          }else{
+            window.location.href = `busqueda.html?campo1=${busqueda}`
+          }
         }
-        
         console.log(busqueda);
       }
     })

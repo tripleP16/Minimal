@@ -448,5 +448,26 @@ class conectorBD{
         return $delete->error;
       }
     }
+
+    function insertCompra($precio_final, $tarjeta,$fk_cliente,$direccion, $identificacion){
+      $insert = $this->conexion->prepare('INSERT INTO carrito (precio_final, tarjeta, fk_cliente, direccion,identificacion) VALUES(?,?,?,?,?)');
+      $insert->bind_param('iiisi',$precio_final, $tarjeta, $fk_cliente, $direccion, $identificacion);
+      if($insert->execute()){
+        return true;
+      }else{
+        return $insert->error;
+      }
+    }
+
+    function vaciarCarro($fk_cliente){
+      $delete =$this->conexion->prepare("DELETE FROM lista_compra WHERE fk_cliente = ?");
+      $delete->bind_param("i", $fk_cliente);
+      if($delete->execute()){
+        return true;
+      }else{
+        return $delete->error;
+      }
+    }
+    
 }
 ?>

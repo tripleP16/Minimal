@@ -1,3 +1,5 @@
+var precioTotal = 0;
+var check = null;
 window.cargarCarro= function(){
     var request = $.ajax({
         url:'../Model/carroCompras.php',
@@ -44,7 +46,7 @@ window.cargarCarro= function(){
       
 }
 
-var arr ;
+
 
 function desplegarCarro(array){
     arr = array;
@@ -52,11 +54,14 @@ function desplegarCarro(array){
     if(array == null){
         
         alert("It seems you haven't logged in or your bag it's empty");
+        check = true;
     }else{
 
         var tabla ="" ;
+        
         console.log(array.length)
         for (let i = 0; i < array.compra.length; i++) {
+            precioTotal += array.compra[i].precio * array.compra[i].unidad;
             tabla+= `<div class="cell large-3">
             <div class="card">
                 <a href=""><img href="" src="${array.compra[i].imagen}"></a>
@@ -76,11 +81,11 @@ function desplegarCarro(array){
                         </div>
                         <div class="cell large-5 descrip" >
                                 <select id="${i}" onchange="actualizarCarro(${i})">
-                                    <option class="descrip" value="XS" id="XS">XS</option>
-                                    <option class="descrip" value="S" id="S">S</option>
-                                    <option class="descrip" value="M" id="M">M</option>
-                                    <option class="descrip" value="L" id="L">L</option>
-                                    <option class="descrip" value="XL" id="XL">XL</option>
+                                    <option class="descrip" value="XS" id="XS${i}">XS</option>
+                                    <option class="descrip" value="S" id="S${i}">S</option>
+                                    <option class="descrip" value="M" id="M${i}">M</option>
+                                    <option class="descrip" value="L" id="L${i}">L</option>
+                                    <option class="descrip" value="XL" id="XL${i}">XL</option>
                                 </select>
                         </div>
                     </div>
@@ -100,16 +105,25 @@ function desplegarCarro(array){
         
             
         }
+        
+        calculoPrecioTotal(array);
         $('#tabla').append(tabla);
         for (let i = 0; i < array.compra.length; i++) {
             document.getElementById(i.toString()).value = array.compra[i].talla;
-            comprobarTallas(array.compra[i].id_producto);
+            comprobarTallas(array.compra[i].id_producto, i);
             
         }
     }
 }
 
-function ponerTallas(array){
+function calculoPrecioTotal(arr){
+    $('#items').text(arr.compra.length +  " Items");
+    $('#sub-total').empty();
+    $('#sub-total').append(`<img class="icon" src="img/dollar.svg" width="15px">${precioTotal}`); 
+    $('#total').empty();
+    $('#total').append(`<img class="icon" src="img/dollar.svg" width="18px">${precioTotal}`); 
+}
+function ponerTallas(array, id){
     var xs = false; 
     var s = false; 
     var m = false; 
@@ -131,27 +145,28 @@ function ponerTallas(array){
                 case "XL" : xl = true; 
                             break;
             }
+            
         }
-
         if(xs == false){
-            $("#XS").remove();
+            $("#XS" + id.toString()).remove();
         }
         if(s == false){
-            $("#S").remove();
+            $("#S"+ id.toString()).remove();
         }
         if(m == false){
-            $("#M").remove();
+            $("#M"+id.toString()).remove();
         }
         if(l == false){
-            $("#L").remove();
+            $("#L"+id.toString()).remove();
         }
         if(xl == false){
-            $("#XL").remove();
+            $("#XL"+id.toString()).remove();
         }
+       
     }
 }
 
-function comprobarTallas(id){
+function comprobarTallas(id, i){
     var request = $.ajax({
         url: '../Model/comprobarTalla.php',
         type: 'POST',
@@ -162,7 +177,7 @@ function comprobarTallas(id){
     request.done(function(data){
         var response = JSON.parse(JSON.stringify(data));
         console.log(response);
-        ponerTallas(response);
+        ponerTallas(response, i);
     })
     request.fail(function( jqXHR, textStatus, errorThrown ){
         if (jqXHR.status === 0) {
@@ -211,7 +226,7 @@ function eliminarDelCarro(i){
     
         request.done(function(data){
             alert(data);
-            window.location.reload(); 
+            location.reload(); 
         }); 
         request.fail(function(response){
             if (jqXHR.status === 0) {
@@ -254,6 +269,8 @@ function actualizarCarro(i){
     let id_cliente = arr.compra[i].id_cliente;
     let fk_producto = arr.compra[i].id_producto;
     let id_compra = arr.compra[i].id_compra;
+    arr.compra[i].unidades = unidades;
+    console.log( arr.compra[i].unidades);
     var request = $.ajax({
         url: '../Model/actualizarCarro.php',
         type: 'POST',
@@ -262,7 +279,10 @@ function actualizarCarro(i){
     })
 
     request.done(function(data){
-       console.log(data );
+        console.log(data );
+        
+        location.reload();
+        
     })
     request.fail(function( jqXHR, textStatus, errorThrown ){
         if (jqXHR.status === 0) {
@@ -296,4 +316,14 @@ function actualizarCarro(i){
         }
         
         });
+        
+}
+
+function irAcompra(){
+    if(check == true){
+        alert("You don't have anything in your bag");
+    }else{
+        window.location.href =  `comprarProductos.html`;
+    }
+
 }

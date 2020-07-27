@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Comprar Items</title>
+        <link rel="stylesheet" href="css/foundation.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/comprar.js"></script>
+        <script src="js/index.js"></script>
+        <script>
+            $(document).ready(function(){
+                 $('#lupa').click(function(){
+                    if($('#barra').is(":visible")){
+                        $('#barra').hide(1000);
+                    }else{
+                        $('#barra').show(1000);
+                    }
+                    
+                })
+                cargarCarro();
+                $("input[name=shipment]").change(function () {	 
+			        desplegarPrecioFinal($(this).val());
+                });
+
+                cargarDatos();
+                
+                $('form').on('submit', function(e){
+                    e.preventDefault();
+                    comprar();
+                })
+            })
+            
+        </script>
+        
+    </head>
+    
+    <body lang="en">
+       <div class="contenedor" id="TituloPrincipal">
+            <h1 id="minimal">Minimal</h1>
+       </div>
+    
+       
+       <div class="grid-x grid-padding-x">
+        <div class="menu large-4 cell align-left">
+            <ul class="dropdown menu titulo " data-dropdown-menu>
+                <li>
+                    <a href="#" class="secondary-color">Women</a>
+                    <ul class="menu">
+                        <li><a id="women"  class="genero">All</a></li>
+                        <li><a  class = "w search" value="Tops">Tops</a></li>
+                        <li><a  class = "w search" value="Bottoms">Bottoms</a></li>
+                        <li><a  class = "w search" value="Dresses">Dresses</a></li>
+                        <li><a  class = "w search" value="Hoodies">Hoodies</a></li>
+                        <li><a  class = "w search" value="Hats">Hats</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="show">Men</a>
+                    <ul class="menu">
+                        <li><a id="men"  class="genero">All</a></li>
+                        <li><a  class="m search" value="Tops">Tops</a></li>
+                        <li><a  class="m search" value="Bottoms">Bottoms</a></li>
+                        <li><a  class="m search" value="Hoodies">Hoodies</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="show">Collections</a>
+                    <ul class="menu">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Favorites</a></li>
+                        <li><a href="#">Top Rated</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">About</a></li>
+            
+            </ul>
+        </div>
+        <div class="menu titulo large-8 cell align-right">
+            <ul class="dropdown menu " data-dropdown-menu>
+                <li><span class="material-icons" id="compras" >shopping_bag</span>
+                    <li>
+                        <a class="show" id="account">Account</a>
+                        <ul class="menu" id="usuario">
+                            <li><a href="editarUsuarioC.html"><span class="material-icons">
+                                edit
+                                </span>Edit my profile</a></li>
+                            <li><a id="wish"><span class="material-icons">
+                                favorite_border
+                                </span> Wishlist</a></li>
+                            <li><a href="../Model/cerrarSesion.php"><span class="material-icons">
+                                exit_to_app
+                                </span> Sign Out</a></li>
+                        </ul>
+                    </li>
+                <li>
+                    <span class="material-icons large" id="lupa">search</span>
+                    <div id="barra">
+                        <input type="text" placeholder="Buscar" id="barrita">
+                    </div>
+                </li>                 
+            </ul>
+        </div>
+        </div>
+        
+        <div class="contenedor " id="TituloSecundario">
+            <br>
+            <h3 class="titulo">Confirm Purchase</h3>
+        </div>
+        <br>
+        <br>
+        
+        
+        <div class="grid-x">
+            <div class="cell large-2"></div>
+        
+        <div class="cell  large-8" id="tabla">
+            <div class="grid-x">
+                <div class="cell large-4">
+                    <div class="descrip center"><p id="preview"><b>Product</b></p></div>
+                </div>
+                <div class="large-2 cell"></div>
+                <div class="cell large-2">
+                    <p class="descrip center"><b>Items</b></p>
+                </div> 
+                <div class="cell large-2">
+                    <div class="descrip center"><p><b>Price</b></p></div>
+                </div>
+                <div class="large-2 cell">
+                    <p class="descrip center"><b>Total</b></p>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="grid-x">
+                <div class="cell large-4">
+                    <div class="grid-x">
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <div ><img class="imagen" src="img/0728966712_1_1_3.jpg" width="120px"></div>
+                        </div>
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <p class="descrip center tabla">Name of the product</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="large-2 cell"></div>
+                <div class="cell large-2">
+                   <p class="descrip center tabla">1</p>
+                </div> 
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="grid-x">
+                <div class="cell large-4">
+                    <div class="grid-x">
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <div ><img class="imagen" src="img/0728966712_1_1_3.jpg" width="120px"></div>
+                        </div>
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <p class="descrip center tabla">Name of the product</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="large-2 cell"></div>
+                <div class="cell large-2">
+                   <p class="descrip center tabla">1</p>
+                </div> 
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+            </div>
+            
+            <hr>
+            
+           <div class="grid-x">
+                <div class="cell large-4">
+                    <div class="grid-x">
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <div ><img class="imagen" src="img/0728966712_1_1_3.jpg" width="120px"></div>
+                        </div>
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <p class="descrip center tabla">Name of the product</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="large-2 cell"></div>
+                <div class="cell large-2">
+                   <p class="descrip center tabla">1</p>
+                </div> 
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+            </div>
+            <hr>
+            
+            <div class="grid-x">
+                <div class="cell large-4">
+                    <div class="grid-x">
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <div ><img class="imagen" src="img/0728966712_1_1_3.jpg" width="120px"></div>
+                        </div>
+                        <div class="large-1 cell"></div>
+                        <div class="large-5 cell">
+                            <p class="descrip center tabla">Name of the product</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="large-2 cell"></div>
+                <div class="cell large-2">
+                   <p class="descrip center tabla">1</p>
+                </div> 
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+                 <div class="cell large-2">
+                   <p class="descrip center tabla"><img class="icon" src="img/dollar.svg" width="15px">8.00</p>
+                </div>
+            </div>
+            <hr>
+            <div class="grid-x">
+                <div class="large-8 cell"></div>
+                <div class="large-2 cell">
+                    <p class="descrip center" id="title"><b>Items Total</b></p>
+                </div>
+                <div class="large-2 cell">
+                    <p class="descrip center" id="title"><img class="icon" src="img/dollar.svg" width="18px"><b>32.00</b></p>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="cell large-2"></div>
+    </div>
+        
+    <div class="grid-x">
+        <div class="cell large-12">
+            <div><img id="separador" src="img/separador2.png"></div>
+         </div>
+    </div>
+        
+    <div class="grid-x">
+        <div class="large-2 cell"></div>
+        <div class="large-8 cell">
+             <div class="contenedor">
+                <h3 class="titulo">Order's Details</h3>
+            </div>
+            <hr>
+            <br>
+            <div class="grid-x">
+                <div class="large-6 cell">
+                    <h4 class="titulo"><i>Personal Information:</i></h4>
+                    <hr>
+                <form>
+                    <label for="nombre" class="descrip">First Name: </label>
+                    <input type="text" id="nombre" for="nombre" required>
+                    <label for="apellido" class="descrip">Last Name: </label>
+                    <input type="text"  id="apellido" for="apellido" required>
+                    <label for="Email" class="descrip">Email: </label>
+                    <input type="email"  id="email" for="email" required>
+                    <label for="adress" class="descrip">Adress</label>
+                    <textarea for="adress" id="adress" required></textarea>
+                    <label for="codigo" class="descrip">Zip Code</label>
+                    <input type="number" for="codigo" id="codigo" max="8055" min="1050" required step="1">
+                    <label for="state" class="descrip" >State </label>
+                    <input type="text" for="state" id="estado" required> 
+                    <label for="city" class="descrip">City</label>
+                    <input type="text" for="city" id="ciudad" required>
+                      <br>
+                    
+                    </div>
+                    <div class="large-1 cell"></div>
+                    <div class="large-5 cell">
+                    <br>
+                    <br>
+                    <br>
+                    <h4 class="titulo"><i>Shipping</i></h4>
+                    <hr>
+                    <div class="grid-x">
+                        <div class="large-6 cell">
+                           <ul class="nada descrip" style="list-style: none;" >
+                            <li><input type="radio" name="shipment" value="free" id="opcionF" required>
+                                    <label for="opcionF">Free</label></li>
+                            <li><input type="radio" name="shipment" value="express" id="opcionE">
+                                    <label for="opcionE">Express</label></li>   
+                           </ul>
+                                
+                            
+                        </div>
+                        <div class="large-6 cell">
+                            <p class="descrip center">5 to 7 business days</p>
+                            <p class="descrip center">2 to 3 business days*</p>
+                            <p class="letrapeque center"><b>*$5 recharge</b></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <h4 class="titulo"><i>Total Order</i></h4>
+                    <hr>
+                    <div class="grid-x">
+                        <div class="large-6 cell">
+                        <p class="descrip izq">Items Total</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere" id="totalI"><img class="icon" src="img/dollar.svg" width="15px">32.00</p>
+                    </div>
+                </div>
+                    <div class="grid-x">
+                    <div class="large-6 cell">
+                        <p class="descrip izq">Shipping</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere" id="shipping"><img class="icon" src="img/dollar.svg" width="15px">5.00</p>
+                    </div>
+                    </div>
+                <div class="grid-x">
+                    <div class="large-6 cell">
+                        <p class="descrip izq">Taxes</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere" id="taxes"><img class="icon" src="img/dollar.svg" width="15px">20.00</p>
+                    </div>
+                    </div>
+                    <hr>
+                <div class="grid-x">
+                    <div class="large-6 cell">
+                        <p class="descrip izq" id="title">Total of your Order</p>
+                    </div>
+                    <div class="large-6 cell">
+                        <p class="descrip dere total" id="title" ><img class="icon" src="img/dollar.svg" width="18px">58.00</p>
+                    </div>
+                    </div>
+                <br>
+                    </div>
+               
+                
+                </div>
+            <br>
+            <br>
+            <h4 class="titulo"><i>Payment</i></h4>
+            <hr>
+            <div class="grid-x">
+                <div class="large-2 cell"></div>
+                <div class="large-8 cell">
+                     
+                    <div class="grid-x">
+                        <div class="large-1 cell"></div>
+                        <div class="large-3 cell">
+                             <input type="radio" name="card" value="master" id="opcionM" required>
+                            <label for="opcionM"><img src="img/mastercard.svg" width="60px"></label>
+                        </div>
+                        <div class="large-5 cell"></div>
+                        <div class="large-3 cell">
+                            <input type="radio" name="card" value="visa" id="opcionV">
+                            <label for="opcionV"><img src="img/visa.svg" width="50px"></label>
+                            
+                        </div>
+                    </div>
+                     <label for="cardnumber" class="descrip">Card Number</label>
+                    <input type="number" id="cardnumber" for="cardnumber" required min="100000000000" max="9999999999999" step="1">     
+                         
+                   <div class="grid-x">
+                        <div class="large-4 cell">
+                             <label for="cedula" class="descrip">ID (Identification Number)</label>
+                             <input type="number" id="cedula" for="cedula" required min="100000" step="1">
+                        </div>
+                       <div class="large-4 cell"></div>
+                        <div class="large-4 cell">
+                            <label for="code" class="descrip">Security Code</label>
+                            <input type="number"  id="code" for="code" required max="999" min="100" step="1">
+                        </div>
+                    </div>
+                    
+                    <label for="expiry" class="descrip">Expiry Date </label>
+                    <input type="date" id="expiry" for="expiry" required>  
+                      <br>
+                    
+                    <br>
+                    <label for="payment" class="button secondary descrip expanded" >Pay and Place Order</label>
+                    <input type="submit" class="show-for-sr"id="payment" >
+                </form>
+                </div>
+                <div class="large-2 cell"></div>
+            </div>
+            
+        </div>
+        <div class="large-2 cell"></div>
+        
+    </div>
+    
+           
+        
+        
+        
+        
+        
+        
+         <br>
+        <div class="grid-x grid-padding-x ">
+            <div class="large-12 cell" id="footer">
+                <div class="grid-x grid-padding-x ">
+                    <div class="large-1 cell " ></div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <br>
+                        <br>
+                        <div class="descrip large-6 cell" >© 2020 Minimal, Inc</div>
+                        <div class="grid-x grid-padding-x ">
+                            <div class="large-4 cell" ></div>
+                            <div class="large-1 cell" >
+                               <a> <i class="fa fa-facebook-f " style="font-size:28px; color: white;"></i></a>
+                               <br>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-twitter" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                            <div class="large-1 cell" >
+                                <a><i class="fa fa-instagram" style="font-size:24px; color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">Shop</p>
+                        <a class="foot"><p class="descrip">Women</p></a>
+                        <a class="foot"><p class="descrip">Male</p></a>
+                        <a class="foot"><p class="descrip">Collections</p></a>
+                    </div>
+                    <div class="large-3 cell contenedor" >
+                        <br>
+                        <p class="titulo">About</p>
+                        <a class="foot"><p class="descrip">Policies and refunds</p></a>
+                        <a class="foot"><p class="descrip">Find My Size</p></a>
+                        <br> 
+                        <br> 
+                        
+                            
+                        
+                    </div>
+                    <div class="large-2 cell">
+                      
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+</html>
