@@ -176,6 +176,9 @@
         event.preventDefault();
         let nueva = $('#contrasenaNueva').val();
         let actual = $('#contrasenaActual').val();
+        if (nueva.length < 8){
+          alert("We couldn't update your password because it's too short ");
+        }else {
         var request = $.ajax({
           url:'../Model/actualizarContrasena.php', 
           type: 'POST', 
@@ -221,6 +224,7 @@
             }
           
       });
+    }
       }
   
       function actualizarUsuario(){
@@ -352,7 +356,8 @@
           $('#contrasena').val("");**/
       })
   
-      $('#update').click(function(){
+      $('#editF').on('submit', function(e){
+        e.preventDefault()
         actualizarUsuario();
       })
   
