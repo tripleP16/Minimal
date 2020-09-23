@@ -1,0 +1,70 @@
+
+from datetime import datetime,date,timedelta,time
+import calendar
+
+def sumarDia(fecha):
+    diaExtra = fecha + timedelta(days=1)
+    return diaExtra
+
+print("Bienvenido al calculo de fecha para demanda por termino de relacion laboral")
+
+#Entradas
+endDate = input("Favor ingrese la fecha de termino de su relacion laboral (dd-mm-aaaa): ")
+endDate = datetime.strptime(endDate, '%d-%m-%Y')
+print(endDate)
+claimDate = input("Favor ingrese la fecha de su reclamo (dd/mm/aaaa)")
+claimDate = datetime.strptime(claimDate, '%d-%m-%Y')
+
+comparendoDate = input("Favor ingrese la fecha del termino del reclamo (comparendo) (dd/mm/aaaa)")
+comparendoDate = datetime.strptime(comparendoDate, '%d-%m-%Y')
+
+#Diferencia de dias entre demanda y termino de la relacion laboral
+timeToClaim = claimDate - endDate
+timeToClaim = int(timeToClaim.days)  
+
+#Feriados
+holidaysList = []
+newYearDay = date(2020,1,1)
+holidaysList.append(newYearDay)
+holyFriday = date(2020,4,19)
+holidaysList.append(holyFriday)
+holySaturday = date(2020,4,20)
+holidaysList.append(holySaturday)
+workersDay = date(2020,5,1)
+holidaysList.append(workersDay)
+navyDay = date(2020,5,21)
+holidaysList.append(navyDay)
+sanPedroDay = date(2020,6,29)
+holidaysList.append(sanPedroDay)
+virginCarmenDay = date(2020,7,16)
+holidaysList.append(virginCarmenDay)
+virginMaryDay = date(2020,8,15)
+holidaysList.append(virginMaryDay)
+independenceDay1 = date(2020,9,18)
+holidaysList.append(independenceDay1)
+independenceDay2 = date(2020,9,19)
+holidaysList.append(independenceDay2)
+independenceDay3 = date(2020,9,20)
+holidaysList.append(independenceDay3)
+twoWorldsDay = date(2020,10,12)
+holidaysList.append(twoWorldsDay)
+churchDay = date(2020,10,31)
+holidaysList.append(churchDay)
+allSaintsDay = date(2020,11,1)
+holidaysList.append(allSaintsDay)
+christmasDay = date(2020,12,25)
+holidaysList.append(christmasDay)
+newYearEve = date(2021,1,1)
+holidaysList.append(newYearEve)
+
+# Fecha 90 dias
+finishDate = endDate
+finishDate = sumarDia(finishDate)
+daystoFinish = 90
+
+while daystoFinish <= 90:
+    if finishDate not in holidaysList:
+        finishDate = sumarDia(finishDate)
+        daystoFinish -= 1
+        
+print("Los 90 dias terminan en: ",finishDate)
